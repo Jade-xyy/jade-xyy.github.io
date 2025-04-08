@@ -1030,15 +1030,23 @@ a {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+  font-size: 0.9em;
 }
 .article-entry th {
   font-weight: bold;
   border-bottom: 3px solid var(--color-border);
+  border-right: 3px solid var(--color-border);
+  background-color: var(--red-4, #ffd0d0);
+  padding-top: 0.6em;
   padding-bottom: 0.5em;
+  text-align: center;
+  vertical-align: center;
 }
 .article-entry td {
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 2px solid var(--color-border);
+  border-right: 2px solid var(--color-border);
   padding: 10px 0;
+  text-align: center;
 }
 .article-entry blockquote {
   background: var(--red-5-5);
