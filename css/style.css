@@ -1040,11 +1040,10 @@ a {
   padding-top: 0.6em;
   padding-bottom: 0.5em;
   text-align: center;
-  vertical-align: center;
 }
 .article-entry td {
-  border-bottom: 2px solid var(--color-border);
-  border-right: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
   padding: 10px 0;
   text-align: center;
 }
@@ -1946,9 +1945,13 @@ a {
   margin: 0;
   table-layout: fixed;
 }
+.article-entry .highlight th {
+  padding-bottom: 0.5em;
+}
 .article-entry .highlight td {
   border: none;
   padding: 0;
+  text-align: left;
 }
 .article-entry .highlight figcaption {
   font-size: 0.85em;
@@ -2013,7 +2016,7 @@ a {
 }
 .article-entry .gist .gist-file .highlight {
   margin: 0;
-  padding: 0;
+  padding: 1em;
   border: none;
 }
 .article-entry .gist .gist-file .gist-meta {
@@ -2096,7 +2099,7 @@ pre .javascript .function {
   display: flex;
   justify-content: space-between;
   height: 40px;
-  align-items: center;
+  align-items: left;
   flex-shrink: 0;
   background: linear-gradient(to right, transparent 0%, var(--highlight-nav) 50%, transparent 100%);
   margin-bottom: 10px;
