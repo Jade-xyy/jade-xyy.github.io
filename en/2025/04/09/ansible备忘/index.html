@@ -14,7 +14,7 @@
 
   
 
-  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://jade-xyy.github.io';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://jade-xyy.github.io';window.REIMU_CONFIG.i18n_languages = ["en","ja"];</script>
   
   <title>
     ansible备忘 |
@@ -39,11 +39,13 @@
 <meta property="og:site_name" content="本堂主Blog">
 <meta property="og:description" content="… … … ansible … … … ∞ 【背景】ansible首次发布于2012年，作者Michael DeHaanMichael DeHaan也是Cobbler的作者于2015年被RedHat收购Ansible是一款自动化运维工具，基于Python开发（控制端需要有python环境）批量系统部署、程序部署、运行命令等功能  【特色】1.基于ssh做远程管理，被控制端必须开启ssh服务2.模块">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jade-xyy.github.io/en/2025/04/09/ansible%E5%A4%87%E5%BF%98/ansible_roles.png">
 <meta property="article:published_time" content="2025-04-09T07:54:33.000Z">
-<meta property="article:modified_time" content="2025-04-09T07:56:37.833Z">
+<meta property="article:modified_time" content="2025-04-10T08:36:59.707Z">
 <meta property="article:author" content="本堂主">
 <meta property="article:tag" content="ansible">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jade-xyy.github.io/en/2025/04/09/ansible%E5%A4%87%E5%BF%98/ansible_roles.png">
   
   
     <link rel="alternate" href="/atom.xml" title="本堂主Blog" type="application/atom+xml">
@@ -181,6 +183,8 @@
           
             <li data-value="en" class="selected">English</li>
           
+            <li data-value="ja" >日本語</li>
+          
         </ul>
       </div>
       <script>
@@ -200,6 +204,8 @@
               langMap['zh-CN'] = '/2025/04/09/ansible备忘/';
             
               langMap['en'] = '/en/2025/04/09/ansible备忘/';
+            
+              langMap['ja'] = '/ja/2025/04/09/ansible备忘/';
             
             selectedLang.textContent = item.textContent;
             selectItems.classList.remove("show");
@@ -288,7 +294,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">8</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -365,7 +371,7 @@
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-04-09T07:54:33.000Z" itemprop="datePublished">2025-04-09</time>
-    <time style="display: none;" id="post-update-time">2025-04-09</time>
+    <time style="display: none;" id="post-update-time">2025-04-10</time>
   </span>
 </div>
 
@@ -537,8 +543,7 @@
 <p>【ansible角色】<br>在实际生产环境中，为实现不同功能会编写大量playbook，而且每个playbook还可能会调用其他文件（如变量文件）<br>对于海量的、无规律的文件，管理较麻烦<br>ansible从1.2版本开始支持roles<br>roles是管理ansible文件的一种规范（目录结构）<br>roles会按照标准的规范，自动到特定的目录和文件中读取数据</p>
 </li>
 </ul>
-<p>roles规范的目录结构</p>
-<p>defaults&#x2F;main.yml：定义变量的缺省值，优先级较低<br>files目录：存储静态文件的目录<br>handlers&#x2F;main.yml：定义handlers<br>meta&#x2F;main.yml：作者、版本等描述信息<br>README.md：整个role的描述信息<br>tasks&#x2F;main.yml：定义任务<br>templates目录：存放动态数据文件的地方（模版文件）<br>vars&#x2F;main.yml：定义变量，优先级高</p>
+<p>roles规范的目录结构<br><img src="ansible_roles.png"><br>defaults&#x2F;main.yml：定义变量的缺省值，优先级较低<br>files目录：存储静态文件的目录<br>handlers&#x2F;main.yml：定义handlers<br>meta&#x2F;main.yml：作者、版本等描述信息<br>README.md：整个role的描述信息<br>tasks&#x2F;main.yml：定义任务<br>templates目录：存放动态数据文件的地方（模版文件）<br>vars&#x2F;main.yml：定义变量，优先级高</p>
 <p>roles应用</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置，在defaults下添加roles_path行，自定义role存放位置</span></span><br><span class="line">vim ansible.cfg</span><br><span class="line">[defaults]</span><br><span class="line">inventory=./hosts</span><br><span class="line">remote_user=alice</span><br><span class="line">role_path=./roles   <span class="comment"># 定义角色目录位置</span></span><br><span class="line">[privilege_escalation]</span><br><span class="line">become=True</span><br><span class="line">become_method=<span class="built_in">sudo</span></span><br><span class="line">become_user=root</span><br><span class="line">become_ask_pass=False</span><br></pre></td></tr></table></figure>
 <pre><code>- 手工创建角色
@@ -632,7 +637,7 @@
         
           
           
-            <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
+            <img data-src="/covers/bangboo1.jpg" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
           
         
         <a href="/en/2025/04/09/Linux%E5%A4%87%E5%BF%98-%E4%B8%8B/"></a>
@@ -727,10 +732,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        31.6k
+        33.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        02:08
+        02:17
       </div>
     
     
@@ -776,7 +781,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">8</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -947,7 +952,7 @@
           description: "",
           stripContent: "… … … ansible … … … ∞ 【背景】ansible首次发布于2012年，作者Michael DeHaanMichael DeHaan也是Cobbler的作者于2015年被RedHat收购Ansible是一款自动化运维工具，基于Python开发（控制端需要有python环境）批量系统部署、程序部署、运行命令等功能  【特色】1.基于ssh做远程管理，被控制端必须开启ssh服务2.模块丰富3.社区活跃4.支持自定义模块5.支持异构IT架构6.部署简单，容易上手  【下载】dnf -y",
           date: "Wed Apr 09 2025 15:54:33 GMT+0800",
-          updated: "Wed Apr 09 2025 15:56:37 GMT+0800",
+          updated: "Thu Apr 10 2025 16:36:59 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

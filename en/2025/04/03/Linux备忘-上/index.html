@@ -14,7 +14,7 @@
 
   
 
-  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://jade-xyy.github.io';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://jade-xyy.github.io';window.REIMU_CONFIG.i18n_languages = ["en","ja"];</script>
   
   <title>
     Linux备忘 - 上 |
@@ -39,11 +39,13 @@
 <meta property="og:site_name" content="本堂主Blog">
 <meta property="og:description" content="Linux备忘系统简介及注意事项VMware安装虚机创建虚机最小628M内存挂起&#x3D;&#x3D;暂停（真实操作系统没有挂起） 真实机修改为硬盘启动 Boot-&gt;hard device 密码复杂性原则：8位以上大小写字母、数字、符号；不能是英文单词；不能是和用户相关的内容 swap应该分内存的2倍，但超过2G没有意义 &#x2F;root&#x2F;install.log：存储安装在系">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jade-xyy.github.io/en/2025/04/03/Linux%E5%A4%87%E5%BF%98-%E4%B8%8A/autofs.png">
 <meta property="article:published_time" content="2025-04-03T07:15:13.000Z">
-<meta property="article:modified_time" content="2025-04-09T08:49:12.097Z">
+<meta property="article:modified_time" content="2025-04-10T08:33:45.672Z">
 <meta property="article:author" content="本堂主">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jade-xyy.github.io/en/2025/04/03/Linux%E5%A4%87%E5%BF%98-%E4%B8%8A/autofs.png">
   
   
     <link rel="alternate" href="/atom.xml" title="本堂主Blog" type="application/atom+xml">
@@ -181,6 +183,8 @@
           
             <li data-value="en" class="selected">English</li>
           
+            <li data-value="ja" >日本語</li>
+          
         </ul>
       </div>
       <script>
@@ -200,6 +204,8 @@
               langMap['zh-CN'] = '/2025/04/03/Linux备忘-上/';
             
               langMap['en'] = '/en/2025/04/03/Linux备忘-上/';
+            
+              langMap['ja'] = '/ja/2025/04/03/Linux备忘-上/';
             
             selectedLang.textContent = item.textContent;
             selectItems.classList.remove("show");
@@ -288,7 +294,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">8</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -365,7 +371,7 @@
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-04-03T07:15:13.000Z" itemprop="datePublished">2025-04-03</time>
-    <time style="display: none;" id="post-update-time">2025-04-09</time>
+    <time style="display: none;" id="post-update-time">2025-04-10</time>
   </span>
 </div>
 
@@ -395,6 +401,98 @@
 <p>不靠扩展名区分文件类型，靠文件属性，以下扩展名便于管理、约定俗成<br>压缩包：.gz .bz2 .tar.bz2 .tgz<br>二进制软件包：.rpm<br>网页文件：.html .php<br>脚本文件：.sh<br>配置文件：.conf</p>
 <p>所有存储设备都必须挂载以后才能使用，包括硬盘、U盘、光盘</p>
 <h4 id="服务器管理和维护建议"><a href="#服务器管理和维护建议" class="headerlink" title="服务器管理和维护建议"></a>服务器管理和维护建议</h4><p>Linux各个目录的作用boot、etc目录可以备份下<br>远程服务器不允许关机，只能重启<br>重启时应该关闭服务（大量数据访问突然断电容易烧坏硬盘）<br>不要在服务器访问高峰运行高负载命令<br>远程配置防火墙时不要把自己踢出服务器<br>指定合理的密码规范并定期更新<br>合理分配权限<br>定期备份重要数据和日志（etc、lib、var）</p>
+<table>
+<thead>
+<tr>
+<th align="center">目录名</th>
+<th align="left">目录作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&#x2F;bin&#x2F;</td>
+<td align="left">存放系统命令的目录，普通用户和超级用户都可以执行。不过放在&#x2F;bin下的命令在单用户模式下也可以执行</td>
+</tr>
+<tr>
+<td align="center">&#x2F;sbin&#x2F;</td>
+<td align="left">保存和系统环境设置相关的命令，只有超级用户可以使用这些命令进行系统环境设置，但是有些命令可以允许普通用户查看</td>
+</tr>
+<tr>
+<td align="center">&#x2F;usr&#x2F;bin&#x2F;</td>
+<td align="left">存放系统命令的目录，普通用户和超级用户都可以执行。这些命令和系统启动无关，在单用户模式下不能执行</td>
+</tr>
+<tr>
+<td align="center">&#x2F;usr&#x2F;sbin</td>
+<td align="left">存放根文件系统不必要的系统管理命令，例如多数服务程序。只有超级用户可以使用。大家其实可以注意到Linux的系统，在所有“sbin”目录中保存的命令只有超级用户可以使用，“bin”目录中保存的命令所有用户都可以使用</td>
+</tr>
+<tr>
+<td align="center">&#x2F;boot&#x2F;</td>
+<td align="left">系统启动目录，保存系统启动相关的文件，如内核文件和启动引导程序（grub）文件等</td>
+</tr>
+<tr>
+<td align="center">&#x2F;dev&#x2F;</td>
+<td align="left">设备文件保存位置。我们已经说过Linux中所有内容以文件形式保存，包括硬件。那么这个目录就是用来保存所有硬件设备文件的</td>
+</tr>
+<tr>
+<td align="center">&#x2F;etc&#x2F;</td>
+<td align="left">配置文件保存位置。系统内所有采用默认安装方式（rpm安装）的服务的配置文件全部都保存在这个目录当中，如用户账户和密码，服务的启动脚本，常用服务的配置文件等</td>
+</tr>
+<tr>
+<td align="center">&#x2F;home&#x2F;</td>
+<td align="left">普通用户的家目录。建立每个用户时，每个用户要有一个默认登录位置，这个位置就是这个用户的家目录，所有普通用户的家目录就是在&#x2F;home下建立一个和用户名相同的目录。如用户user1的家目录就是&#x2F;home&#x2F;user1</td>
+</tr>
+<tr>
+<td align="center">&#x2F;lib&#x2F;</td>
+<td align="left">系统调用的函数库保存位置</td>
+</tr>
+<tr>
+<td align="center">&#x2F;lost+found&#x2F;</td>
+<td align="left">当系统意外崩溃或机器意外关机，而产生一些文件碎片在这里。当系统启动的过程中fsck工具会检查这里，并修复已经损坏的文件系统。这个目录只在每个分区中出现，例如&#x2F;lost+found就是根分区的备份恢复目录，&#x2F;boot&#x2F;lost+found就是&#x2F;boot分区的备份恢复目录</td>
+</tr>
+<tr>
+<td align="center">&#x2F;media&#x2F;</td>
+<td align="left">挂载目录。系统建议是用来挂载媒体设备的，例如软盘和光盘</td>
+</tr>
+<tr>
+<td align="center">&#x2F;mnt&#x2F;</td>
+<td align="left">挂载目录，早期Linux中只有这一个挂载目录，并没有细分。现在这个目录系统建议挂载额外设备，如U盘、移动硬盘和其他操作系统的分区</td>
+</tr>
+<tr>
+<td align="center">&#x2F;misc&#x2F;</td>
+<td align="left">挂载目录，系统建议用来挂载NFS服务的共享目录。只要是一个已经建立的空目录就可以作为挂载点，那么系统虽然准备了三个默认挂载目录，但到底在哪个目录挂载什么设备都由管理员自己决定。如&#x2F;mnt&#x2F;cdrom挂载光盘、&#x2F;mnt&#x2F;usb挂载U盘，都是可以的</td>
+</tr>
+<tr>
+<td align="center">&#x2F;opt&#x2F;</td>
+<td align="left">第三方安装的软件保存位置。这个目录就是放置和安装其他软件的位置，手工安装的源码包软件都可以安装到这个目录中，不过我还是更加习惯把软件放置到&#x2F;usr&#x2F;local&#x2F;目录中，也就是说&#x2F;usr&#x2F;local&#x2F;目录也可用来装软件</td>
+</tr>
+<tr>
+<td align="center">&#x2F;proc&#x2F;</td>
+<td align="left">虚拟文件系统，该目录中的数据并不保存到硬盘当中，而是保存到内存当中。主要保存系统的内核、进程、外部设备状态和网络状态等。如&#x2F;proc&#x2F;cpuinfo是保存CPU信息的，&#x2F;proc&#x2F;devices是保存设备驱动的列表的，&#x2F;proc&#x2F;filesystems是保存文件系统列表的，&#x2F;proc&#x2F;net是保存网络协议信息的</td>
+</tr>
+<tr>
+<td align="center">&#x2F;sys&#x2F;</td>
+<td align="left">虚拟文件系统。和&#x2F;proc目录相似，都是保存在内存当中的，主要是保存与内核相关信息的</td>
+</tr>
+<tr>
+<td align="center">&#x2F;root&#x2F;</td>
+<td align="left">超级用户的家目录。直接在“&#x2F;”下</td>
+</tr>
+<tr>
+<td align="center">&#x2F;srv&#x2F;</td>
+<td align="left">服务数据目录。一些系统服务启动之后，可以在这个目录中保存所需的数据</td>
+</tr>
+<tr>
+<td align="center">&#x2F;tmp&#x2F;</td>
+<td align="left">临时目录。系统存放临时文件的目录，该目录下所有用户都可以读写。不保存重要数据，最好每次开机都清空</td>
+</tr>
+<tr>
+<td align="center">&#x2F;usr&#x2F;</td>
+<td align="left">系统软件资源目录。是“Unix Software Resource”的缩写，不是user的缩写。系统中安装的软件大多数保存在这里</td>
+</tr>
+<tr>
+<td align="center">&#x2F;var&#x2F;</td>
+<td align="left">动态数据保存位置。主要保存缓存、日志以及软件运行所产生的文件</td>
+</tr>
+</tbody></table>
 <h2 id="SELinux安全机制"><a href="#SELinux安全机制" class="headerlink" title="SELinux安全机制"></a>SELinux安全机制</h2><p>Security-Enhanced Linux<br>美国NSA国家安全局主导开发，一套增强Linux系统安全的强制访问控制体系<br>集成到Linux内核（2.6及以上）中运行<br>SELinux体系针对用户、进程、目录和文件提供了预设的保护策略，以及管理工具</p>
 <h4 id="运行模式及切换"><a href="#运行模式及切换" class="headerlink" title="运行模式及切换"></a>运行模式及切换</h4><p>运行模式：<br>enforcing：强制<br>permissive：宽松<br>disabled：彻底禁用</p>
 <p>查看运行模式：getenforce<br>临时立即生效强制变宽松：setenforce 0<br>临时立即生效宽松变强制：setenforce 1<br>永久生效需重启系统：vim &#x2F;etc&#x2F;selinux&#x2F;config SELINUX&#x3D;disabled</p>
@@ -413,6 +511,70 @@
 <li>查看客户端请求中来源IP地址，查看自己所有区域中规则，哪个区域中有该源IP地址规则，则进入该区域</li>
 <li>如果所有区域都没找到，则进入默认区域（默认情况为public）</li>
 </ul>
+</li>
+<li>iptables规则链包括下表<table>
+<thead>
+<tr>
+<th align="center">链名</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">INPUT链</td>
+<td align="left">进入本地主机防火墙内部的数据包会应用此链中的规则</td>
+</tr>
+<tr>
+<td align="center">OUTPUT链</td>
+<td align="left">从本地主机经过防火墙发出的数据包会应用此链中的规则</td>
+</tr>
+<tr>
+<td align="center">FORWARD链</td>
+<td align="left">需要iptables转发的数据包会应用此链中的规则</td>
+</tr>
+<tr>
+<td align="center">PREROUTING链</td>
+<td align="left">到达本机并在路由转发前的数据包会应用此链中的规则，用于目的地址转换（DNAT），针对主机外到达防火墙的报文，所有的数据包进来的时候都会优先由PREROUTING链处理</td>
+</tr>
+<tr>
+<td align="center">POSTROUTING链</td>
+<td align="left">路由之后需要离开本机的数据包会应用此链中的规则，用于源地址转换（SNAT），主机内的报文要从防火墙出去，需要经过POSTROUTING链进行处理</td>
+</tr>
+</tbody></table>
+</li>
+<li>iptables内置了4个表如下：（表Tables是多个链的集合）<table>
+<thead>
+<tr>
+<th align="center">表名</th>
+<th align="left">作用</th>
+<th align="center">优先级</th>
+<th align="center">是否常用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Raw表</td>
+<td align="left">可以让数据包跳过链接跟踪和NAT</td>
+<td align="center">1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Mangle表</td>
+<td align="left">修改数据包中的内容，如TTL、Qos等</td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Nat表</td>
+<td align="left">实现网络地址转换</td>
+<td align="center">3</td>
+<td align="center">*</td>
+</tr>
+<tr>
+<td align="center">Filter表</td>
+<td align="left">iptables默认使用的表，实现包过滤功能</td>
+<td align="center">4</td>
+<td align="center">*</td>
+</tr>
+</tbody></table>
 </li>
 </ul>
 <h4 id="查看防火墙规则列表"><a href="#查看防火墙规则列表" class="headerlink" title="查看防火墙规则列表"></a>查看防火墙规则列表</h4><h5 id="…-…-…-firewall-…-…-…-∞"><a href="#…-…-…-firewall-…-…-…-∞" class="headerlink" title="… … … firewall … … … ∞"></a><code>… … … firewall … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 检查是否安装</span></span><br><span class="line">rpm -q firewalld</span><br><span class="line"><span class="comment"># 安装、启动</span></span><br><span class="line">dnf clean all ; dnf -y install firewalld</span><br><span class="line">systemctl start firewalld</span><br><span class="line"><span class="comment"># 查看当前区域规则（默认public）</span></span><br><span class="line">firewall-cmd --list-all</span><br><span class="line"><span class="comment"># 查看各个区域规则</span></span><br><span class="line">firewall-cmd --list-all --zone=trusted</span><br><span class="line">                        --zone=block</span><br><span class="line">                        --zone=drop</span><br><span class="line"><span class="comment"># 查看默认区域</span></span><br><span class="line">firewall-cmd --get-default-zone</span><br><span class="line"><span class="comment"># 默认public区域时，放行、移除http协议</span></span><br><span class="line">dnf -y install httpd;systemctl start httpd;访问ip（默认80端口）</span><br><span class="line">firewall-cmd --add-service=http <span class="comment"># 永久生效加 --permanent</span></span><br><span class="line">firewall-cmd --list-all | grep services <span class="comment"># 可以看到services（协议）的值多了http</span></span><br><span class="line"><span class="comment"># 移除放行的http协议</span></span><br><span class="line">firewall-cmd --remove-service=http</span><br><span class="line"><span class="comment"># 放行、移除端口</span></span><br><span class="line">firewall-cmd --add-port=80/tcp <span class="comment"># 永久生效加 --permanent</span></span><br><span class="line">firewall-cmd --list-all | grep ports</span><br><span class="line">firewall-cmd --remove-port=80/tcp</span><br></pre></td></tr></table></figure>
@@ -458,7 +620,30 @@
 <h4 id="压缩解压命令"><a href="#压缩解压命令" class="headerlink" title="压缩解压命令"></a>压缩解压命令</h4><p>压缩格式 .gz .zip(不需要装对应软件、自带) .rar</p>
 <h5 id="…-…-…-gzip-gunzip-…-…-…-∞"><a href="#…-…-…-gzip-gunzip-…-…-…-∞" class="headerlink" title="… … … gzip/gunzip … … … ∞"></a><code>… … … gzip/gunzip … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 英文原意 GNU zip/unzip；所在路径 /bin/gzip gunzip；执行权限 all</span></span><br><span class="line">gzip 压缩后缀.gz</span><br><span class="line">gunzip test.gz &lt;==&gt; gzip -d test.gz 解压缩.gz的压缩文件</span><br><span class="line"><span class="comment"># gzip只能压缩文件，不能压缩目录；压缩完不保留源文件</span></span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-tar-…-…-…-∞"><a href="#…-…-…-tar-…-…-…-∞" class="headerlink" title="… … … tar … … … ∞"></a><code>… … … tar … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 所在路径 /bin/tar；执行权限 all</span></span><br><span class="line">tar [压缩后文件名] [目录]</span><br><span class="line">-c 打包</span><br><span class="line">-C 指定解包路径</span><br><span class="line">-x 解包</span><br><span class="line">-v 显示详细信息</span><br><span class="line">-f 指定文件名，此选项要在其他选项的最后边</span><br><span class="line">-z -j -J 压缩/解压缩，.gz .bz2 .xz格式</span><br><span class="line">-t 显示包中的文件清单</span><br><span class="line">-P 以绝对路径方式进行归档压缩</span><br><span class="line"></span><br><span class="line">tar -zcf test.tar.gz mulu 打包压缩</span><br><span class="line">tar -zxvf test.tar.gz 解压缩</span><br><span class="line">tar -cf 打包</span><br><span class="line">tar -xf  -C /tmp  解压到指定目录</span><br></pre></td></tr></table></figure>
-<p>压缩格式	扩展名	特点<br>gzip	.gz	速度快，压缩比例低<br>bzip2	.bz2	速度中等，压缩比例中等<br>xz	.xz	速度慢，压缩比例高</p>
+<table>
+<thead>
+<tr>
+<th align="center">压缩格式</th>
+<th align="center">扩展名</th>
+<th align="center">特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">gzip</td>
+<td align="center">.gz</td>
+<td align="center">速度快，压缩比例低</td>
+</tr>
+<tr>
+<td align="center">bzip2</td>
+<td align="center">.bz2</td>
+<td align="center">速度中等，压缩比例中等</td>
+</tr>
+<tr>
+<td align="center">xz</td>
+<td align="center">.xz</td>
+<td align="center">速度慢，压缩比例高</td>
+</tr>
+</tbody></table>
 <h5 id="…-…-…-zip-unzip-…-…-…-∞"><a href="#…-…-…-zip-unzip-…-…-…-∞" class="headerlink" title="… … … zip/unzip … … … ∞"></a><code>… … … zip/unzip … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 所在路径 /usr/bin/zip unzip；执行权限 all</span></span><br><span class="line">zip [压缩后文件名] [文件/目录]-r 压缩目录</span><br><span class="line">zip test.zip <span class="built_in">test</span> 压缩文件</span><br><span class="line">zip -r mulu.zip mulu 压缩目录</span><br><span class="line">unzip test.zip 解压缩，不区分文件或目录</span><br><span class="line"><span class="comment"># 保留源文件；压缩比80%</span></span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-bzip2-…-…-…-∞"><a href="#…-…-…-bzip2-…-…-…-∞" class="headerlink" title="… … … bzip2 … … … ∞"></a><code>… … … bzip2 … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 所在路径 /usr/bin/bzip2；执行权限 all</span></span><br><span class="line">bzip2 [文件]</span><br><span class="line">-k 产生压缩文件后保留源文件</span><br><span class="line">bzip2 -k mulu 生成后缀.bz2打包压缩文件</span><br><span class="line">tar -cjf mulu.tar.bz2 mulu 用tar压缩成bz2后缀文件</span><br><span class="line">tar -xjf mulu.tar.bz2 解压</span><br></pre></td></tr></table></figure>
 <h4 id="网络命令"><a href="#网络命令" class="headerlink" title="网络命令"></a>网络命令</h4><h5 id="…-…-…-write-…-…-…-∞"><a href="#…-…-…-write-…-…-…-∞" class="headerlink" title="… … … write … … … ∞"></a><code>… … … write … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 所在路径 /usr/bin/write；执行权限 all</span></span><br><span class="line">write &lt;用户名&gt; 给用户发信息；ctrl+backspace删除；ctrl+d保存结束</span><br><span class="line"><span class="comment"># 所有用户登录在当前服务器才能互发信息，在线用户</span></span><br></pre></td></tr></table></figure>
@@ -467,7 +652,7 @@
 <h5 id="…-…-…-ping-…-…-…-∞"><a href="#…-…-…-ping-…-…-…-∞" class="headerlink" title="… … … ping … … … ∞"></a><code>… … … ping … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 所在路径 /bin/ping；执行权限 all</span></span><br><span class="line">ping IP 测试网络连通性</span><br><span class="line">-c 指定发送次数</span><br><span class="line"><span class="comment"># packet loss 丢包率</span></span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-telnet-…-…-…-∞"><a href="#…-…-…-telnet-…-…-…-∞" class="headerlink" title="… … … telnet … … … ∞"></a><code>… … … telnet … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">telnet ip port</span><br><span class="line">ctrl+]退出</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-ifconfig-…-…-…-∞"><a href="#…-…-…-ifconfig-…-…-…-∞" class="headerlink" title="… … … ifconfig … … … ∞"></a><code>… … … ifconfig … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 英文原意 interface configure；所在路径 /sbin/ifconfig；执行权限 root</span></span><br><span class="line">ifconfig 网卡名称 IP信息</span><br><span class="line">ifconfig 查看网卡信息；eth0 本地真实网卡信息；lo 本机通信测试用的</span><br><span class="line">ifconfig eth0 11.0.1.6 设置网卡信息</span><br></pre></td></tr></table></figure>
-<h5 id="…-…-…-ip-…-…-…-∞"><a href="#…-…-…-ip-…-…-…-∞" class="headerlink" title="… … … ip … … … ∞"></a><code>… … … ip … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kong</span><br></pre></td></tr></table></figure>
+<h5 id="…-…-…-ip-…-…-…-∞"><a href="#…-…-…-ip-…-…-…-∞" class="headerlink" title="… … … ip … … … ∞"></a><code>… … … ip … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ip命令格式:</span></span><br><span class="line">ip 选项 对象 命令</span><br><span class="line"><span class="comment"># 参数说明如下:</span></span><br><span class="line">(1)选项(OPTIONS)OPTIONS是ip命令改变其输出内容的选项。所有的选项都是以-字符开头，分为长、短两种形式。常见的选项有:</span><br><span class="line">-V，-Version 显示ip的版本信息</span><br><span class="line">-s，-stats，-statistics 输出更为详尽的信息</span><br><span class="line">-f,-family 强制使用指定的协议族，包括inet、inet6或<span class="built_in">link</span></span><br><span class="line">-4 -family inet的简写，指定使用IPv4协议</span><br><span class="line">-6 -fammily inet6的简写，指定使用IPv6协议</span><br><span class="line">-0 -family <span class="built_in">link</span>的简写</span><br><span class="line">-o，-oneline 对每行记录都使用单行输出，回行用字符代替</span><br><span class="line">-r，-resolve 显示主机时，使用主机域名</span><br><span class="line">(2)对象</span><br><span class="line">OBJECT是要用户获取信息的对象。常见的对象有:</span><br><span class="line">Link：网卡信息</span><br><span class="line">addr：address IP地址信息</span><br><span class="line">neigh：neighbourARP信息</span><br><span class="line">route：路由信息</span><br><span class="line">netns：命名空间，rule IP策略</span><br><span class="line">maddr：maddress 多播地址信息</span><br><span class="line">mroute：多播路由信息</span><br><span class="line">tumnel IP隧道</span><br></pre></td></tr></table></figure>
 
 
 
@@ -492,7 +677,44 @@
 <h4 id="四剑客之find"><a href="#四剑客之find" class="headerlink" title="四剑客之find"></a>四剑客之find</h4><h5 id="…-…-…-find-…-…-…-∞-1"><a href="#…-…-…-find-…-…-…-∞-1" class="headerlink" title="… … … find … … … ∞"></a><code>… … … find … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 精确查找文件</span></span><br><span class="line"><span class="comment"># 查找过程中如果遇到/proc目录下的报错，属于正常现象，因为/proc不占用磁盘空间，占用的是内存空间</span></span><br><span class="line">find [查找目录] [条件]</span><br><span class="line">-<span class="built_in">type</span>：按类型查找（f、d、l）</span><br><span class="line">-name：按文档名称查找</span><br><span class="line">-size：按文件大小查找（k、M、G）</span><br><span class="line">查找大于2M的：find /boot -size +2M</span><br><span class="line">查找小于1M的：find /boot -size -1024K（-1M是bug查不出来）</span><br><span class="line">-user：按文件所有者查找</span><br><span class="line">-perm：按文件权限查找</span><br><span class="line">	查找包含SGID的：find /usr/ -perm -g=s</span><br><span class="line">	查找就是SGID的：find /usr/ -perm g=s</span><br><span class="line">	查找不包含的：find /usr/ -perm /g=s</span><br><span class="line">    查找当前目录下权限不是644的php文件：find . -<span class="built_in">type</span> f -name <span class="string">&quot;*.php&quot;</span> ! -perm 644</span><br><span class="line">-mtime：按修改时间查找</span><br><span class="line">	查找近10天修改的文件：find /etc -mtime -10</span><br><span class="line">	查找10天前：find /etc/ -mtime +10</span><br><span class="line"><span class="comment"># 多条件查找</span></span><br><span class="line">连接符：</span><br><span class="line">-a &lt;==&gt; &amp;&amp;（默认-a，可省略不写）</span><br><span class="line">-o &lt;==&gt; ||</span><br><span class="line"></span><br><span class="line"><span class="comment"># 处理查找到的内容</span></span><br><span class="line">find [目录] [条件] -<span class="built_in">exec</span> 处理命令 &#123;&#125; \;</span><br><span class="line">&#123;&#125; 标识find查找到的每一个结果，\; 标识操作结束</span><br><span class="line"><span class="comment">#  拷贝前findfiles目录需要存在，否则会出现findfiles文件</span></span><br><span class="line">find /boot/ -name <span class="string">&quot;vm*&quot;</span> -<span class="built_in">exec</span> <span class="built_in">cp</span> -r &#123;&#125; /root/findfiles \;</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-join-…-…-…-∞"><a href="#…-…-…-join-…-…-…-∞" class="headerlink" title="… … … join … … … ∞"></a><code>… … … join … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取ecm节点总内存、k8s分配内存、内存占比</span></span><br><span class="line"><span class="built_in">join</span> -1 1 -2 1 &lt;(kubectl get nodes -o jsonpath=<span class="string">&quot;&#123;range .items[*]&#125;&#123;.metadata.name&#125;&#123;&#x27;\t&#x27;&#125;&#123;.status.capacity.memory&#125;&#123;&#x27;\t&#x27;&#125;&#123;.status.allocatable.memory&#125;&#123;&#x27;\n&#x27;&#125;&#123;end&#125;&quot;</span> | grep ecm |awk <span class="string">&#x27;&#123;if(index($3,&quot;Ki&quot;)&gt;0)&#123;print $1 &quot; &quot; $2/1024 &quot;Mi &quot; $3/1024 &quot;Mi&quot;&#125;else&#123;print $1 &quot; &quot; $2/1024 &quot;Mi &quot; $3/1024/1024 &quot;Mi&quot;&#125;&#125;&#x27;</span>) &lt;(kubectl top node | grep ecm | awk <span class="string">&#x27;&#123;print $1,$4,$5&#125;&#x27;</span>) | awk <span class="string">&#x27;BEGIN&#123;print &quot;节点&quot;,&quot;总内存&quot;,&quot;k8s分配内存&quot;,&quot;已使用内存&quot;,&quot;使用内存占比&quot;&#125;&#123;print&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以第一个命令的第一个串儿为key，以第二个命令的第一个串儿为key，两个命令需排过序</span></span><br><span class="line"><span class="built_in">join</span> -1 1 -2 1</span><br></pre></td></tr></table></figure>
 <h4 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 建立、编辑、显示文本文件</span></span><br><span class="line">命令模式 -&gt; esc进入命令模式</span><br><span class="line">插入模式 -&gt; 命令按i a o进入插入</span><br><span class="line">编辑模式 -&gt; 命令模式输:</span><br><span class="line"></span><br><span class="line"><span class="comment"># 命令模式</span></span><br><span class="line">A 跳入行末进入编辑</span><br><span class="line">I 跳到行首进入编辑</span><br><span class="line">o 光标所在下一行进入编辑</span><br><span class="line">O 光标所在上一行进入编辑</span><br><span class="line"></span><br><span class="line">0 跳到行首 </span><br><span class="line">$ 跳到行尾</span><br><span class="line">gg 跳到首行</span><br><span class="line">G 跳到尾行</span><br><span class="line">nG 跳到第n行</span><br><span class="line">u 撤销</span><br><span class="line">ctrl r 恢复撤销</span><br><span class="line">d$ 删到行尾</span><br><span class="line">D 删到行尾</span><br><span class="line">n + x 删除n个字符</span><br><span class="line"></span><br><span class="line">ndd 删除光标所在的向下n行</span><br><span class="line">d1G 删除光标所在到第一行</span><br><span class="line">dG 删除光标所在到最后一行</span><br><span class="line">d0 删除光标所在到该行最前面的一个字符</span><br><span class="line">x 相当于backspace</span><br><span class="line">X 相当于delete</span><br><span class="line">nx 连续向后删除n个字符</span><br><span class="line">yy 复制当前行</span><br><span class="line">p 粘贴到光标所在行下</span><br><span class="line">P 粘贴到贯标所在行上</span><br><span class="line">nyy 复制当前行到向下n行</span><br><span class="line"><span class="built_in">dd</span> 剪切当前行</span><br><span class="line">ndd 剪切当前行以下n行</span><br><span class="line">r 替换当前字符</span><br><span class="line">R 光标所在处替换，直到esc退出</span><br><span class="line">ZZ 保存修改并退出快捷键</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑模式</span></span><br><span class="line">:<span class="built_in">set</span> nu 显示行号</span><br><span class="line">:n 跳到第n行</span><br><span class="line">:n1,n2d 删除指定范围的行</span><br><span class="line">:%s/old/new/g 全文替换指定字符串；结尾的g不询问直接替换，c询问</span><br><span class="line">:n1,n2s/old/new/g 在一定范围内替换指定字符串</span><br><span class="line">:n1,n2s/^/#/g 连续行注释；^标识行首</span><br><span class="line">:n1,n2s/^#//g 连续行替换注释为空</span><br><span class="line">:n1,n2s/^/\/\//g 连续航添加//注释；\转义符</span><br><span class="line">:<span class="built_in">set</span> ff?   查看当前文本格式</span><br><span class="line">:<span class="built_in">set</span> ff=unix  设置为unix格式</span><br><span class="line"></span><br><span class="line">查找按/</span><br><span class="line">n 向下查找</span><br><span class="line">N 向上查找</span><br><span class="line"></span><br><span class="line">:w 保存修改</span><br><span class="line">:w new_filename 另存为指定文件</span><br><span class="line">:wq 保存修改并退出</span><br><span class="line">:q! 不保存退出</span><br><span class="line">:wq! 强制保存修改并退出（文件所有者及root可使用）</span><br><span class="line"></span><br><span class="line">:r 文件名 <span class="comment"># 导入文件内容到光标所在行</span></span><br><span class="line">:! 命令 <span class="comment"># 不退出vim执行命令</span></span><br><span class="line">:r !<span class="built_in">date</span> <span class="comment"># 导入命令执行结果到光标所在行</span></span><br><span class="line">:map ^P I#&lt;ESC&gt; 跳到行首并进入插入模式并插入<span class="string">&quot;#&quot;</span>；^P用ctrl+v+p输入</span><br><span class="line">:map ^B 0x 跳到行首，删除行首第一个字符</span><br><span class="line">:map ^H helloworld 插入helloworld</span><br><span class="line">:ab mymail 281108530@qq.com 替换mymail为邮箱</span><br><span class="line"></span><br><span class="line">/<span class="variable">$HOME</span>/.vimrc 快捷键放到配置文件里，重启不失效</span><br></pre></td></tr></table></figure>
-
+<blockquote>
+<p>配置vim适应yaml语法</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文件和位置是固定的，用于设置vim的格式</span></span><br><span class="line">vim ~/.vimrc</span><br><span class="line"><span class="built_in">set</span> nu ai ts=2 et cuc</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th align="center">set</th>
+<th align="center">Word</th>
+<th align="center">Comment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ai</td>
+<td align="center">autoindent</td>
+<td align="center">自动缩进</td>
+</tr>
+<tr>
+<td align="center">ts</td>
+<td align="center">TabStop</td>
+<td align="center">Tab<em>1&#x3D;Space</em>2</td>
+</tr>
+<tr>
+<td align="center">et</td>
+<td align="center">ExpandTab</td>
+<td align="center">将tab键转换为相应个数的空格</td>
+</tr>
+<tr>
+<td align="center">cuc</td>
+<td align="center">CursorColumn</td>
+<td align="center">光标列对齐</td>
+</tr>
+<tr>
+<td align="center">nu</td>
+<td align="center">number</td>
+<td align="center">设置行号</td>
+</tr>
+</tbody></table>
 <h4 id="shell命令"><a href="#shell命令" class="headerlink" title="shell命令"></a>shell命令</h4><h5 id="…-…-…-date-…-…-…-∞"><a href="#…-…-…-date-…-…-…-∞" class="headerlink" title="… … … date … … … ∞"></a><code>… … … date … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">%I 小时，12小时制（01~12）</span><br><span class="line">%k 小时，24小时制（0~23）</span><br><span class="line">%l 小时，12小时制（1~12）</span><br><span class="line">%M 分钟（00~59）</span><br><span class="line">%p 显示出AM或PM</span><br><span class="line">%r 显示时间，12小时制（hh:mm:ss %p）</span><br><span class="line">%s 从1970年1月1日00:00:00到目前经历的秒数</span><br><span class="line">%S 显示秒（00~59）</span><br><span class="line">%T 显示时间，24小时制（hh:mm:ss）</span><br><span class="line">%X 显示时间的格式（%H:%M:%S）</span><br><span class="line">%Z 显示时区，日期域（CST）</span><br><span class="line">%a 星期的简称（Sun~Sat）</span><br><span class="line">%A 星期的全称（Sunday~Saturday）</span><br><span class="line">%h,%b 月的简称（Jan~Dec）</span><br><span class="line">%B 月的全称（January~December）</span><br><span class="line">%c 日期和时间（Tue Nov 20 14:12:58 2012）</span><br><span class="line">%d 一个月的第几天（01~31）</span><br><span class="line">%x,%D 日期（mm/dd/yy）</span><br><span class="line">%j 一年的第几天（001~366）</span><br><span class="line">%m 月份（01~12）</span><br><span class="line">%w 一个星期的第几天（0代表星期天）</span><br><span class="line">%W 一年的第几个星期（00~53，星期一为第一天）</span><br><span class="line">%y 年的最后两个数字（1999则是99）</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-加减操作-…-…-…-∞"><a href="#…-…-…-加减操作-…-…-…-∞" class="headerlink" title="… … …  加减操作 … … … ∞"></a><code>… … …  加减操作 … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 显示当前年月日</span></span><br><span class="line"><span class="built_in">date</span> +%Y%m%d</span><br><span class="line"><span class="comment"># 显示前一天的日期</span></span><br><span class="line"><span class="built_in">date</span> -d “+1 day” +%Y%m%d</span><br><span class="line"><span class="comment"># 显示后一天的日期</span></span><br><span class="line"><span class="built_in">date</span> -d “-1 day” +%Y%m%d</span><br><span class="line"><span class="comment"># 显示上一月的日期</span></span><br><span class="line"><span class="built_in">date</span> -d “-1 month” +%Y%m%d</span><br><span class="line"><span class="comment"># 显示下一月的日期</span></span><br><span class="line"><span class="built_in">date</span> -d “+1 month” +%Y%m%d</span><br><span class="line"><span class="comment"># 显示前一年的日期</span></span><br><span class="line"><span class="built_in">date</span> -d “-1 year” +%Y%m%d</span><br><span class="line"><span class="comment"># 显示下一年的日期</span></span><br><span class="line"><span class="built_in">date</span> -d “+1 year” +%Y%m%d</span><br><span class="line"><span class="comment"># 2秒后输出</span></span><br><span class="line"><span class="built_in">date</span> -d “2 second” +<span class="string">&quot;%Y-%m-%d %H:%M.%S&quot;</span></span><br><span class="line"><span class="comment"># 时间戳转换时间date</span></span><br><span class="line"><span class="built_in">date</span> -d @时间戳</span><br><span class="line"><span class="built_in">date</span> -d <span class="string">&quot;1970-01-01 时间戳 days&quot;</span></span><br><span class="line"><span class="comment"># 时间转时间戳</span></span><br><span class="line"><span class="built_in">echo</span> $(($(date --date=&quot;<span class="number">2022</span>/<span class="number">12</span>/<span class="number">09</span>&quot; +%s)/<span class="number">86400</span>+<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-curl-…-…-…-∞"><a href="#…-…-…-curl-…-…-…-∞" class="headerlink" title="… … … curl … … … ∞"></a><code>… … … curl … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#获取汽油价格json格式化</span></span><br><span class="line">curl -shttps://api.help.bj.cn/apis/youjiajq</span><br><span class="line"><span class="comment">#获取汽油价格 数组</span></span><br><span class="line">curl -shttps://api.help.bj.cn/apis/youjia| jq .data[1][1]</span><br><span class="line"><span class="comment">#查看IP</span></span><br><span class="line">curl myip.ipip.net</span><br><span class="line"></span><br><span class="line">curl -I -s --connect-timeout 5 -m 5 -w <span class="string">&quot;%&#123;http_code&#125;&quot;</span> -o /dev/null -u <span class="variable">$&#123;user&#125;</span>:<span class="variable">$&#123;pass&#125;</span>://<span class="variable">$&#123;ip&#125;</span>/root/.kube</span><br></pre></td></tr></table></figure>
@@ -587,18 +809,62 @@
 </li>
 </ol>
 <p>两个工具<br>fdisk 所有操作保存在内存里，对磁盘不生效，最终保存才会生效，q退出<br>parted 敲回车直接更改</p>
-<h5 id="…-…-…-mkfs-blkid-pv-vg-lv-…-…-…-∞"><a href="#…-…-…-mkfs-blkid-pv-vg-lv-…-…-…-∞" class="headerlink" title="… … … mkfs. blkid pv vg lv  … … … ∞"></a><code>… … … mkfs. blkid pv vg lv  … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## 识别硬盘-》分区规划-》格式化-》挂载</span></span><br><span class="line">逻辑分区规划：fdisk n +1G w</span><br><span class="line"></span><br><span class="line">格式化：赋予空间 文件系统</span><br><span class="line">mkfs.ext4 /dev/vdc1</span><br><span class="line">blkid 查看分区文件系统类型</span><br><span class="line"></span><br><span class="line">挂载：让目录成为设备的访问点</span><br><span class="line"></span><br><span class="line"><span class="comment">## 逻辑卷创建流程：创建物理卷(pv)-》创建卷组(vg)-》创建逻辑卷(lv)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 逻辑卷作用：</span></span><br><span class="line">1.整合分散空间</span><br><span class="line">2.在线动态扩容</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建卷组</span></span><br><span class="line">vgcreate myvg /dev/vdc2 <span class="comment"># 会判断分区是否为物理卷，如不是自动pvcreate，可省略pvcreate步骤</span></span><br><span class="line">lvcreate -L 1G -n mylv myvg <span class="comment"># L指定最终大小，l指定PE个数</span></span><br><span class="line"></span><br><span class="line">扩容卷组</span><br><span class="line">情况一：卷组有足够空间</span><br><span class="line">1.扩展逻辑卷：</span><br><span class="line">lvextend -L 最终大小 逻辑卷的名 </span><br><span class="line">2.扩展文件系统（blkid查询类型，用对应类型的命令扩展）：</span><br><span class="line">ext4：resize2fs</span><br><span class="line">xfs：xfs_growfs</span><br><span class="line"></span><br><span class="line">情况二：卷组没有足够空间</span><br><span class="line">1.扩展卷组</span><br><span class="line">vgextend 卷组名  物理卷1  …</span><br><span class="line">2.扩展逻辑卷：</span><br><span class="line">lvextend -L 最终大小 逻辑卷的名 </span><br><span class="line">3.扩展文件系统（blkid查询类型，用对应类型的命令扩展）：</span><br><span class="line">ext4：resize2fs</span><br><span class="line">xfs：xfs_growfs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除逻辑卷（删除倒序删）</span></span><br><span class="line">umount</span><br><span class="line">lvremove</span><br><span class="line">vgremove（需要vg里的lv都删除完）</span><br><span class="line">pvremove /dev/vdc[2-3]</span><br><span class="line"></span><br><span class="line"><span class="comment">## PE</span></span><br><span class="line"><span class="comment"># 修改PE大小</span></span><br><span class="line">vgchange -s 1M myvg</span><br><span class="line">vgdisplay myvg <span class="comment"># 查看pe大小</span></span><br><span class="line"><span class="comment"># 创建时指定PE大小</span></span><br><span class="line">vgcreate -s 1M myvg /dev/vdc2</span><br><span class="line"><span class="comment"># 创建lv时指定PE个数</span></span><br><span class="line">lvcreate -l 50 -n mylv myvg</span><br></pre></td></tr></table></figure>
+<h5 id="…-…-…-mkfs-blkid-pv-vg-lv-…-…-…-∞"><a href="#…-…-…-mkfs-blkid-pv-vg-lv-…-…-…-∞" class="headerlink" title="… … … mkfs. blkid pv vg lv  … … … ∞"></a><code>… … … mkfs. blkid pv vg lv  … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## 识别硬盘-》分区规划-》格式化-》挂载</span></span><br><span class="line">逻辑分区规划：fdisk n +1G w</span><br><span class="line"></span><br><span class="line">格式化：赋予空间 文件系统</span><br><span class="line">mkfs.ext4 /dev/vdc1</span><br><span class="line">blkid 查看分区文件系统类型</span><br><span class="line"></span><br><span class="line">挂载：让目录成为设备的访问点</span><br><span class="line"></span><br><span class="line"><span class="comment">## 逻辑卷创建流程：创建物理卷(pv)-》创建卷组(vg)-》创建逻辑卷(lv)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>逻辑卷常用指令集</p>
+<table>
+<thead>
+<tr>
+<th align="center">功能</th>
+<th align="center">物理卷管理</th>
+<th align="center">卷组管理</th>
+<th align="center">逻辑卷管理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Scan 扫描</td>
+<td align="center">pvscan&#x2F;pvs</td>
+<td align="center">vgscan&#x2F;ygs</td>
+<td align="center">Ivscan&#x2F;lvs</td>
+</tr>
+<tr>
+<td align="center">Create 创建</td>
+<td align="center">pvcreate</td>
+<td align="center">vgcreate</td>
+<td align="center">lvcreate</td>
+</tr>
+<tr>
+<td align="center">Display 显示</td>
+<td align="center">pvdisplay</td>
+<td align="center">vgdisplay</td>
+<td align="center">lvdisplay</td>
+</tr>
+<tr>
+<td align="center">Remove 删除</td>
+<td align="center">pvremove</td>
+<td align="center">vgremove</td>
+<td align="center">lvremove</td>
+</tr>
+<tr>
+<td align="center">Extend 扩展</td>
+<td align="center">&#x2F;</td>
+<td align="center">vgextend</td>
+<td align="center">lvextend</td>
+</tr>
+</tbody></table>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 逻辑卷作用：</span></span><br><span class="line">1.整合分散空间</span><br><span class="line">2.在线动态扩容</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建卷组</span></span><br><span class="line">vgcreate myvg /dev/vdc2 <span class="comment"># 会判断分区是否为物理卷，如不是自动pvcreate，可省略pvcreate步骤</span></span><br><span class="line">lvcreate -L 1G -n mylv myvg <span class="comment"># L指定最终大小，l指定PE个数</span></span><br><span class="line"></span><br><span class="line">扩容卷组</span><br><span class="line">情况一：卷组有足够空间</span><br><span class="line">1.扩展逻辑卷：</span><br><span class="line">lvextend -L 最终大小 逻辑卷的名 </span><br><span class="line">2.扩展文件系统（blkid查询类型，用对应类型的命令扩展）：</span><br><span class="line">ext4：resize2fs</span><br><span class="line">xfs：xfs_growfs</span><br><span class="line"></span><br><span class="line">情况二：卷组没有足够空间</span><br><span class="line">1.扩展卷组</span><br><span class="line">vgextend 卷组名  物理卷1  …</span><br><span class="line">2.扩展逻辑卷：</span><br><span class="line">lvextend -L 最终大小 逻辑卷的名 </span><br><span class="line">3.扩展文件系统（blkid查询类型，用对应类型的命令扩展）：</span><br><span class="line">ext4：resize2fs</span><br><span class="line">xfs：xfs_growfs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除逻辑卷（删除倒序删）</span></span><br><span class="line">umount</span><br><span class="line">lvremove</span><br><span class="line">vgremove（需要vg里的lv都删除完）</span><br><span class="line">pvremove /dev/vdc[2-3]</span><br><span class="line"></span><br><span class="line"><span class="comment">## PE</span></span><br><span class="line"><span class="comment"># 修改PE大小</span></span><br><span class="line">vgchange -s 1M myvg</span><br><span class="line">vgdisplay myvg <span class="comment"># 查看pe大小</span></span><br><span class="line"><span class="comment"># 创建时指定PE大小</span></span><br><span class="line">vgcreate -s 1M myvg /dev/vdc2</span><br><span class="line"><span class="comment"># 创建lv时指定PE个数</span></span><br><span class="line">lvcreate -l 50 -n mylv myvg</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-swapon-…-…-…-∞"><a href="#…-…-…-swapon-…-…-…-∞" class="headerlink" title="… … … swapon … … … ∞"></a><code>… … … swapon … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## 交换空间（虚拟内存）</span></span><br><span class="line"><span class="comment"># 利用硬盘的空间，充当内存空间</span></span><br><span class="line"><span class="comment"># 当物理内存占满了，可以将内存中的数据，暂时放入交换空间中，缓解真是物理内存的压力</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 利用硬盘分区制作交换空间</span></span><br><span class="line"><span class="comment"># 查看交换分区</span></span><br><span class="line">swapon -s </span><br><span class="line"><span class="comment"># 格式化为交换分区</span></span><br><span class="line">mkswap /dev/vdc3</span><br><span class="line"><span class="comment"># 永久生效，实现开机自动挂载</span></span><br><span class="line">vim /etc/fstab</span><br><span class="line">/dev/vdc3    swap     swap      defaults    0    0</span><br><span class="line"><span class="comment"># 挂载交换分区</span></span><br><span class="line">swapon -a</span><br><span class="line">swapon -s</span><br><span class="line"><span class="comment"># 停用交换分区</span></span><br><span class="line">swapoff /dev/vdc3</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-NFS-…-…-…-∞"><a href="#…-…-…-NFS-…-…-…-∞" class="headerlink" title="… … … NFS … … … ∞"></a><code>… … … NFS … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Network  File System网络文件系统</span><br><span class="line"><span class="comment"># 用途</span></span><br><span class="line">为客户机提供共享使用的文件夹</span><br><span class="line"><span class="comment"># 所需软件包</span></span><br><span class="line">nfs-utils</span><br><span class="line"><span class="comment"># 系统服务</span></span><br><span class="line">nfs-server</span><br><span class="line"><span class="comment"># NFS配置</span></span><br><span class="line">vim /etc/exports</span><br><span class="line">目录 网段</span><br><span class="line">/public 192.25.0.0/24</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看服务端共享的目录</span></span><br><span class="line">showmount -e <span class="variable">$&#123;ip&#125;</span></span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-autofs-…-…-…-∞"><a href="#…-…-…-autofs-…-…-…-∞" class="headerlink" title="… … … autofs … … … ∞"></a><code>… … … autofs … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install -y autofs</span><br><span class="line">systemctl start autofs</span><br><span class="line"><span class="built_in">ls</span> /misc/cd</span><br><span class="line"><span class="built_in">cat</span> /etc/auto.master  <span class="comment"># 配置监控点</span></span><br><span class="line"><span class="built_in">cat</span> /etc/auto.misc  <span class="comment"># 配置监控点（触发点）子目录，相对路径，相对上一个文件</span></span><br></pre></td></tr></table></figure>
-
+<p><img src="autofs.png"></p>
 <h5 id="…-…-…-lsblk-…-…-…-∞"><a href="#…-…-…-lsblk-…-…-…-∞" class="headerlink" title="… … … lsblk … … … ∞"></a><code>… … … lsblk … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#查看所有可用块设备信息</span></span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-df-…-…-…-∞"><a href="#…-…-…-df-…-…-…-∞" class="headerlink" title="… … … df … … … ∞"></a><code>… … … df … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">df</span> [选项] [挂载点]</span><br><span class="line">-a：显示all文件系统信息，包括特殊文件系统，如/proc、/sysfs</span><br><span class="line">-h：使用习惯单位显示容量，如KB、MB或GB</span><br><span class="line">-T：显示文件系统类型</span><br><span class="line">-m：以MB为单位显示容量</span><br><span class="line">-k：以KB为单位显示容量（默认KB）</span><br><span class="line"><span class="comment"># 是从文件系统考虑的，不光要考虑文件占用的空间，还要统计被命令或程序占用的空间（最常见的就是文件已经删除，但是程序并没有释放空间）</span></span><br><span class="line"><span class="comment"># df看到的可用空间是真正的可用空间</span></span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-du-…-…-…-∞"><a href="#…-…-…-du-…-…-…-∞" class="headerlink" title="… … … du … … … ∞"></a><code>… … … du … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#查看文件、目录大小</span></span><br><span class="line"><span class="built_in">du</span> [选项] [目录或文件名]</span><br><span class="line">-a：显示每个子文件的磁盘占用量，默认只统计子目录的磁盘占用量</span><br><span class="line">-h：使用习惯单位显示磁盘占用率</span><br><span class="line">-s：统计总占用量，而不列出子目录和子文件的占用量(KB)</span><br><span class="line">[-H||--si K，M，G以1000为换算单位显示]</span><br><span class="line">[--exclude=&lt;目录或文件&gt; 略过指定的目录或文件]</span><br><span class="line"><span class="comment"># 是面向文件的，只会计算文件或目录占用的空间</span></span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-fsck-…-…-…-∞"><a href="#…-…-…-fsck-…-…-…-∞" class="headerlink" title="… … … fsck … … … ∞"></a><code>… … … fsck … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文件系统修复命令</span></span><br><span class="line">fsck [选项] 分区设备文件名</span><br><span class="line">-a：不用显示用户提示，自动修复文件系统</span><br><span class="line">-y：自动修复，和-a作用一致，不过有些文件系统支支持-y</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-dumpe2fs-…-…-…-∞-1"><a href="#…-…-…-dumpe2fs-…-…-…-∞-1" class="headerlink" title="… … … dumpe2fs … … … ∞"></a><code>… … … dumpe2fs … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 显示磁盘状态</span></span><br><span class="line">dumpe2fs 分区设备文件名</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-mount-…-…-…-∞-1"><a href="#…-…-…-mount-…-…-…-∞-1" class="headerlink" title="… … … mount … … … ∞"></a><code>… … … mount … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">临时挂载；一个设备能挂载多个挂载点；一个挂载点只能挂载一个设备</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询系统中已经挂载的设备，-l会显示卷标名称</span></span><br><span class="line">mount [-l]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 依据配置文件/etc/fstab的内容，自动挂载；检查/etc/fstab文件语法正误</span></span><br><span class="line">mount -a</span><br><span class="line"></span><br><span class="line">mount [-t 文件系统] [-L 卷标名] [-o 特殊选项] 设备文件名 挂载点</span><br><span class="line">-t 文件系统：加入文件系统类型来指定挂载的类型（ext3、ext4、iso9660等）</span><br><span class="line">-L 卷标名：挂载指定卷标的分区，而不是安装设备文件名挂载</span><br><span class="line">-o 特殊选项：可以指定挂载的额外选项</span><br><span class="line">例：挂载光盘</span><br><span class="line">mount -t iso9660 /dev/cdrom /mnt/cdrom/</span><br><span class="line">挂载U盘 <span class="comment"># Linux默认不支持NTFS文件系统</span></span><br><span class="line">mount -t vfat /dev/sdb1 /mnt/usb/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">umount 挂载点</span><br></pre></td></tr></table></figure>
-<h5 id="…-…-…-etc-fstab-…-…-…-∞"><a href="#…-…-…-etc-fstab-…-…-…-∞" class="headerlink" title="… … … /etc/fstab … … … ∞"></a><code>… … … /etc/fstab … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## 自动挂载（永久挂载）</span></span><br><span class="line">/etc/fstab文件（文件写错系统起不来）</span><br><span class="line">第1字段：分区设备文件名或UUID（硬盘通用唯一识别码）</span><br><span class="line">第2字段：挂载点</span><br><span class="line">第3字段：文件系统名称</span><br><span class="line">第4字段：挂载参数</span><br><span class="line">第5字段：指定分区是否被dump备份，0 不备份、1 每天备份、2 不定期备份</span><br><span class="line">第6字段：指定分区是否被fsck检测，0 不检测、其他数字代表优先级</span><br></pre></td></tr></table></figure>
+<h5 id="…-…-…-etc-fstab-…-…-…-∞"><a href="#…-…-…-etc-fstab-…-…-…-∞" class="headerlink" title="… … … /etc/fstab … … … ∞"></a><code>… … … /etc/fstab … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## 自动挂载（永久挂载）</span></span><br><span class="line">/etc/fstab文件（文件写错系统起不来）</span><br><span class="line">第1字段：分区设备文件名或UUID（硬盘通用唯一识别码）</span><br><span class="line">第2字段：挂载点</span><br><span class="line">第3字段：文件系统名称</span><br><span class="line">第4字段：挂载参数</span><br><span class="line">第5字段：指定分区是否被dump备份，0 不备份、1 每天备份、2 不定期备份</span><br><span class="line">第6字段：指定分区是否被fsck检测，0 不检测、其他数字代表优先级</span><br><span class="line"></span><br><span class="line"><span class="comment"># /etc/fstab 文件的记录格式：</span></span><br><span class="line">设备路径（设备名称）   挂载点   文件系统类型   参数   备份标记   检测顺序</span><br></pre></td></tr></table></figure>
 
 <h5 id="…-…-…-fdisk-…-…-…-∞"><a href="#…-…-…-fdisk-…-…-…-∞" class="headerlink" title="… … … fdisk … … … ∞"></a><code>… … … fdisk … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查询新硬盘</span></span><br><span class="line">fdisk -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 分区</span></span><br><span class="line">fdisk /dev/sdb</span><br><span class="line">所有操作保存在内存里，对磁盘不生效，最终保存才会生效，q退出</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新读取分区表信息</span></span><br><span class="line">partprobe</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-stat-…-…-…-∞"><a href="#…-…-…-stat-…-…-…-∞" class="headerlink" title="… … … stat … … … ∞"></a><code>… … … stat … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#查看文件信息</span></span><br><span class="line"><span class="built_in">stat</span> [文件]</span><br></pre></td></tr></table></figure>
@@ -677,7 +943,7 @@
         
           
           
-            <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="valorant" class="lazyload">
+            <img data-src="/covers/bangboo1.jpg" data-sizes="auto" alt="valorant" class="lazyload">
           
         
         <a href="/en/2025/04/07/valorant/"></a>
@@ -769,10 +1035,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        31.6k
+        33.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        02:08
+        02:17
       </div>
     
     
@@ -818,7 +1084,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">8</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -989,7 +1255,7 @@
           description: "",
           stripContent: "Linux备忘系统简介及注意事项VMware安装虚机创建虚机最小628M内存挂起&amp;#x3D;&amp;#x3D;暂停（真实操作系统没有挂起） 真实机修改为硬盘启动 Boot-&amp;gt;hard device 密码复杂性原则：8位以上大小写字母、数字、符号；不能是英文单词；不能是和用户相关的内容 swap应该分内存的2倍，但超过2G没有意义 &amp;#x2F;root&amp;#x2F;install.log：存储安装在系统中的软件包机器版本信息&amp;#x2F;root&amp;#x2F;install.log.syslog：存储安",
           date: "Thu Apr 03 2025 15:15:13 GMT+0800",
-          updated: "Wed Apr 09 2025 16:49:12 GMT+0800",
+          updated: "Thu Apr 10 2025 16:33:45 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
