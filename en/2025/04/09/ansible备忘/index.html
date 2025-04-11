@@ -41,7 +41,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jade-xyy.github.io/en/2025/04/09/ansible%E5%A4%87%E5%BF%98/ansible_roles.png">
 <meta property="article:published_time" content="2025-04-09T07:54:33.000Z">
-<meta property="article:modified_time" content="2025-04-10T08:36:59.707Z">
+<meta property="article:modified_time" content="2025-04-10T09:17:45.134Z">
 <meta property="article:author" content="本堂主">
 <meta property="article:tag" content="ansible">
 <meta name="twitter:card" content="summary">
@@ -294,7 +294,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">9</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -302,7 +302,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -405,7 +405,7 @@
 <li><p>【常用模块】</p>
 <ul>
 <li><p>shell模块<br>与command模块区别：<br>  command模块不支持bash特性，如管道和重定向等功能<br>  所有需要调用shell的功能都无法使用<br>  shell模块会启动shell执行命令，不可以使用shell模块执行交互命令，如vim、top等</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ansible node1 -m <span class="built_in">command</span> -a <span class="string">&#x27;ps &amp;&#x27;</span> <span class="comment"># ps放到后台，报错</span></span><br><span class="line">ansible node1 -m <span class="built_in">command</span> -a <span class="string">&#x27;ps &gt; a.txt&#x27;</span> <span class="comment"># 报错</span></span><br><span class="line">ansible node1 -m <span class="built_in">command</span> -a <span class="string">&#x27;ps aux | wc -l&#x27;</span> <span class="comment"># 报错</span></span><br><span class="line">ansible node1 -m shell -a <span class="string">&#x27;ps aux | wc -l&#x27;</span> <span class="comment"># 成功</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ansible node1 -m <span class="built_in">command</span> -a <span class="string">&#x27;ps &amp;&#x27;</span> <span class="comment"># ps放到后台，报错</span></span><br><span class="line">ansible node1 -m <span class="built_in">command</span> -a <span class="string">&#x27;ps &gt; a.txt&#x27;</span> <span class="comment"># 报错</span></span><br><span class="line">ansible node1 -m <span class="built_in">command</span> -a <span class="string">&#x27;ps aux | wc -l&#x27;</span> <span class="comment"># 报错</span></span><br><span class="line">ansible node1 -m shell -a <span class="string">&#x27;ps aux | wc -l&#x27;</span> <span class="comment"># 成功</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查用户</span></span><br><span class="line">ansible all -m shell -a <span class="string">&quot;cat secure* | grep Accept | awk -F/&quot;</span> /<span class="string">&quot; &#x27;&#123;if(<span class="variable">$1</span>==/&quot;</span>Jul/<span class="string">&quot; &amp;amp;&amp;amp; <span class="variable">$2</span>&gt;20)&#123;print <span class="variable">$0</span>&#125;&#125;&#x27;&quot;</span> -i /etc/ansible/user_check_hosts</span><br><span class="line"><span class="comment"># 检查网络连通性</span></span><br><span class="line">ansible all -m shell -a <span class="string">&quot;ping www.baidu.com -c 1 -image 0.2 -W 1 &amp;amp;&gt; /dev/null&quot;</span> -i /etc/ansible/hosts</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>script模块</p>
 </li>
@@ -655,7 +655,7 @@
       
         
         
-          <img data-src="/covers/bangboo2.jpg" data-sizes="auto" alt="valorant" class="lazyload">
+          <img data-src="/covers/bangboo1.jpg" data-sizes="auto" alt="valorant" class="lazyload">
         
       
       <a href="/en/2025/04/07/valorant/"></a>
@@ -732,10 +732,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        33.6k
+        54.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        02:17
+        03:41
       </div>
     
     
@@ -781,7 +781,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">9</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -789,7 +789,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -952,7 +952,7 @@
           description: "",
           stripContent: "… … … ansible … … … ∞ 【背景】ansible首次发布于2012年，作者Michael DeHaanMichael DeHaan也是Cobbler的作者于2015年被RedHat收购Ansible是一款自动化运维工具，基于Python开发（控制端需要有python环境）批量系统部署、程序部署、运行命令等功能  【特色】1.基于ssh做远程管理，被控制端必须开启ssh服务2.模块丰富3.社区活跃4.支持自定义模块5.支持异构IT架构6.部署简单，容易上手  【下载】dnf -y",
           date: "Wed Apr 09 2025 15:54:33 GMT+0800",
-          updated: "Thu Apr 10 2025 16:36:59 GMT+0800",
+          updated: "Thu Apr 10 2025 17:17:45 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

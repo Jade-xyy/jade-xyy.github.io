@@ -278,7 +278,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">9</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -286,7 +286,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -349,27 +349,34 @@
       <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/04/09/K8s%E5%A4%87%E5%BF%98-%E4%B8%8A/" aria-label="K8s备忘 - 上"></a>
+      <a class="post-link" href="/2025/04/11/k8s%E5%A4%87%E5%BF%98-%E4%B8%8B/" aria-label="k8s备忘 - 下"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="K8s备忘 - 上" class="lazyload">
+          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="k8s备忘 - 下" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-04-09</span>
-        <span><span class="icon-pencil"></span>0 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
+        <span><span class="icon-calendar"></span>2025-04-11</span>
+        <span><span class="icon-pencil"></span>8.6k 字</span>
+        <span><span class="icon-clock"></span>37 分钟</span>
       </div>
-      <h2 class="post-title">K8s备忘 - 上</h2>
+      <h2 class="post-title">k8s备忘 - 下</h2>
       <article class="post-article">
         
-          
+          调度简介Scheduler是k8s的调度器，主要任务是定义的pod分配到集群的节点上
+调度原则
+公平：保证每个节点都能被分配资源
+资源高效利用：集群所有资源最大化被使用
+效率：调度的性能要好，能够尽快地对大批量的pod完成调度工作
+灵活：允许用户根据自己的需求控制调度的逻辑Scheduler是作为单独的程序运行的，启动之后会一直坚挺（持续连接）APIServer，获取PodSpec.NodeName为空的pod，对每个pod都会创建一个binding，表明该pod应该放到哪个节点上指定了PodSpec.NodeName后scheduler不需要参与进来，除此外都会参与-#### 调度过程
+
+调
         
       </article>
     </div>
@@ -380,14 +387,45 @@
       <div class="post-wrapper">
   <div class="post-wrap-right" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/04/09/Linux%E5%A4%87%E5%BF%98-%E4%B8%8B/" aria-label="Linux备忘 - 下"></a>
+      <a class="post-link" href="/2025/04/09/K8s%E5%A4%87%E5%BF%98-%E4%B8%8A/" aria-label="K8s备忘 - 上"></a>
     
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/bangboo2.jpg" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
+          <img data-src="/covers/bangboo2.jpg" data-sizes="auto" alt="K8s备忘 - 上" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-09</span>
+        <span><span class="icon-pencil"></span>12.2k 字</span>
+        <span><span class="icon-clock"></span>48 分钟</span>
+      </div>
+      <h2 class="post-title">K8s备忘 - 上</h2>
+      <article class="post-article">
+        
+          K8s备忘k8s常用命令… … … kubectl … … … ∞#查看命名空间nsA下pod1的日志最近100行kubectl logs -f pod1 -n nsA --tail=100#查日志kubectl logs --tail=1000 $&amp;#123;podname&amp;#125; -n cloudpath &amp;gt; $&amp;#123;podname&amp;#125;.log#查看服务配置信息kubectl -n kubernetes-dashboard get service kubernetes-dashboard -o yaml#查看服务信息，所在node就是访问的ipkubectl -n 
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/04/09/Linux%E5%A4%87%E5%BF%98-%E4%B8%8B/" aria-label="Linux备忘 - 下"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/bangboo1.jpg" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
         
       
     </div>
@@ -414,12 +452,12 @@ Shell分类Bourne Shell：从1979起Unix就开始使用Bourne Shell，主文件�
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
+  <div class="post-wrap-right" data-aos="fade-up">
     
       <a class="post-link" href="/2025/04/09/ansible%E5%A4%87%E5%BF%98/" aria-label="ansible备忘"></a>
     
     
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         
         
@@ -430,7 +468,7 @@ Shell分类Bourne Shell：从1979起Unix就开始使用Bourne Shell，主文件�
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-04-09</span>
-        <span><span class="icon-pencil"></span>5.8k 字</span>
+        <span><span class="icon-pencil"></span>5.9k 字</span>
         <span><span class="icon-clock"></span>26 分钟</span>
       </div>
       <h2 class="post-title">ansible备忘</h2>
@@ -450,12 +488,12 @@ Shell分类Bourne Shell：从1979起Unix就开始使用Bourne Shell，主文件�
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
+  <div class="post-wrap-left" data-aos="fade-up">
     
       <a class="post-link" href="/2025/04/07/valorant/" aria-label="valorant"></a>
     
     
-    <div class="post-cover-right">
+    <div class="post-cover-left">
       
         
         
@@ -502,16 +540,16 @@ Shell分类Bourne Shell：从1979起Unix就开始使用Bourne Shell，主文件�
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
+  <div class="post-wrap-right" data-aos="fade-up">
     
       <a class="post-link" href="/2025/04/03/Linux%E5%A4%87%E5%BF%98-%E4%B8%8A/" aria-label="Linux备忘 - 上"></a>
     
     
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         
         
-          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="Linux备忘 - 上" class="lazyload">
+          <img data-src="/covers/bangboo2.jpg" data-sizes="auto" alt="Linux备忘 - 上" class="lazyload">
         
       
     </div>
@@ -537,12 +575,12 @@ swap应该分内存的2倍，但超过2G没有意义
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
+  <div class="post-wrap-left" data-aos="fade-up">
     
       <a class="post-link" href="/2025/04/02/markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E5%A4%87%E5%BF%98/" aria-label="markdown常用语法备忘"></a>
     
     
-    <div class="post-cover-right">
+    <div class="post-cover-left">
       
         <img data-src="https://jade-xyy.github.io/covers/bangboo2.jpg" data-sizes="auto" alt="markdown常用语法备忘" class="lazyload">
       
@@ -570,12 +608,12 @@ swap应该分内存的2倍，但超过2G没有意义
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
+  <div class="post-wrap-right" data-aos="fade-up">
     
       <a class="post-link" href="/2025/03/27/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BAhexo-github-%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D/" aria-label="博客搭建hexo+github+个人域名"></a>
     
     
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         <img data-src="https://jade-xyy.github.io/covers/bangboo1.jpg" data-sizes="auto" alt="博客搭建hexo+github+个人域名" class="lazyload">
       
@@ -606,16 +644,16 @@ swap应该分内存的2倍，但超过2G没有意义
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
+  <div class="post-wrap-left" data-aos="fade-up">
     
       <a class="post-link" href="/2025/03/24/hello-world/" aria-label="Hello World"></a>
     
     
-    <div class="post-cover-right">
+    <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/bangboo2.jpg" data-sizes="auto" alt="Hello World" class="lazyload">
+          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="Hello World" class="lazyload">
         
       
     </div>
@@ -673,10 +711,10 @@ Run server$ hexo serve
     
       <div>
         <span class="icon-brush"></span>
-        33.6k
+        54.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        02:17
+        03:41
       </div>
     
     
@@ -712,7 +750,7 @@ Run server$ hexo serve
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">9</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -720,7 +758,7 @@ Run server$ hexo serve
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
 </div>
 <div class="sidebar-social">
