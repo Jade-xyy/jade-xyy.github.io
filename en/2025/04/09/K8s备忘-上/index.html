@@ -55,7 +55,7 @@
 <meta property="og:image" content="https://jade-xyy.github.io/en/2025/04/09/K8s%E5%A4%87%E5%BF%98-%E4%B8%8A/k8s_pv_accessmode.png">
 <meta property="og:image" content="https://jade-xyy.github.io/en/2025/04/09/K8s%E5%A4%87%E5%BF%98-%E4%B8%8A/k8s_pvs_nfs.png">
 <meta property="article:published_time" content="2025-04-09T09:05:17.000Z">
-<meta property="article:modified_time" content="2025-04-11T06:58:14.130Z">
+<meta property="article:modified_time" content="2025-04-14T06:43:42.010Z">
 <meta property="article:author" content="本堂主">
 <meta property="article:tag" content="k8s">
 <meta name="twitter:card" content="summary">
@@ -308,15 +308,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">9</div>
+    <div class="sidebar-state-number">11</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
-    <div class="sidebar-state-number">4</div>
+    <div class="sidebar-state-number">5</div>
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">6</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -385,7 +385,7 @@
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-04-09T09:05:17.000Z" itemprop="datePublished">2025-04-09</time>
-    <time style="display: none;" id="post-update-time">2025-04-11</time>
+    <time style="display: none;" id="post-update-time">2025-04-14</time>
   </span>
 </div>
 
@@ -408,6 +408,7 @@
 <h4 id="…-…-…-ipvs-…-…-…-∞"><a href="#…-…-…-ipvs-…-…-…-∞" class="headerlink" title="… … … ipvs … … … ∞"></a><code>… … … ipvs … … … ∞</code></h4><p>ipvsadm -Ln</p>
 <h4 id="…-…-…-docker-…-…-…-∞"><a href="#…-…-…-docker-…-…-…-∞" class="headerlink" title="… … … docker … … … ∞"></a><code>… … … docker … … … ∞</code></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一键删除全部容器</span></span><br><span class="line">docker <span class="built_in">rm</span> $(docker ps -qa)</span><br><span class="line"><span class="comment"># 删除镜像</span></span><br><span class="line">docker rmi IMAG</span><br><span class="line"><span class="comment"># 查看容器的IP地址</span></span><br><span class="line">docker inspect 容器</span><br><span class="line"><span class="comment"># 查看当前正在运行的容器进程号</span></span><br><span class="line">docker inspect --format <span class="string">&#x27;&#123;&#123; .State.Pid &#125;&#125;&#x27;</span> 容器ID</span><br><span class="line"><span class="comment"># 导入镜像</span></span><br><span class="line">tar -zxvf perl.tar.gz</span><br><span class="line">docker load -i perl.tar</span><br><span class="line"><span class="comment"># 复制容器内文件到本地</span></span><br><span class="line">docker <span class="built_in">cp</span> k8s_test_svc-test-56ccb44cb9-t2hnj_testns_399b7029-074f-46b5-89b7-3dbb156a5a3b_0:/test/gc.log /tmp/gc.log</span><br><span class="line">命令空间testns</span><br><span class="line">容器svc-test</span><br><span class="line">pod为svc-test-56ccb44cb9-t2hnj</span><br><span class="line">文件/test/gc.log</span><br><span class="line"><span class="comment"># docker打tag推镜像</span></span><br><span class="line">docker build -t java-demo-01:lastest .</span><br><span class="line">docker run -d -p 8111:8111 java-demo-01:latest -t</span><br><span class="line">docker images | grep java-demo-01</span><br><span class="line">docker tag c234sdgfsdg hub.jade.com/library/java-project-01:1.0.0</span><br><span class="line">docker push hub.jade.com/library/java-project-01:1.0.0</span><br></pre></td></tr></table></figure>
 
+<hr>
 <h2 id="K8s组件"><a href="#K8s组件" class="headerlink" title="K8s组件"></a>K8s组件</h2><p>高可用集群的高可用节点数一般是3 5 7 9，避免双数高可用集群副本数最好是&gt;&#x3D;3 奇数个<br><img src="k8s_module.png"></p>
 <h4 id="Master的组件"><a href="#Master的组件" class="headerlink" title="Master的组件"></a>Master的组件</h4><ul>
 <li>APIServer：所有服务访问统一入口</li>
@@ -427,10 +428,12 @@
 <li>Prometheus：提供一个K8s集群的监控能力</li>
 <li>ELK：提供K8s集群日志统一分析接入平台</li>
 </ul>
+<hr>
 <h2 id="Pod"><a href="#Pod" class="headerlink" title="Pod"></a>Pod</h2><h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><p>自主式Pod：Pod退出了，此类Pod不会被创建<br>控制器管理的Pod：在控制器的生命周期里，始终要维持Pod的副本数目</p>
 <blockquote>
 <p>pause：只要有pod，此容器就会被启动，容器网络栈</p>
 </blockquote>
+<hr>
 <h2 id="资源清单"><a href="#资源清单" class="headerlink" title="资源清单"></a>资源清单</h2><h4 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h4><p>K8s中所有的内容都抽象为资源，资源实例化之后，叫做对象</p>
 <h4 id="集群资源分类"><a href="#集群资源分类" class="headerlink" title="集群资源分类"></a>集群资源分类</h4><ul>
 <li>名称空间级别：仅ns内可见<ul>
@@ -650,6 +653,7 @@
 <li>livenessProbe:指示容器是否正在运行。如果存活探针失败，则kubelet会杀死容器，并且容器将受到其 重启策略 的影响。如果容器不提供存活探针，则默认状态为Success</li>
 <li>readinessProbe:指示容器是否准备好服务请求。如果就绪探针失败，端口控制器将从与Pod匹配的所有Service的端点中删除该Pod的IP地址。初始延迟之前的就绪状态默认为Failure。如果容器不提供就绪探针，则默认状态为Success</li>
 </ul>
+<hr>
 <h2 id="Pod控制器（controller，相当于一个状态机用来控制Pod的具体状态和行为）"><a href="#Pod控制器（controller，相当于一个状态机用来控制Pod的具体状态和行为）" class="headerlink" title="Pod控制器（controller，相当于一个状态机用来控制Pod的具体状态和行为）"></a>Pod控制器（controller，相当于一个状态机用来控制Pod的具体状态和行为）</h2><h4 id="ReplicationController"><a href="#ReplicationController" class="headerlink" title="ReplicationController"></a>ReplicationController</h4><p>用来确保容器应用的副本数始终保持在用户定义的副本数<br>如果有容器异常退出，会自动创建新的Pod来替代；如果有异常多出来的，会自动回收<br>新版k8s中建议用rs代替rc</p>
 <h4 id="ReplicaSet"><a href="#ReplicaSet" class="headerlink" title="ReplicaSet"></a>ReplicaSet</h4><p>和rc没有本质的不通，只是名字不一样，但rs支持集合式的selector<br>虽然rs可独立使用，但建议用deploy自动管理rs，这样无需担心与其他机制不兼容问题（比如rs不支持rolling-update，但deploy支持）</p>
 <h4 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h4><p>不负责pod的创建，deploy定义rs，rs创建pod</p>
@@ -715,6 +719,7 @@
 </blockquote>
 </li>
 </ul>
+<hr>
 <h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><h4 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h4><p>服务发现，客户端想访问一组Pod，通过标签搜寻Pod<br>例：简单的一个svc（1个nginx、3个php Pod）3个pod的信息会记录到svc的负载队列，nginx配置信息只需指定到php的svc；pod如有更新会同步到svc里；nginx反向代理svc，svc会自动更新，不需要在nginx里做任何修改（不管pod扩缩容、更新，都不会对nginx或上一层服务造成影响）</p>
 <h5 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h5><p>k8s service 定义了这样一种抽象：1个pod的逻辑分组，一种可以访问他们的策略 – 通常称为微服务，每一个svc都是服务。这一组pod能够被service访问到，通常是通过label selector</p>
 <blockquote>
@@ -778,6 +783,7 @@
 <li>外网访问Pod<br>Service借助service的nodeport方式</li>
 </ul>
 <p>Service网络（虚拟内部网络）<br>Pod网络（虚拟内部网络）<br>节点网络（真实物理网络）</p>
+<hr>
 <h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><h4 id="configmap（配置文件注册中心）"><a href="#configmap（配置文件注册中心）" class="headerlink" title="configmap（配置文件注册中心）"></a>configmap（配置文件注册中心）</h4><h5 id="描述信息"><a href="#描述信息" class="headerlink" title="描述信息"></a>描述信息</h5><p>ConfigMap功能在k8s1.2版本中引入，许多应用程序会从配置文件、命令行参数或环境变量中读取配置信息<br>ConfigMap API给我们提供了向容器中注入配置信息的机制，ConfigMap可以被用来保存单个属性，也可以用来保存整个配置文件或者JSON二进制等对象</p>
 <h5 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h5><ol>
 <li>使用目录创建<br>kubectl create configmap game-config –from-file&#x3D;..&#x2F;configmap&#x2F;kubectl<br>–from-file指定在目录下的所有文件都会被用在ConfigMap里面创建一个键值对，键：文件名；值：文件内容</li>
@@ -1010,7 +1016,7 @@ secrets.yml<figure class="highlight yml"><table><tr><td class="code"><pre><span 
         
           
           
-            <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="k8s备忘 - 下" class="lazyload">
+            <img data-src="/covers/bangboo1.jpg" data-sizes="auto" alt="k8s备忘 - 下" class="lazyload">
           
         
         <a href="/en/2025/04/11/k8s%E5%A4%87%E5%BF%98-%E4%B8%8B/"></a>
@@ -1028,14 +1034,14 @@ secrets.yml<figure class="highlight yml"><table><tr><td class="code"><pre><span 
       
         
         
-          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
+          <img data-src="/covers/bangboo2.jpg" data-sizes="auto" alt="ansible备忘" class="lazyload">
         
       
-      <a href="/en/2025/04/09/Linux%E5%A4%87%E5%BF%98-%E4%B8%8B/"></a>
+      <a href="/en/2025/04/09/ansible%E5%A4%87%E5%BF%98/"></a>
       <div class="article-nav-caption">Older</div>
       <h3 class="article-nav-title">
         
-          Linux备忘 - 下
+          ansible备忘
         
       </h3>
     </div>
@@ -1105,10 +1111,10 @@ secrets.yml<figure class="highlight yml"><table><tr><td class="code"><pre><span 
     
       <div>
         <span class="icon-brush"></span>
-        54.4k
+        56.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        03:41
+        03:50
       </div>
     
     
@@ -1154,15 +1160,15 @@ secrets.yml<figure class="highlight yml"><table><tr><td class="code"><pre><span 
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">9</div>
+    <div class="sidebar-state-number">11</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
-    <div class="sidebar-state-number">4</div>
+    <div class="sidebar-state-number">5</div>
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">6</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -1325,7 +1331,7 @@ secrets.yml<figure class="highlight yml"><table><tr><td class="code"><pre><span 
           description: "",
           stripContent: "K8s备忘k8s常用命令… … … kubectl … … … ∞#查看命名空间nsA下pod1的日志最近100行kubectl logs -f pod1 -n nsA --tail=100#查日志kubectl logs --tail=1000 $&amp;#123;podname&amp;#125; -n cloudpath &amp;gt; $&amp;#123;podname&amp;#125;.log#查看服务配置信息kubectl -n kubernetes-dashboard get service kubernetes",
           date: "Wed Apr 09 2025 17:05:17 GMT+0800",
-          updated: "Fri Apr 11 2025 14:58:14 GMT+0800",
+          updated: "Mon Apr 14 2025 14:43:42 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
