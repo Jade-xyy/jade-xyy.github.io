@@ -278,7 +278,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">11</div>
+    <div class="sidebar-state-number">13</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -286,7 +286,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">9</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -349,6 +349,76 @@
       <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
+      <a class="post-link" href="/2025/04/14/ETCD%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D/" aria-label="ETCD备份恢复"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="ETCD备份恢复" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-14</span>
+        <span><span class="icon-pencil"></span>1.5k 字</span>
+        <span><span class="icon-clock"></span>7 分钟</span>
+      </div>
+      <h2 class="post-title">ETCD备份恢复</h2>
+      <article class="post-article">
+        
+          
+备份
+创建测试pod
+kubectl run test --image=nginx:1.7.9 --labels=&amp;quot;app=test&amp;quot;kubectl run test --image=nginx:1.7.9 --labels=&amp;quot;app=test&amp;quot; -n kube-system
+在etcd集群的每个节点上建立备份存放目录
+mkdir -p /data/backup/etcd/backup_$(date +%Y%m%d)
+使用kubeadm创建的k8s集群，etcd是使用容器运行的，因此备份和还原数据库需要将容器中的etcdctl命令拷贝到操作节点系统下的
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/04/14/etcd%E5%8D%95%E7%82%B9%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D/" aria-label="etcd单点故障恢复"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="etcd单点故障恢复" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-14</span>
+        <span><span class="icon-pencil"></span>216 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">etcd单点故障恢复</h2>
+      <article class="post-article">
+        
+          问题描述etcd挂载目录硬盘损坏，&amp;#x2F;var&amp;#x2F;lib&amp;#x2F;etcd目录丢失，导致master1上的etcd异常硬盘恢复后，重新创建逻辑卷，创建目录，重新挂载
+解决处理挂载后恢复etcd
+# 1. 首先停止etcd服务，否则会一直生成data目录systemctl stop etcd# 2. 移除data目录，新建data目录cd /var/lib/etcdmv data data.bakmkdir data# 3. 修改etcd服务配置文件vim /etc/systemd/system/etcd.service--initial-cluster-state=existi
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
       <a class="post-link" href="/2025/04/11/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%A4%87%E5%BF%98/" aria-label="正则表达式备忘"></a>
     
     
@@ -387,7 +457,7 @@
       
         
         
-          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="FAQ - Windows" class="lazyload">
+          <img data-src="/covers/bangboo1.jpg" data-sizes="auto" alt="FAQ - Windows" class="lazyload">
         
       
     </div>
@@ -460,7 +530,7 @@
       
         
         
-          <img data-src="/covers/bangboo1.jpg" data-sizes="auto" alt="K8s备忘 - 上" class="lazyload">
+          <img data-src="/covers/bangboo2.jpg" data-sizes="auto" alt="K8s备忘 - 上" class="lazyload">
         
       
     </div>
@@ -520,14 +590,14 @@
       <div class="post-wrapper">
   <div class="post-wrap-right" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/04/07/valorant/" aria-label="valorant"></a>
+      <a class="post-link" href="/2025/04/07/valorant/" aria-label="VALORANT"></a>
     
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/bangboo2.jpg" data-sizes="auto" alt="valorant" class="lazyload">
+          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="VALORANT" class="lazyload">
         
       
     </div>
@@ -537,7 +607,7 @@
         <span><span class="icon-pencil"></span>563 字</span>
         <span><span class="icon-clock"></span>3 分钟</span>
       </div>
-      <h2 class="post-title">valorant</h2>
+      <h2 class="post-title">VALORANT</h2>
       <article class="post-article">
         
           
@@ -579,7 +649,7 @@
       
         
         
-          <img data-src="/covers/bangboo1.jpg" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
+          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
         
       
     </div>
@@ -640,101 +710,6 @@ swap应该分内存的2倍，但超过2G没有意义
 </div>
       
     
-      <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/04/02/markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E5%A4%87%E5%BF%98/" aria-label="markdown常用语法备忘"></a>
-    
-    
-    <div class="post-cover-left">
-      
-        <img data-src="https://jade-xyy.github.io/covers/bangboo2.jpg" data-sizes="auto" alt="markdown常用语法备忘" class="lazyload">
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-04-02</span>
-        <span><span class="icon-pencil"></span>337 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">markdown常用语法备忘</h2>
-      <article class="post-article">
-        
-          标题一级标题二级标题三级标题四级标题五级标题六级标题#######没有七级，七级是正文  
-# 一级标题 缩略栏是居中的大标题## 二级标题 二级好看，用二级当一级### 三级标题#### 四级标题##### 五级标题###### 六级标题####### 没有七级，七级是正文 
-
-
-列表
-有序列表一
-有序列表二1. 有序列表一2. 有序列表二
-
-
-无序列表
-无序列表
-
-
-test3
-test4
-
-
-test5
-test6- 无序列表- 无序列表+ test3+ test4* test5* test6
-
-
-分割线
----
-
-
-引用
-引用
-
-&amp;gt; 引用
-
-
-超链接行内式链接[参数式链接]: h
-        
-      </article>
-    </div>
-  </div>
-</div>
-      
-    
-      <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/03/27/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BAhexo-github-%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D/" aria-label="博客搭建hexo+github+个人域名"></a>
-    
-    
-    <div class="post-cover-right">
-      
-        <img data-src="https://jade-xyy.github.io/covers/bangboo1.jpg" data-sizes="auto" alt="博客搭建hexo+github+个人域名" class="lazyload">
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-27</span>
-        <span><span class="icon-pencil"></span>1k 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
-      </div>
-      <h2 class="post-title">博客搭建hexo+github+个人域名</h2>
-      <article class="post-article">
-        
-          安装nodejs
-下载[nodejs官网]: https://nodejs.org/en/download/根据电脑系统、架构下载对应版本
-安装解压后安装，除安装地址外、其他选项默认即可检查是否安装成功：【win+r】输入【cmd】回车（打开命令行）# 如无信息可到cd到对应安装目录执行node -v
-如下输出版本号即安装成功
-配置环境
-
-
-到nodejs安装目录下，和node.exe同级，新建两个文件夹【node_global】和【node_cache】
-以管理员身份运行cmdnpm config set prefix &amp;quot;刚刚创建的node_global路径&amp;quot;npm co
-        
-      </article>
-    </div>
-  </div>
-</div>
-      
-    
   
 
 
@@ -773,10 +748,10 @@ test6- 无序列表- 无序列表+ test3+ test4* test5* test6
     
       <div>
         <span class="icon-brush"></span>
-        56.2k
+        57.9k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        03:50
+        03:58
       </div>
     
     
@@ -812,7 +787,7 @@ test6- 无序列表- 无序列表+ test3+ test4* test5* test6
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">11</div>
+    <div class="sidebar-state-number">13</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -820,7 +795,7 @@ test6- 无序列表- 无序列表+ test3+ test4* test5* test6
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">9</div>
   </div>
 </div>
 <div class="sidebar-social">
