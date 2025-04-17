@@ -163,8 +163,8 @@
       <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
     
     
-    
       <a id="nav-search-btn" class="nav-icon popup-trigger" title="Search"></a>
+    
     
   </nav>
   
@@ -363,11 +363,11 @@
     </div>
   
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/en/tags/ansible/">ansible</a>
+      <a class="archives-tag-list-link" href="/en/tags/linux/">linux</a>
     </div>
   
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/en/tags/linux/">linux</a>
+      <a class="archives-tag-list-link" href="/en/tags/ansible/">ansible</a>
     </div>
   
     <div class="archives-tag-list-item" data-aos="zoom-in">
@@ -375,11 +375,11 @@
     </div>
   
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/en/tags/valorant/">valorant</a>
+      <a class="archives-tag-list-link" href="/en/tags/blog/">blog</a>
     </div>
   
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/en/tags/blog/">blog</a>
+      <a class="archives-tag-list-link" href="/en/tags/valorant/">valorant</a>
     </div>
   
     <div class="archives-tag-list-item" data-aos="zoom-in">
@@ -394,11 +394,11 @@
     </div>
   
     <div class="archives-category-list-item" data-aos="zoom-in">
-      <a class="archives-category-list-link" href="/en/categories/FAQ/">FAQ</a>
+      <a class="archives-category-list-link" href="/en/categories/study/">study</a>
     </div>
   
     <div class="archives-category-list-item" data-aos="zoom-in">
-      <a class="archives-category-list-link" href="/en/categories/study/">study</a>
+      <a class="archives-category-list-link" href="/en/categories/FAQ/">FAQ</a>
     </div>
   
     <div class="archives-category-list-item" data-aos="zoom-in">
@@ -661,10 +661,34 @@
 
 
 
+
+
+  <script>
+    var ALGOLIA_CONFIG = {
+      logo: "/images/algolia_logo.svg",
+      algolia: {
+        applicationID: "D3HI6D2SHE",
+        apiKey: "94d22b635904a473082fac226d3ee5b7",
+        indexName: "jade-blog",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": "搜索.....",
+          "hits_empty": "未发现与 「${query}」相关内容",
+          "hits_stats": "找到${hits}条结果（用时 ${time} ms）"
+        }
+      }
+    };
+  </script>
   
-<script src="/js/generator_search.js" defer></script>
+<script src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js" integrity="sha384-xvLS0jfKuoREs7pqkRI&#x2F;OI8GcqohO5S+jQz7ZBtQXnsXmD+9jDOOY4cL6dCPzlrk" crossorigin="anonymous" defer></script>
 
+  
+<script src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js" integrity="sha384-hHJCflT4KBLQyHfKO9vpstIcFKn&#x2F;Y+KHTORelMMEn7mOp2AVPp+7fr03dLgZiV3J" crossorigin="anonymous" defer></script>
 
+  
+<script src="/js/algolia_search.js" defer></script>
 
 
 

@@ -162,8 +162,8 @@
       <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS フィード" target="_blank"></a>
     
     
-    
       <a id="nav-search-btn" class="nav-icon popup-trigger" title="検索"></a>
+    
     
   </nav>
   
@@ -359,7 +359,7 @@
       
         
         
-          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="ETCD备份恢复" class="lazyload">
+          <img data-src="/covers/bangboo2.jpg" data-sizes="auto" alt="ETCD备份恢复" class="lazyload">
         
       
     </div>
@@ -396,7 +396,7 @@ mkdir -p /data/backup/etcd/backup_$(date +%Y%m%d)
       
         
         
-          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="etcd单点故障恢复" class="lazyload">
+          <img data-src="/covers/bangboo1.jpg" data-sizes="auto" alt="etcd单点故障恢复" class="lazyload">
         
       
     </div>
@@ -429,7 +429,7 @@ mkdir -p /data/backup/etcd/backup_$(date +%Y%m%d)
       
         
         
-          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="正则表达式备忘" class="lazyload">
+          <img data-src="/covers/bangboo1.jpg" data-sizes="auto" alt="正则表达式备忘" class="lazyload">
         
       
     </div>
@@ -532,7 +532,7 @@ mkdir -p /data/backup/etcd/backup_$(date +%Y%m%d)
       
         
         
-          <img data-src="/covers/bangboo2.jpg" data-sizes="auto" alt="K8s备忘 - 上" class="lazyload">
+          <img data-src="/covers/bangboo1.jpg" data-sizes="auto" alt="K8s备忘 - 上" class="lazyload">
         
       
     </div>
@@ -651,7 +651,7 @@ mkdir -p /data/backup/etcd/backup_$(date +%Y%m%d)
       
         
         
-          <img data-src="/covers/bangboo2.jpg" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
+          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
         
       
     </div>
@@ -687,7 +687,7 @@ Shell分类Bourne Shell：从1979起Unix就开始使用Bourne Shell，主文件�
       
         
         
-          <img data-src="/covers/bangboo2.jpg" data-sizes="auto" alt="Linux备忘 - 上" class="lazyload">
+          <img data-src="/covers/bangboo1.jpg" data-sizes="auto" alt="Linux备忘 - 上" class="lazyload">
         
       
     </div>
@@ -903,10 +903,34 @@ swap应该分内存的2倍，但超过2G没有意义
 
 
 
+
+
+  <script>
+    var ALGOLIA_CONFIG = {
+      logo: "/images/algolia_logo.svg",
+      algolia: {
+        applicationID: "D3HI6D2SHE",
+        apiKey: "94d22b635904a473082fac226d3ee5b7",
+        indexName: "jade-blog",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": "搜索.....",
+          "hits_empty": "未发现与 「${query}」相关内容",
+          "hits_stats": "找到${hits}条结果（用时 ${time} ms）"
+        }
+      }
+    };
+  </script>
   
-<script src="/js/generator_search.js" defer></script>
+<script src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js" integrity="sha384-xvLS0jfKuoREs7pqkRI&#x2F;OI8GcqohO5S+jQz7ZBtQXnsXmD+9jDOOY4cL6dCPzlrk" crossorigin="anonymous" defer></script>
 
+  
+<script src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js" integrity="sha384-hHJCflT4KBLQyHfKO9vpstIcFKn&#x2F;Y+KHTORelMMEn7mOp2AVPp+7fr03dLgZiV3J" crossorigin="anonymous" defer></script>
 
+  
+<script src="/js/algolia_search.js" defer></script>
 
 
 
