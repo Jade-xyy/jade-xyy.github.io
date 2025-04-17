@@ -35,18 +35,20 @@
 
   
   
-    <meta name="description" content="清理dns缓存# 以下路径配置主机名解析，以管理员打开C:\Windows\System32\drivers\etc\hosts# 清理DNS缓存打开【命令提示符（管理员）】ipconfig &#x2F;flushdns   定时关机shutdown -s -t 21600">
+    <meta name="description" content="清理dns缓存# 以下路径配置主机名解析，以管理员打开C:\Windows\System32\drivers\etc\hosts# 清理DNS缓存打开【命令提示符（管理员）】ipconfig &#x2F;flushdns   定时关机# 【windows+r】-输入以下命令shutdown -s -t 21600# 单位是秒（s）1分钟&#x3D;60秒5分钟&#x3D;300秒10分钟&#x3D;600秒20分钟&#x3D;1200秒30分钟&#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FAQ - Windows">
 <meta property="og:url" content="https://jade-xyy.github.io/ja/2025/04/11/FAQ-Windows/index.html">
 <meta property="og:site_name" content="本堂主Blog">
-<meta property="og:description" content="清理dns缓存# 以下路径配置主机名解析，以管理员打开C:\Windows\System32\drivers\etc\hosts# 清理DNS缓存打开【命令提示符（管理员）】ipconfig &#x2F;flushdns   定时关机shutdown -s -t 21600">
+<meta property="og:description" content="清理dns缓存# 以下路径配置主机名解析，以管理员打开C:\Windows\System32\drivers\etc\hosts# 清理DNS缓存打开【命令提示符（管理员）】ipconfig &#x2F;flushdns   定时关机# 【windows+r】-输入以下命令shutdown -s -t 21600# 单位是秒（s）1分钟&#x3D;60秒5分钟&#x3D;300秒10分钟&#x3D;600秒20分钟&#x3D;1200秒30分钟&#x3D;">
 <meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jade-xyy.github.io/ja/2025/04/11/FAQ-Windows/win_regedit_deskicon.png">
 <meta property="article:published_time" content="2025-04-11T07:03:36.000Z">
-<meta property="article:modified_time" content="2025-04-17T07:07:48.474Z">
+<meta property="article:modified_time" content="2025-04-17T08:09:10.908Z">
 <meta property="article:author" content="本堂主">
 <meta property="article:tag" content="windows">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jade-xyy.github.io/ja/2025/04/11/FAQ-Windows/win_regedit_deskicon.png">
   
   
     <link rel="alternate" href="/atom.xml" title="本堂主Blog" type="application/atom+xml">
@@ -282,7 +284,7 @@
   <h3 class="toc-title">見出し</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E7%90%86dns%E7%BC%93%E5%AD%98"><span class="toc-text">清理dns缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%85%B3%E6%9C%BA"><span class="toc-text">定时关机</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E7%90%86dns%E7%BC%93%E5%AD%98"><span class="toc-text">清理dns缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%85%B3%E6%9C%BA"><span class="toc-text">定时关机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87%E9%97%B4%E8%B7%9D-%E6%B3%A8%E6%84%8F%E6%98%AF%E9%97%B4%E8%B7%9D%E4%B8%8D%E6%98%AF%E5%A4%A7%E5%B0%8F%EF%BC%81%EF%BC%81%EF%BC%81"><span class="toc-text">修改桌面图标间距 - 注意是间距不是大小！！！</span></a></li></ol>
       
   </div>
 </div>
@@ -392,7 +394,13 @@
         <h2 id="清理dns缓存"><a href="#清理dns缓存" class="headerlink" title="清理dns缓存"></a>清理dns缓存</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以下路径配置主机名解析，以管理员打开</span></span><br><span class="line">C:\Windows\System32\drivers\etc\hosts</span><br><span class="line"><span class="comment"># 清理DNS缓存</span></span><br><span class="line">打开【命令提示符（管理员）】</span><br><span class="line">ipconfig /flushdns</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="定时关机"><a href="#定时关机" class="headerlink" title="定时关机"></a>定时关机</h2><p>shutdown -s -t 21600</p>
+<h2 id="定时关机"><a href="#定时关机" class="headerlink" title="定时关机"></a>定时关机</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 【windows+r】-输入以下命令</span></span><br><span class="line">shutdown -s -t 21600</span><br><span class="line"><span class="comment"># 单位是秒（s）</span></span><br><span class="line">1分钟=60秒</span><br><span class="line">5分钟=300秒</span><br><span class="line">10分钟=600秒</span><br><span class="line">20分钟=1200秒</span><br><span class="line">30分钟=1800秒</span><br><span class="line">45分钟=2700秒</span><br><span class="line">1小时=3600秒</span><br><span class="line">1.5小时=5400秒</span><br><span class="line">2小时=7200秒</span><br><span class="line">2.5小时=9000秒</span><br><span class="line">3小时=10800秒</span><br><span class="line">3.5小时=12600秒</span><br><span class="line">4小时=14400秒</span><br><span class="line">4.5小时=16200秒</span><br><span class="line">5小时=18000秒</span><br><span class="line">5.5小时=19800秒</span><br><span class="line">6小时=21600秒</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="修改桌面图标间距-注意是间距不是大小！！！"><a href="#修改桌面图标间距-注意是间距不是大小！！！" class="headerlink" title="修改桌面图标间距 - 注意是间距不是大小！！！"></a>修改桌面图标间距 - 注意是间距不是大小！！！</h2><p>有次改了下分辨率还是什么，切回来发现图标间距变大了，ctrl滑动滚动只能改变大小，不能改变间距。<br>__解决__：修改注册表图标间距<br>【win+r】-输入【regedit】<br>【HKEY_CURRENT_USER】-【HKEY_CURRENT_USER\Control Panel】-【HKEY_CURRENT_USER\Control Panel\Desktop】-【HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics】<br>依次找到【IconSpacing】和【IconVerticalSpacing】修改对应的数据<br>默认值应该是【-1125】<br>修改为默认值后【注销用户重新登陆】恢复正常<br><img src="win_regedit_deskicon.png"></p>
+<blockquote>
+<p>算法：-15*间距像素值。举例，默认值为-1125，即表示水平间距为75像素（px）；如果想设置间距100像素，则将 IconSpacing 值修改为-1500</p>
+</blockquote>
 
       
     </div>
@@ -486,7 +494,7 @@
       
         
         
-          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="k8s备忘 - 下" class="lazyload">
+          <img data-src="/covers/bangboo2.jpg" data-sizes="auto" alt="k8s备忘 - 下" class="lazyload">
         
       
       <a href="/ja/2025/04/11/k8s%E5%A4%87%E5%BF%98-%E4%B8%8B/"></a>
@@ -563,7 +571,7 @@
     
       <div>
         <span class="icon-brush"></span>
-        57.9k
+        58.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
         03:58
@@ -599,7 +607,7 @@
   <h3 class="toc-title">見出し</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E7%90%86dns%E7%BC%93%E5%AD%98"><span class="toc-text">清理dns缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%85%B3%E6%9C%BA"><span class="toc-text">定时关机</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E7%90%86dns%E7%BC%93%E5%AD%98"><span class="toc-text">清理dns缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%85%B3%E6%9C%BA"><span class="toc-text">定时关机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87%E9%97%B4%E8%B7%9D-%E6%B3%A8%E6%84%8F%E6%98%AF%E9%97%B4%E8%B7%9D%E4%B8%8D%E6%98%AF%E5%A4%A7%E5%B0%8F%EF%BC%81%EF%BC%81%EF%BC%81"><span class="toc-text">修改桌面图标间距 - 注意是间距不是大小！！！</span></a></li></ol>
       
   </div>
 </div>
@@ -783,9 +791,9 @@
           url: "https://jade-xyy.github.io/2025/04/11/FAQ-Windows/",
           excerpt: "",
           description: "",
-          stripContent: "清理dns缓存# 以下路径配置主机名解析，以管理员打开C:\Windows\System32\drivers\etc\hosts# 清理DNS缓存打开【命令提示符（管理员）】ipconfig /flushdns   定时关机shutdown -s -t 21600 ",
+          stripContent: "清理dns缓存# 以下路径配置主机名解析，以管理员打开C:\Windows\System32\drivers\etc\hosts# 清理DNS缓存打开【命令提示符（管理员）】ipconfig /flushdns   定时关机# 【windows+r】-输入以下命令shutdown -s -t 21600# 单位是秒（s）1分钟=60秒5分钟=300秒10分钟=600秒20分钟=1200秒30分钟=1800秒45分钟=2700秒1小时=3600秒1.5小时=5400秒2小时=7200秒2.5小时=",
           date: "Fri Apr 11 2025 15:03:36 GMT+0800",
-          updated: "Thu Apr 17 2025 15:07:48 GMT+0800",
+          updated: "Thu Apr 17 2025 16:09:10 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
