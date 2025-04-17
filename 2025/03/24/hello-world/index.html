@@ -59,6 +59,12 @@
   <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   
   
+    
+      
+<link rel="stylesheet" href="https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.css">
+
+    
+  
   
   
     
@@ -449,14 +455,19 @@
 </div>
       
       
+      
         <a data-aos="zoom-in" href="/2025/03/24/hello-world/#comments" class="article-comment-link">
-          <span class="post-comments-count valine-comment-count" data-xid="/2025/03/24/hello-world/" itemprop="commentCount"></span>
+          <span class="post-comments-count waline-comment-count" data-path="/2025/03/24/hello-world/" itemprop="commentCount"></span>
           留言
         </a>
       
       
       
       
+        <span data-aos="zoom-in" class="article-visitor-link">
+          <span class="waline-pageview-count" data-path="/2025/03/24/hello-world/">0</span>
+          <em class="post-meta-item-text">阅读量</em>
+        </span>
       
       
 
@@ -501,8 +512,8 @@
       <div class="comment-selector">
         <div class="comment-selector-wrap">
             
-            <div class="selector-item" data-selector="valine">
-              <span>valine</span>
+            <div class="selector-item" data-selector="waline">
+              <span>waline</span>
             </div>
             
         </div>
@@ -510,8 +521,8 @@
     </div>
     <div class="comment-content">
       
-        <div class="comment valine-comment" data-aos="fade-up"
-          id="valine-comment">
+        <div class="comment waline-comment" data-aos="fade-up"
+          id="waline-comment">
         </div>
       
     </div>
@@ -838,7 +849,7 @@
   var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus'];
   var commentConfig = {
     valine: {
-      enable: true,
+      enable: false,
       load: () => {
         const container = document.querySelector('.valine-comment');
         if (!container) return;
@@ -878,7 +889,7 @@
       }
     },
     waline: {
-      enable: false,
+      enable: true,
       load: async () => {
         const container = document.querySelector('.waline-comment');
         if (!container) return;
@@ -893,7 +904,7 @@
 
         window.walineInstance = walineInit({
           el: '.waline-comment',
-          serverURL: '',
+          serverURL: 'https://isty8jhj.api.lncldglobal.com',
           lang: 'zh-CN',
           locale: {},
           emoji: ["https://unpkg.com/@waline/emojis@1.2.0/weibo","https://unpkg.com/@waline/emojis@1.2.0/alus","https://unpkg.com/@waline/emojis@1.2.0/bilibili","https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tieba","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
