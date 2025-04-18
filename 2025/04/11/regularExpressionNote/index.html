@@ -1,0 +1,1211 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.code_block = {"expand":30};window.REIMU_CONFIG.base = 'https://jade-xyy.github.io';window.REIMU_CONFIG.i18n_languages = ["en","ja"];</script>
+  
+  <title>
+    正则表达式备忘 |
+    
+    本堂主Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="语法参考. # 除换行符以外的所有字符^ # 字符串开头$ # 字符串结尾\d \w \s # 匹配数字、字符、空格\D \W \S # 匹配非数字、非字符、非空格[abc] # 匹配a、b或c中的一个字母[a-z] # 匹配a到z中的一个字母[^abc] # 匹配除了a、b和c中的其他字母aa|bb # 匹配aa或bb? # 0或1次匹配* # 匹配0次或多次+ # 匹配1次或多次&#123;n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式备忘">
+<meta property="og:url" content="https://jade-xyy.github.io/2025/04/11/regularExpressionNote/index.html">
+<meta property="og:site_name" content="本堂主Blog">
+<meta property="og:description" content="语法参考. # 除换行符以外的所有字符^ # 字符串开头$ # 字符串结尾\d \w \s # 匹配数字、字符、空格\D \W \S # 匹配非数字、非字符、非空格[abc] # 匹配a、b或c中的一个字母[a-z] # 匹配a到z中的一个字母[^abc] # 匹配除了a、b和c中的其他字母aa|bb # 匹配aa或bb? # 0或1次匹配* # 匹配0次或多次+ # 匹配1次或多次&#123;n">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-11T07:50:13.000Z">
+<meta property="article:modified_time" content="2025-04-18T07:37:39.358Z">
+<meta property="article:author" content="本堂主">
+<meta property="article:tag" content="regexp">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="本堂主Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  
+    
+      
+<link rel="stylesheet" href="https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.css">
+
+    
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      <div class="loading-word">Wait a moment ...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/archives">归档</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" target="_blank"></a>
+    
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" class="selected">简体中文</li>
+          
+            <li data-value="en" >English</li>
+          
+            <li data-value="ja" >日本語</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2025/04/11/regularExpressionNote/';
+            
+              langMap['en'] = '/en/2025/04/11/regularExpressionNote/';
+            
+              langMap['ja'] = '/ja/2025/04/11/regularExpressionNote/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+            
+              <source media="(max-width: 479px)" srcset="/images/banner-600w.webp">
+            
+              <source media="(max-width: 799px)" srcset="/images/banner-800w.webp">
+            
+              <source media="(min-width: 800px)" srcset="/images/banner.webp">
+            
+            <img  fetchpriority="high" src="/images/banner.webp" alt="正则表达式备忘">
+          
+        </picture>
+        
+          <img alt="正则表达式备忘" style="visibility: hidden;">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">正则表达式备忘</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E5%8F%82%E8%80%83"><span class="toc-text">语法参考</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/Omen.jpg" data-sizes="auto" alt="本堂主" class="lazyload">
+  <div class="sidebar-author-name">本堂主</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">14</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-regularExpressionNote" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-04-11T07:50:13.000Z" itemprop="datePublished">2025-04-11</time>
+    <time style="display: none;" id="post-update-time">2025-04-18</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/" data-aos="zoom-in">notes</a><a class="article-category-link" href="/categories/study/" data-aos="zoom-in">study</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h2 id="语法参考"><a href="#语法参考" class="headerlink" title="语法参考"></a>语法参考</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">. <span class="comment"># 除换行符以外的所有字符</span></span><br><span class="line">^ <span class="comment"># 字符串开头</span></span><br><span class="line">$ <span class="comment"># 字符串结尾</span></span><br><span class="line">\d \w \s <span class="comment"># 匹配数字、字符、空格</span></span><br><span class="line">\D \W \S <span class="comment"># 匹配非数字、非字符、非空格</span></span><br><span class="line">[abc] <span class="comment"># 匹配a、b或c中的一个字母</span></span><br><span class="line">[a-z] <span class="comment"># 匹配a到z中的一个字母</span></span><br><span class="line">[^abc] <span class="comment"># 匹配除了a、b和c中的其他字母</span></span><br><span class="line">aa|bb <span class="comment"># 匹配aa或bb</span></span><br><span class="line">? <span class="comment"># 0或1次匹配</span></span><br><span class="line">* <span class="comment"># 匹配0次或多次</span></span><br><span class="line">+ <span class="comment"># 匹配1次或多次</span></span><br><span class="line">&#123;n&#125; <span class="comment"># 匹配n次</span></span><br><span class="line">&#123;n,&#125; <span class="comment"># 匹配n次以上</span></span><br><span class="line">&#123;m,n&#125; <span class="comment"># 匹配最少m次，最多n次</span></span><br><span class="line">(<span class="built_in">expr</span>) <span class="comment"># 捕获expr子模式以\1使用它</span></span><br><span class="line">(?:<span class="built_in">expr</span>) <span class="comment"># 忽略捕获的子模式</span></span><br><span class="line">(?=<span class="built_in">expr</span>) <span class="comment"># 正向预查模式expr</span></span><br><span class="line">(?!<span class="built_in">expr</span>) <span class="comment"># 负向预查模式expr</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>查找数字<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 数字</span></span><br><span class="line">^[0-9]*$</span><br><span class="line"><span class="comment"># n位的数字</span></span><br><span class="line">^\d&#123;n&#125;$</span><br><span class="line"><span class="comment">#至少n位的数字</span></span><br><span class="line">^\d&#123;n,&#125;$</span><br><span class="line"><span class="comment"># m-n位的数字</span></span><br><span class="line">^\d&#123;m,n&#125;$</span><br><span class="line"><span class="comment"># 零和非零开头的数字</span></span><br><span class="line">^(0|[1-9][0-9]*)$</span><br><span class="line"><span class="comment"># 非零开头的最多带两位小数的数字</span></span><br><span class="line">^([1-9][0-9]*)+(\.[0-9]&#123;1,2&#125;)?$</span><br><span class="line"><span class="comment"># 带1-2位小数的正数或负数</span></span><br><span class="line">^(\-)?\d+(\.\d&#123;1,2&#125;)$</span><br><span class="line"><span class="comment"># 正数、负数、和小数</span></span><br><span class="line">^(\-|\+)?\d+(\.\d+)?$</span><br><span class="line"><span class="comment"># 有两位小数的正实数</span></span><br><span class="line">^[0-9]+(\.[0-9]&#123;2&#125;)?$</span><br><span class="line"><span class="comment"># 有1~3位小数的正实数</span></span><br><span class="line">^[0-9]+(\.[0-9]&#123;1,3&#125;)?$</span><br><span class="line"><span class="comment"># 非零的正整数</span></span><br><span class="line">^[1-9]\d*$ 或 ^([1-9][0-9]*)&#123;1,3&#125;$ 或 ^\+?[1-9][0-9]*$</span><br><span class="line"><span class="comment"># 非零的负整数</span></span><br><span class="line">^\-[1-9][]0-9<span class="string">&quot;*$ 或 ^-[1-9]\d*$</span></span><br><span class="line"><span class="string"># 非负整数</span></span><br><span class="line"><span class="string">^\d+$ 或 ^[1-9]\d*|0$</span></span><br><span class="line"><span class="string"># 非正整数</span></span><br><span class="line"><span class="string">^-[1-9]\d*|0$ 或 ^((-\d+)|(0+))$</span></span><br><span class="line"><span class="string"># 非负浮点数</span></span><br><span class="line"><span class="string">^\d+(\.\d+)?$ 或 ^[1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0$</span></span><br><span class="line"><span class="string"># 非正浮点数</span></span><br><span class="line"><span class="string">^((-\d+(\.\d+)?)|(0+(\.0+)?))$ 或 ^(-([1-9]\d*\.\d*|0\.\d*[1-9]\d*))|0?\.0+|0$</span></span><br><span class="line"><span class="string"># 正浮点数</span></span><br><span class="line"><span class="string">^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$ 或 ^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$</span></span><br><span class="line"><span class="string"># 负浮点数</span></span><br><span class="line"><span class="string">^-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)$ 或 ^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$</span></span><br><span class="line"><span class="string"># 浮点数</span></span><br><span class="line"><span class="string">^(-?\d+)(\.\d+)?$ 或 ^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$</span></span><br></pre></td></tr></table></figure></li>
+<li>查找字符<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 汉字</span></span><br><span class="line">^[\u4e00-\u9fa5]&#123;0,&#125;$</span><br><span class="line"><span class="comment"># 英文和数字</span></span><br><span class="line">^[A-Za-z0-9]+$ 或 ^[A-Za-z0-9]&#123;4,40&#125;$</span><br><span class="line"><span class="comment"># 长度为3-20的所有字符</span></span><br><span class="line">^.&#123;3,20&#125;$</span><br><span class="line"><span class="comment"># 由26个英文字母组成的字符串</span></span><br><span class="line">^[A-Za-z]+$</span><br><span class="line"><span class="comment"># 由26个大写英文字母组成的字符串</span></span><br><span class="line">^[A-Z]+$</span><br><span class="line"><span class="comment"># 由26个小写英文字母组成的字符串</span></span><br><span class="line">^[a-z]+$</span><br><span class="line"><span class="comment"># 由数字和26个英文字母组成的字符串</span></span><br><span class="line">^[A-Za-z0-9]+$</span><br><span class="line"><span class="comment"># 由数字、26个英文字母或者下划线组成的字符串</span></span><br><span class="line">^\w+$ 或 ^\w&#123;3,20&#125;$</span><br><span class="line"><span class="comment"># 中文、英文、数字包括下划线</span></span><br><span class="line">^[\u4E00-\u9FA5A-Za-z0-9_]+$</span><br><span class="line"><span class="comment"># 中文、英文、数字但不包括下划线等符号</span></span><br><span class="line">^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]&#123;2,20&#125;$</span><br><span class="line"><span class="comment"># 可以输入含有^%&amp;&#x27;,;=?$\&quot;等字符</span></span><br><span class="line">[^%&amp;<span class="string">&#x27;,;=?$\x22]+</span></span><br><span class="line"><span class="string"># 禁止输入含有~的字符</span></span><br><span class="line"><span class="string">[^~]+</span></span><br></pre></td></tr></table></figure></li>
+<li>特殊常用查找<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Email地址</span></span><br><span class="line">^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$</span><br><span class="line"><span class="comment"># 域名</span></span><br><span class="line">[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;(\.[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;)+\.?</span><br><span class="line"><span class="comment"># InternetURL</span></span><br><span class="line">[a-zA-z]+://[^\s]* 或 ^http://([\w-]+\.)+[\w-]+(/[\w-./?%&amp;=]*)?$</span><br><span class="line"><span class="comment"># 手机号码</span></span><br><span class="line">^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d&#123;8&#125;$</span><br><span class="line"><span class="comment"># 电话号码(&quot;XXX-XXXXXXX&quot;、&quot;XXXX-XXXXXXXX&quot;、&quot;XXX-XXXXXXX&quot;、&quot;XXX-XXXXXXXX&quot;、&quot;XXXXXXX&quot;和&quot;XXXXXXXX)</span></span><br><span class="line">^(\(\d&#123;3,4&#125;-)|\d&#123;3.4&#125;-)?\d&#123;7,8&#125;$</span><br><span class="line"><span class="comment"># 国内电话号码(0511-4405222、021-87888822)</span></span><br><span class="line">\d&#123;3&#125;-\d&#123;8&#125;|\d&#123;4&#125;-\d&#123;7&#125;</span><br><span class="line"><span class="comment"># 电话号码正则表达式（支持手机号码，3-4位区号，7-8位直播号码，1－4位分机号）: ((\d&#123;11&#125;)|^((\d&#123;7,8&#125;)|(\d&#123;4&#125;|\d&#123;3&#125;)-(\d&#123;7,8&#125;)|(\d&#123;4&#125;|\d&#123;3&#125;)-(\d&#123;7,8&#125;)-(\d&#123;4&#125;|\d&#123;3&#125;|\d&#123;2&#125;|\d&#123;1&#125;)|(\d&#123;7,8&#125;)-(\d&#123;4&#125;|\d&#123;3&#125;|\d&#123;2&#125;|\d&#123;1&#125;))$)</span></span><br><span class="line"><span class="comment"># 身份证号(15位、18位数字)，最后一位是校验位，可能为数字或字符X</span></span><br><span class="line">(^\d&#123;15&#125;$)|(^\d&#123;18&#125;$)|(^\d&#123;17&#125;(\d|X|x)$)</span><br><span class="line"><span class="comment"># 帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)</span></span><br><span class="line">^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$</span><br><span class="line"><span class="comment"># 密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)</span></span><br><span class="line">^[a-zA-Z]\w&#123;5,17&#125;$</span><br><span class="line"><span class="comment"># 强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在 8-10 之间)</span></span><br><span class="line">^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]&#123;8,10&#125;$</span><br><span class="line"><span class="comment"># 强密码(必须包含大小写字母和数字的组合，可以使用特殊字符，长度在8-10之间)</span></span><br><span class="line">^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,10&#125;$</span><br><span class="line"><span class="comment"># 日期格式</span></span><br><span class="line">^\d&#123;4&#125;-\d&#123;1,2&#125;-\d&#123;1,2&#125;</span><br><span class="line"><span class="comment"># 一年的12个月(01～09和1～12)</span></span><br><span class="line">^(0?[1-9]|1[0-2])$</span><br><span class="line"><span class="comment"># 一个月的31天(01～09和1～31)</span></span><br><span class="line">^((<span class="number">0</span>?[<span class="number">1</span>-<span class="number">9</span>])|((<span class="number">1</span>|<span class="number">2</span>)[<span class="number">0</span>-<span class="number">9</span>])|<span class="number">30</span>|<span class="number">31</span>)$</span><br><span class="line"># xml文件</span><br><span class="line">^([a-zA-Z]+-?)+[a-zA-Z0-<span class="number">9</span>]+\\.[x|X][m|M][l|L]$</span><br><span class="line"># 中文字符的正则表达式</span><br><span class="line">[\u4e00-\u9fa5]</span><br><span class="line"># 双字节字符</span><br><span class="line">[^\x00-\xff] (包括汉字在内，可以用来计算字符串的长度(一个双字节字符长度计<span class="number">2</span>，ASCII字符计<span class="number">1</span>))</span><br><span class="line"><span class="comment"># 空白行的正则表达式</span></span><br><span class="line">\n\s*\r (可以用来删除空白行)</span><br><span class="line"><span class="comment"># HTML标记的正则表达式</span></span><br><span class="line">&lt;(\S*?)[^&gt;]*&gt;.*?|&lt;.*? /&gt; ( 首尾空白字符的正则表达式</span><br><span class="line">^\s*|\s*$或(^\s*)|(\s*$) (可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式)</span><br><span class="line"><span class="comment"># 腾讯QQ号</span></span><br><span class="line">[1-9][0-9]&#123;4,&#125; (腾讯QQ号从10000开始)</span><br><span class="line"><span class="comment"># 中国邮政编码</span></span><br><span class="line">[1-9]\d&#123;5&#125;(?!\d) (中国邮政编码为6位数字)</span><br><span class="line"><span class="comment"># IPv4地址</span></span><br><span class="line">((<span class="number">2</span>(<span class="number">5</span>[<span class="number">0</span>-<span class="number">5</span>]|[<span class="number">0</span>-<span class="number">4</span>]\d))|[0-1]?\d&#123;1,2&#125;)(\.((<span class="number">2</span>(<span class="number">5</span>[<span class="number">0</span>-<span class="number">5</span>]|[<span class="number">0</span>-<span class="number">4</span>]\d))|[0-1]?\d&#123;1,2&#125;))&#123;3&#125;</span><br></pre></td></tr></table></figure></li>
+<li>部分钱的数字查找<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># &quot;10000.00&quot;、&quot;10,000.00&quot;、&quot;10000&quot;、&quot;10,000&quot;</span></span><br><span class="line">^[1-9][0-9]*$</span><br><span class="line"><span class="comment"># 任意一个不以0开头的数字</span></span><br><span class="line">^(0|[1-9][0-9]*)$</span><br><span class="line"><span class="comment"># 0-1个0或以负号开头的数字</span></span><br><span class="line">^(0|-?[1-9][0-9]*)$</span><br><span class="line"><span class="comment"># 带小数的数字</span></span><br><span class="line">^[0-9]+(.[0-9]+)?$</span><br><span class="line"><span class="comment"># 带小数点且点后至少有一位数字，反例&quot;10.&quot;，例&quot;10&quot;、&quot;10.2&quot;</span></span><br><span class="line">^[0-9]+(.[0-9]&#123;2&#125;)?$</span><br><span class="line"><span class="comment"># 小数点后必须有两位</span></span><br><span class="line">^[0-9]+(.[0-9]&#123;1,2&#125;)?$</span><br><span class="line"><span class="comment"># 小数点后1或2位</span></span><br><span class="line">^[0-9]&#123;1,3&#125;(,[0-9]&#123;3&#125;)*(.[0-9]&#123;1,2&#125;)?$</span><br><span class="line"><span class="comment"># 1到3个数字,后面跟着任意个逗号+3个数字,逗号成为可选,而不是必须</span></span><br><span class="line">^([0-9]+|[0-9]&#123;1,3&#125;(,[0-9]&#123;3&#125;)*)(.[0-9]&#123;1,2&#125;)?$</span><br></pre></td></tr></table></figure></li>
+<li>查找html的标签【id id&#x3D;adn-A1】<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">id</span>=[\&quot;]^[a-z]&#123;3&#125;-[A-Z]&#123;1&#125;[0-9]&#123;1&#125;[\&quot;]</span><br></pre></td></tr></table></figure></li>
+<li>查找【以12.开头】<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">^[0-9]&#123;2&#125;.</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <blockquote class="article-copyright">
+    <p><strong><span class="icon-user icon"></span>本文作者：</strong>本堂主 @ 本堂主Blog</p>
+    <p><strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://jade-xyy.github.io/2025/04/11/regularExpressionNote/">https://jade-xyy.github.io/2025/04/11/regularExpressionNote/</a></p>
+    <p><strong><span class="icon-pencil icon"></span>本文标题：</strong>「正则表达式备忘」</p>
+    
+    
+    <p><strong><span class="icon-copyright icon"></span>本文版权：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！</p>
+    <span class="icon-creative-commons article-copyright-bg"></span>
+  </blockquote>
+      
+      
+      
+        <div class="share-wrapper">
+  
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=www.baidu.com&amp;title=%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%A4%87%E5%BF%98&amp;desc=%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%A4%87%E5%BF%98&amp;source=https%3A%2F%2Fjade-xyy.github.io" target="_blank" rel="noopener noreferrer" title="正则表达式备忘">
+      <div class="share-icon icon icon-qq">
+        
+      </div>
+    </a>
+  
+    <a href="javascript:;"  title="正则表达式备忘">
+      <div class="share-icon icon icon-weixin">
+        
+          <div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hexo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div>
+        
+      </div>
+    </a>
+  
+</div>
+      
+      
+      
+        <a data-aos="zoom-in" href="/2025/04/11/regularExpressionNote/#comments" class="article-comment-link">
+          <span class="post-comments-count waline-comment-count" data-path="/2025/04/11/regularExpressionNote/" itemprop="commentCount"></span>
+          留言
+        </a>
+      
+      
+      
+      
+        <span data-aos="zoom-in" class="article-visitor-link">
+          <span class="waline-pageview-count" data-path="/2025/04/11/regularExpressionNote/">0</span>
+          <em class="post-meta-item-text">阅读量</em>
+        </span>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/regexp/" rel="tag">regexp</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/bangboo1.jpg" data-sizes="auto" alt="ETCD单点故障恢复" class="lazyload">
+          
+        
+        <a href="/2025/04/14/etcdSNRecovery/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+          
+            ETCD单点故障恢复
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="https://d-sketon.top/img/backimg/bg18.jpg" data-sizes="auto" alt="FAQ - Windows" class="lazyload">
+        
+      
+      <a href="/2025/04/11/FAQ-windows/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          FAQ - Windows
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+      
+      
+      <h2 class="comment-title">说些什么吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            
+            <div class="selector-item" data-selector="waline">
+              <span>waline</span>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+      
+        <div class="comment waline-comment" data-aos="fade-up"
+          id="waline-comment">
+        </div>
+      
+    </div>
+  </section>
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2025
+      
+      <span class="footer-info-sep rotate"></span>
+      本堂主
+    </div>
+    
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        58.9k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        04:00
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E5%8F%82%E8%80%83"><span class="toc-text">语法参考</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/Omen.jpg" data-sizes="auto" alt="本堂主" class="lazyload">
+  <div class="sidebar-author-name">本堂主</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">14</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha384-aD7FsuQkS1ohgFKY41fJfeA+Wd&#x2F;QRNnrOd9Bs58K3FzKdJJv8yPnYU8Tnp5z1agS" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "本堂主",
+          title: "正则表达式备忘",
+          url: "https://jade-xyy.github.io/2025/04/11/regularExpressionNote/",
+          excerpt: "",
+          description: "",
+          stripContent: "语法参考. # 除换行符以外的所有字符^ # 字符串开头$ # 字符串结尾\d \w \s # 匹配数字、字符、空格\D \W \S # 匹配非数字、非字符、非空格[abc] # 匹配a、b或c中的一个字母[a-z] # 匹配a到z中的一个字母[^abc] # 匹配除了a、b和c中的其他字母aa|bb # 匹配aa或bb? # 0或1次匹配* # 匹配0次或多次+ # 匹配1次或多次&amp;#123;n&amp;#125; # 匹配n次&amp;#123;n,&amp;#125; # 匹配n次以上&amp;#123;m,n&amp;#125",
+          date: "Fri Apr 11 2025 15:50:13 GMT+0800",
+          updated: "Fri Apr 18 2025 15:37:39 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+          
+<script src="https://npm.webcache.cn/html-to-image@1.11.11/dist/html-to-image.js" integrity="sha384-UbfRVKN3&#x2F;elS1r7JcK2FhmPP+KlJ4CvYwbyYD7tH+uTkbT9bNJr9eJeQ0FoFbAgz" crossorigin="anonymous" defer data-pjax></script>
+
+          
+<script src="https://npm.webcache.cn/qrcode@1.4.4/build/qrcode.min.js" integrity="sha384-0RsG1yo&#x2F;crf&#x2F;1Qc14sho26SXXOTngNCjgJw7fuvXBt9W&#x2F;OChF&#x2F;Ijx+aUuBDqQwEk" crossorigin="anonymous" defer data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus'];
+  var commentConfig = {
+    valine: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.valine-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/valine@1.5.1/dist/Valine.min.js',
+          'sha384-3ma91AExDeMAZ1rjTjaP8V2A2obQE+s5ltKRwYlwdpArz9xVbp0tF3b0VV2ACNPn'
+        );
+        script.onload = () => {
+          var GUEST_INFO = ['nick', 'mail', 'link'];
+          var guest_info = 'nick,mail,link'.split(',').filter((item) => {
+            return GUEST_INFO.indexOf(item) > -1
+          });
+          var recordIP = JSON.parse('true');
+          var highlight = JSON.parse('true');
+          var visitor = JSON.parse('false');
+
+          if (window.Valine) {
+            new Valine({
+              el: '.valine-comment',
+              appId: "e8feHL9uKMe2cBgp29tyFCdv-gzGzoHsz",
+              appKey: "Z289QNdRm4m1Im6mWjAWqW4P",
+              placeholder: "Just go go",
+              pageSize: '10',
+              avatar: 'mp',
+              lang: 'zh-cn',
+              recordIP: recordIP,
+              highlight: highlight,
+              visitor: visitor,
+              requiredFields: guest_info,
+              path: window.location.pathname
+            });
+          }
+        };
+        document.head.appendChild(script);
+      }
+    },
+    waline: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.waline-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        let walineInit;
+        const walineCdn = 'https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.mjs';
+        const walineIntegrity = 'sha384-9sbqJjrfGjbkI6/PI4nU/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH/KinBEAZII/5';
+
+        const module = await safeImport(walineCdn, walineIntegrity);
+        walineInit = module.init;
+
+        window.walineInstance = walineInit({
+          el: '.waline-comment',
+          serverURL: 'https://waline.fay.net.cn',
+          lang: 'zh-CN',
+          locale: {},
+          emoji: ["https://unpkg.com/@waline/emojis@1.2.0/weibo","https://unpkg.com/@waline/emojis@1.2.0/alus","https://unpkg.com/@waline/emojis@1.2.0/bilibili","https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tieba","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+          meta: ["nick","mail","link"],
+          requiredMeta: ["nick","mail"],
+          wordLimit: JSON.parse('0'),
+          comment: true,
+          pageSize: JSON.parse('10'),
+          dark: 'html[data-theme="dark"]',
+          pageview: JSON.parse('true'),
+        });
+      }
+    },
+    twikoo: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.16/dist/twikoo.all.min.js',
+          'sha384-lDHsr5aZmkMS0eKnsUu6e9RWP+dRmn7sgjRAKGOAoXfMyzbUK6Qi86zZK7R+KvRV'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: '',
+              el: '.tcomment',
+              region: '',
+            })
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+    gitalk: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.gitalk-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/gitalk@1.8.0/dist/gitalk.min.js',
+          'sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU/lcEH5O8eVbSDhbPwsiVUTp/aGX/z/5EuMA'
+        );
+
+        script.onload = () => {
+          if (false) {
+            const md5Script = loadScript(
+              'https://npm.webcache.cn/blueimp-md5@2.19.0/js/md5.min.js',
+              'sha384-JmVtRz6RWiXnA14QbIOJzPuU3MidULOpBP66deeLLyyoF4Tr/gZlbkHkL6vTthxH'
+            );
+            md5Script.onload = initGitalk;
+            document.head.appendChild(md5Script);
+          } else {
+            initGitalk();
+          }
+        }
+        document.head.appendChild(script);
+
+        function initGitalk() {
+          var gitalkId = location.pathname;
+          var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: null,
+            id: gitalkId, // Ensure uniqueness and length less than 50
+            distractionFreeMode: false // Facebook-like distraction free mode
+          })
+          gitalk.render('gitalk-comment');
+        }
+      }
+    },
+    giscus: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        // 删除可能已存在的 giscus 脚本和 iframe
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', '');
+        giscusScript.setAttribute('data-repo-id', '');
+        giscusScript.setAttribute('data-category', ''); 
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
+        giscusScript.setAttribute('data-lang', 'zh-CN');
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+        document.body.addEventListener('light-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
+        });
+        document.body.addEventListener('dark-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
+        });
+      }
+    }
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'valine';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    // 评论组件加载状态跟踪
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.8.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+
