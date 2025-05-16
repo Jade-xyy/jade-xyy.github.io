@@ -1,0 +1,1237 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+  <script async src="https://hm.baidu.com/hm.js?true"></script>
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    _hmt.push(["_trackPageview", location.pathname]);
+  </script>
+
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.code_block = {"expand":30};window.REIMU_CONFIG.base = 'https://jade-xyy.github.io';window.REIMU_CONFIG.i18n_languages = ["en","ja"];</script>
+  
+  <title>
+    ETCD备份恢复 |
+    
+    本堂主Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="备份 创建测试pod kubectl run test --image&#x3D;nginx:1.7.9 --labels&#x3D;&quot;app&#x3D;test&quot;kubectl run test --image&#x3D;nginx:1.7.9 --labels&#x3D;&quot;app&#x3D;test&quot; -n kube-system 在etcd集群的每个节点上建立备份存放目录 mkdir -p &#x2F;data&#x2F;bac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ETCD备份恢复">
+<meta property="og:url" content="https://jade-xyy.github.io/ja/2025/04/14/etcdBackupRestore/index.html">
+<meta property="og:site_name" content="本堂主Blog">
+<meta property="og:description" content="备份 创建测试pod kubectl run test --image&#x3D;nginx:1.7.9 --labels&#x3D;&quot;app&#x3D;test&quot;kubectl run test --image&#x3D;nginx:1.7.9 --labels&#x3D;&quot;app&#x3D;test&quot; -n kube-system 在etcd集群的每个节点上建立备份存放目录 mkdir -p &#x2F;data&#x2F;bac">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jade-xyy.github.io/ja/2025/04/14/etcdBackupRestore/etcd_title.png">
+<meta property="article:published_time" content="2025-04-14T07:52:49.000Z">
+<meta property="article:modified_time" content="2025-04-18T07:56:07.559Z">
+<meta property="article:author" content="本堂主">
+<meta property="article:tag" content="etcd">
+<meta property="article:tag" content="k8s">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jade-xyy.github.io/ja/2025/04/14/etcdBackupRestore/etcd_title.png">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="本堂主Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  
+    
+      
+<link rel="stylesheet" href="https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.css">
+
+    
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      <div class="loading-word">Wait a moment ...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/ja/">ホーム</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/ja/archives">アーカイブ</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/ja/about">プロフィール</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/ja/friend">フレンド</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS フィード" target="_blank"></a>
+    
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="検索"></a>
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">日本語</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" >English</li>
+          
+            <li data-value="ja" class="selected">日本語</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2025/04/14/etcdBackupRestore/';
+            
+              langMap['en'] = '/en/2025/04/14/etcdBackupRestore/';
+            
+              langMap['ja'] = '/ja/2025/04/14/etcdBackupRestore/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+            
+              <source media="(max-width: 479px)" srcset="/images/zzz_cjjxrrdpts-600w.webp">
+            
+              <source media="(max-width: 799px)" srcset="/images/zzz_cjjxrrdpts-800w.webp">
+            
+              <source media="(min-width: 800px)" srcset="/images/zzz_cjjxrrdpts.webp">
+            
+            <img  fetchpriority="high" src="/images/zzz_cjjxrrdpts.webp" alt="ETCD备份恢复">
+          
+        </picture>
+        
+          <img alt="ETCD备份恢复" style="visibility: hidden;">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">ETCD备份恢复</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">見出し</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD"><span class="toc-text">备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D"><span class="toc-text">恢复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#etcdctl%E5%91%BD%E4%BB%A4%E5%8F%82%E8%80%83"><span class="toc-text">etcdctl命令参考</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/Omen.jpg" data-sizes="auto" alt="本堂主" class="lazyload">
+  <div class="sidebar-author-name">本堂主</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>投稿</div>
+    <div class="sidebar-state-number">16</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>カテゴリー</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>タグ</div>
+    <div class="sidebar-state-number">10</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/" aria-label="ホーム"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">ホーム</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/archives" aria-label="アーカイブ"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">アーカイブ</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/about" aria-label="プロフィール"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">プロフィール</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/friend" aria-label="フレンド"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">フレンド</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-etcdBackupRestore" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-04-14T07:52:49.000Z" itemprop="datePublished">2025-04-14</time>
+    <time style="display: none;" id="post-update-time">2025-04-18</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/ja/categories/notes/" data-aos="zoom-in">notes</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <p><img src="etcd_title.png"></p>
+<h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><ol>
+<li><p>创建测试pod</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl run <span class="built_in">test</span> --image=nginx:1.7.9 --labels=<span class="string">&quot;app=test&quot;</span></span><br><span class="line">kubectl run <span class="built_in">test</span> --image=nginx:1.7.9 --labels=<span class="string">&quot;app=test&quot;</span> -n kube-system</span><br></pre></td></tr></table></figure></li>
+<li><p>在etcd集群的每个节点上建立备份存放目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /data/backup/etcd/backup_$(<span class="built_in">date</span> +%Y%m%d)</span><br></pre></td></tr></table></figure>
+<p><strong>使用kubeadm创建的k8s集群，etcd是使用容器运行的，因此备份和还原数据库需要将容器中的etcdctl命令拷贝到操作节点系统下的&#x2F;usr&#x2F;bin&#x2F;目录下</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">cp</span> $(docker ps  |  grep -v etcd-mirror | grep -w etcd | awk <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>):/usr/local/bin/etcdctl /usr/bin/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>备份ETCDCTL_API为3的etcd数据到步骤2建立的备份目录下（替换ip为主机ip）<br>只需要备份一个master节点数据就可以了，数据备份后打包传到其他etcd节点上</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 备份</span></span><br><span class="line">ETCDCTL_API=3 etcdctl snapshot save /data/backup/etcd/backup_$(<span class="built_in">date</span> +%Y%m%d)/snap-$(<span class="built_in">date</span> +%Y%m%d).db --endpoints 11.0.1.9:2379 --cert=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.crt&quot;</span> --key=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.key&quot;</span> --cacert=<span class="string">&quot;/etc/kubernetes/pki/etcd/ca.crt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 传到其他etcd节点上</span></span><br><span class="line">scp /data/backup/etcd/backup_$(<span class="built_in">date</span> +%Y%m%d)/snap-$(<span class="built_in">date</span> +%Y%m%d).db root@11.0.1.6:/data/backup/etcd/backup_$(<span class="built_in">date</span> +%Y%m%d)/</span><br><span class="line">scp /data/backup/etcd/backup_$(<span class="built_in">date</span> +%Y%m%d)/snap-$(<span class="built_in">date</span> +%Y%m%d).db root@11.0.1.7:/data/backup/etcd/backup_$(<span class="built_in">date</span> +%Y%m%d)/</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>定时备份脚本</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@master ~]# vim /data/backup/etcd/etcd_backup.sh</span><br><span class="line"><span class="comment">#!/usr/bin/bash</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">date</span>;</span><br><span class="line">CERT=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.crt&quot;</span></span><br><span class="line">EKY=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.key&quot;</span></span><br><span class="line">CACERT=<span class="string">&quot;/etc/kubernetes/pki/etcd/ca.crt&quot;</span></span><br><span class="line"><span class="comment"># 注意替换为主机IP</span></span><br><span class="line">ENDPOINTS=<span class="string">&quot;11.0.1.9:2379&quot;</span></span><br><span class="line"> </span><br><span class="line">ETCDCTL_API=3 /usr/bin/etcdctl \</span><br><span class="line">--cacert=<span class="string">&quot;<span class="variable">$&#123;CACERT&#125;</span>&quot;</span> --cert=<span class="string">&quot;<span class="variable">$&#123;CERT&#125;</span>&quot;</span> --key=<span class="string">&quot;<span class="variable">$&#123;EKY&#125;</span>&quot;</span> \</span><br><span class="line">--endpoints=<span class="variable">$&#123;ENDPOINTS&#125;</span> \</span><br><span class="line">snapshot save /data/backup/etcd/backup_`<span class="built_in">date</span> +%Y%m%d`/snap-`<span class="built_in">date</span> +%Y%m%d`.db</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 备份保留7天</span></span><br><span class="line"><span class="comment"># -mtime -1表示，mtime在1天之内的文件，单位是天</span></span><br><span class="line"><span class="comment"># 而-mtime +10表示mtime在10天以上的文件</span></span><br><span class="line"><span class="comment"># 还有用法：-mmin -10，表示mtime在10分钟内的文件</span></span><br><span class="line"><span class="comment"># 有时候也可以不加+或-，比如-mtime 10，这表示正好为10天，此用法比较少</span></span><br><span class="line">find /data/backup/etcd/ -name <span class="string">&quot;*.db&quot;</span> -mtime +7 -<span class="built_in">exec</span> <span class="built_in">rm</span> -f &#123;&#125; \;</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 同步到其他两个etcd节点</span></span><br><span class="line">/bin/rsync -avpgolr --delete /data/backup/etcd/backup_`<span class="built_in">date</span> +%Y%m%d`/ root@11.0.1.6:/data/backup/etcd/backup_`<span class="built_in">date</span> +%Y%m%d`/</span><br><span class="line">/bin/rsync -avpgolr --delete /data/backup/etcd/backup_`<span class="built_in">date</span> +%Y%m%d`/ root@11.0.1.7:/data/backup/etcd/backup_`<span class="built_in">date</span> +%Y%m%d`/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@master ~]# <span class="built_in">chmod</span> 755 /data/backup/etcd/etcd_backup.sh</span><br><span class="line">[root@master ~]# crontab -l</span><br><span class="line"><span class="comment">#etcd集群数据备份 每天凌晨5点执行备份</span></span><br><span class="line">0 5 * * * /bin/bash -x /data/backup/etcd/etcd_backup.sh &gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><ol>
+<li>模拟删除测试pod<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl delete pod <span class="built_in">test</span></span><br><span class="line">kubectl delete pod <span class="built_in">test</span> -n kube-system</span><br></pre></td></tr></table></figure></li>
+<li>停掉etcd集群全部节点的kube-apiserver和etcd，防止再有数据写入etcd。<br><em>（由于kube-apiserver和etcd属于静态pod，是由kubelet创建，所以需要将&#x2F;etc&#x2F;kubernetes&#x2F;manifests&#x2F;下的yaml文件移除，让其不可用）</em><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> /etc/kubernetes/manifests /etc/kubernetes/manifests.bak</span><br></pre></td></tr></table></figure></li>
+<li>查看etcd、api是否up，等待全部停止<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker ps |grep -E <span class="string">&quot;apiserver|etcd&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li>重命名manifests目录后，无法再获取到pods了<br>可以发现manifests目录的重要性，因此建议对此目录也进行定期备份<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl get pods -A</span><br></pre></td></tr></table></figure></li>
+<li>移除etcd服务实例的数据目录，在etcd集群的全部节点执行<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> /var/lib/etcd /var/lib/etcd.bak</span><br></pre></td></tr></table></figure></li>
+<li>恢复etcd数据，etcd集群用同一份snapshot恢复，在etcd集群的全部节点依次执行<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## 单集群演示</span></span><br><span class="line">ETCDCTL_API=3 etcdctl snapshot restore /data/backup/etcd/backup_20220913/snap-20220913.db --data-dir=/var/lib/etcd --endpoints 11.0.1.9:2379 --cert=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.crt&quot;</span> --key=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.key&quot;</span> --cacert=<span class="string">&quot;/etc/kubernetes/pki/etcd/ca.crt&quot;</span>   </span><br><span class="line"></span><br><span class="line"><span class="comment">## 多集群</span></span><br><span class="line"><span class="comment"># 在master1执行</span></span><br><span class="line">ETCDCTL_API=3 etcdctl snapshot restore /data/backup/etcd/backup_20220913/snap-20220913.db \</span><br><span class="line">    --endpoints=11.0.1.9:2379 \</span><br><span class="line">    --name=master1 \</span><br><span class="line">    --cert=/etc/kubernetes/pki/etcd/server.crt \</span><br><span class="line">    --key=/etc/kubernetes/pki/etcd/server.key \</span><br><span class="line">    --cacert=/etc/kubernetes/pki/etcd/ca.crt \</span><br><span class="line">    --initial-advertise-peer-urls=https://11.0.1.9:2380 \</span><br><span class="line">    --initial-cluster-token=etcd-cluster-0 \</span><br><span class="line">    --initial-cluster=master1=https://11.0.1.9:2380,master2=https://11.0.1.6:2380,master3=https://11.0.1.7:2380 \</span><br><span class="line">    --data-dir=/var/lib/etcd</span><br><span class="line"> <span class="comment"># 在master2执行</span></span><br><span class="line"> ETCDCTL_API=3 etcdctl snapshot restore /data/backup/etcd/backup_20220909/snap-202209091110.db \</span><br><span class="line">    --endpoints=11.0.1.6:2379 \</span><br><span class="line">    --name=master2 \</span><br><span class="line">    --cert=/etc/kubernetes/pki/etcd/server.crt \</span><br><span class="line">    --key=/etc/kubernetes/pki/etcd/server.key \</span><br><span class="line">    --cacert=/etc/kubernetes/pki/etcd/ca.crt \</span><br><span class="line">    --initial-advertise-peer-urls=https://11.0.1.7:2380 \</span><br><span class="line">    --initial-cluster-token=etcd-cluster-0 \</span><br><span class="line">    --initial-cluster=master1=https://11.0.1.9:2380,master2=https://11.0.1.6:2380,master3=https://11.0.1.7:2380 \</span><br><span class="line">    --data-dir=/var/lib/etcd</span><br><span class="line"> <span class="comment"># 在master3执行</span></span><br><span class="line">  ETCDCTL_API=3 etcdctl snapshot restore /data/backup/etcd/backup_20220913/snap-20220913.db \</span><br><span class="line">    --endpoints=11.0.1.7:2379 \</span><br><span class="line">    --name=master2 \</span><br><span class="line">    --cert=/etc/kubernetes/pki/etcd/server.crt \</span><br><span class="line">    --key=/etc/kubernetes/pki/etcd/server.key \</span><br><span class="line">    --cacert=/etc/kubernetes/pki/etcd/ca.crt \</span><br><span class="line">    --initial-advertise-peer-urls=https://11.0.1.7:2380 \</span><br><span class="line">    --initial-cluster-token=etcd-cluster-0 \</span><br><span class="line">    --initial-cluster=master1=https://11.0.1.9:2380,master2=https://11.0.1.6:2380,master3=https://11.0.1.7:2380 \</span><br><span class="line">    --data-dir=/var/lib/etcd</span><br></pre></td></tr></table></figure></li>
+<li>恢复manifests，静态pod会自动重建kube-apiserver和etcd<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> /etc/kubernetes/manifests.bak /etc/kubernetes/manifests</span><br></pre></td></tr></table></figure></li>
+<li>查看集群是否恢复正常<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl get pod -A</span><br><span class="line">kubectl get cs</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="etcdctl命令参考"><a href="#etcdctl命令参考" class="headerlink" title="etcdctl命令参考"></a>etcdctl命令参考</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一些etcdctl命令供参考</span></span><br><span class="line"><span class="comment"># 以表格的形式查看健康状态</span></span><br><span class="line">ETCDCTL_API=3 etcdctl endpoint status -w table --endpoints 11.0.1.9:2379 --cert=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.crt&quot;</span>  --key=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.key&quot;</span>  --cacert=<span class="string">&quot;/etc/kubernetes/pki/etcd/ca.crt&quot;</span></span><br><span class="line"><span class="comment"># 查看成员信息</span></span><br><span class="line">ETCDCTL_API=3 etcdctl member list --write-out=table --endpoints 11.0.1.9:2379 --cert=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.crt&quot;</span>  --key=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.key&quot;</span>  --cacert=<span class="string">&quot;/etc/kubernetes/pki/etcd/ca.crt&quot;</span></span><br><span class="line"><span class="comment"># 查看key</span></span><br><span class="line">ECDCTL_API=3 etcdctl get / --prefix --keys-only --endpoints 11.0.1.9:2379 --cert=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.crt&quot;</span>  --key=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.key&quot;</span>  --cacert=<span class="string">&quot;/etc/kubernetes/pki/etcd/ca.crt&quot;</span></span><br><span class="line"><span class="comment"># 查看节点</span></span><br><span class="line">ETCDCTL_API=3 etcdctl get /registry/minions/ --prefix --keys-only --endpoints 11.0.1.9:2379 --cert=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.crt&quot;</span>  --key=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.key&quot;</span>  --cacert=<span class="string">&quot;/etc/kubernetes/pki/etcd/ca.crt&quot;</span> </span><br><span class="line"><span class="comment"># 查看pod</span></span><br><span class="line">ETCDCTL_API=3 etcdctl get /registry/pods/ --prefix --keys-only --endpoints 11.0.1.9:2379 --cert=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.crt&quot;</span>  --key=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.key&quot;</span>  --cacert=<span class="string">&quot;/etc/kubernetes/pki/etcd/ca.crt&quot;</span> </span><br><span class="line"><span class="comment"># 查看健康状态</span></span><br><span class="line">ETCDCTL_API=3 etcdctl endpoint health --endpoints 11.0.1.9:2379 --cert=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.crt&quot;</span>  --key=<span class="string">&quot;/etc/kubernetes/pki/etcd/server.key&quot;</span>  --cacert=<span class="string">&quot;/etc/kubernetes/pki/etcd/ca.crt&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><a href="etcd-v3.5.11-linux-amd64.tar.gz">etcdctl x86文件</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <blockquote class="article-copyright">
+    <p><strong><span class="icon-user icon"></span>著者: </strong>本堂主 @ 本堂主Blog</p>
+    <p><strong><span class="icon-link icon"></span>パーマリンク: </strong><a href="https://jade-xyy.github.io/ja/2025/04/14/etcdBackupRestore/">https://jade-xyy.github.io/ja/2025/04/14/etcdBackupRestore/</a></p>
+    <p><strong><span class="icon-pencil icon"></span>タイトル: </strong>「ETCD备份恢复」</p>
+    
+    
+    <p><strong><span class="icon-copyright icon"></span>ライセンス: </strong>本ブログのすべての文書は、特に指定されていない限り、<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> ライセンスに従っています。引用の際は出典を明記してください！</p>
+    <span class="icon-creative-commons article-copyright-bg"></span>
+  </blockquote>
+      
+      
+      
+        <div class="share-wrapper">
+  
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=www.baidu.com&amp;title=ETCD%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D&amp;desc=ETCD%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D&amp;source=https%3A%2F%2Fjade-xyy.github.io" target="_blank" rel="noopener noreferrer" title="ETCD备份恢复">
+      <div class="share-icon icon icon-qq">
+        
+      </div>
+    </a>
+  
+    <a href="javascript:;"  title="ETCD备份恢复">
+      <div class="share-icon icon icon-weixin">
+        
+          <div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hexo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div>
+        
+      </div>
+    </a>
+  
+</div>
+      
+      
+      
+        <a data-aos="zoom-in" href="/ja/2025/04/14/etcdBackupRestore/#comments" class="article-comment-link">
+          <span class="post-comments-count waline-comment-count" data-path="/ja/2025/04/14/etcdBackupRestore/" itemprop="commentCount"></span>
+          コメント
+        </a>
+      
+      
+      
+      
+        <span data-aos="zoom-in" class="article-visitor-link">
+          <span class="waline-pageview-count" data-path="/ja/2025/04/14/etcdBackupRestore/">0</span>
+          <em class="post-meta-item-text">閲覧数</em>
+        </span>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/ja/tags/etcd/" rel="tag">etcd</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/ja/tags/k8s/" rel="tag">k8s</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          <img data-src="https://jade-xyy.github.io/covers/team.jpg" data-sizes="auto" alt="VALORANT分数规则、经济规则" class="lazyload">
+        
+        <a href="/ja/2025/04/18/valorantRules/"></a>
+        <div class="article-nav-caption">次の記事</div>
+        <h3 class="article-nav-title">
+          
+            VALORANT分数规则、经济规则
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/zzz_mm1.png" data-sizes="auto" alt="ETCD单点故障恢复" class="lazyload">
+        
+      
+      <a href="/ja/2025/04/14/etcdSNRecovery/"></a>
+      <div class="article-nav-caption">前の記事</div>
+      <h3 class="article-nav-title">
+        
+          ETCD单点故障恢复
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+      
+      
+      <h2 class="comment-title">说些什么吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            
+            <div class="selector-item" data-selector="waline">
+              <span>waline</span>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+      
+        <div class="comment waline-comment" data-aos="fade-up"
+          id="waline-comment">
+        </div>
+      
+    </div>
+  </section>
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2025
+      
+      <span class="footer-info-sep rotate"></span>
+      本堂主
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        60k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        04:05
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">総閲覧数&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">総閲覧者数&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">見出し</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD"><span class="toc-text">备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D"><span class="toc-text">恢复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#etcdctl%E5%91%BD%E4%BB%A4%E5%8F%82%E8%80%83"><span class="toc-text">etcdctl命令参考</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/Omen.jpg" data-sizes="auto" alt="本堂主" class="lazyload">
+  <div class="sidebar-author-name">本堂主</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>投稿</div>
+    <div class="sidebar-state-number">16</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>カテゴリー</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>タグ</div>
+    <div class="sidebar-state-number">10</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/" aria-label="ホーム"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">ホーム</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/archives" aria-label="アーカイブ"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">アーカイブ</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/about" aria-label="プロフィール"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">プロフィール</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/friend" aria-label="フレンド"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">フレンド</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha384-aD7FsuQkS1ohgFKY41fJfeA+Wd&#x2F;QRNnrOd9Bs58K3FzKdJJv8yPnYU8Tnp5z1agS" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "本堂主",
+          title: "ETCD备份恢复",
+          url: "https://jade-xyy.github.io/2025/04/14/etcdBackupRestore/",
+          excerpt: "",
+          description: "",
+          stripContent: " 备份 创建测试pod kubectl run test --image=nginx:1.7.9 --labels=&amp;quot;app=test&amp;quot;kubectl run test --image=nginx:1.7.9 --labels=&amp;quot;app=test&amp;quot; -n kube-system 在etcd集群的每个节点上建立备份存放目录 mkdir -p /data/backup/etcd/backup_$(date +%Y%m%d) 使用kubeadm创建的k8s集群，",
+          date: "Mon Apr 14 2025 15:52:49 GMT+0800",
+          updated: "Fri Apr 18 2025 15:56:07 GMT+0800",
+          cover: "/images/zzz_cjjxrrdpts.webp",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+          
+<script src="https://npm.webcache.cn/html-to-image@1.11.11/dist/html-to-image.js" integrity="sha384-UbfRVKN3&#x2F;elS1r7JcK2FhmPP+KlJ4CvYwbyYD7tH+uTkbT9bNJr9eJeQ0FoFbAgz" crossorigin="anonymous" defer data-pjax></script>
+
+          
+<script src="https://npm.webcache.cn/qrcode@1.4.4/build/qrcode.min.js" integrity="sha384-0RsG1yo&#x2F;crf&#x2F;1Qc14sho26SXXOTngNCjgJw7fuvXBt9W&#x2F;OChF&#x2F;Ijx+aUuBDqQwEk" crossorigin="anonymous" defer data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus'];
+  var commentConfig = {
+    valine: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.valine-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/valine@1.5.1/dist/Valine.min.js',
+          'sha384-3ma91AExDeMAZ1rjTjaP8V2A2obQE+s5ltKRwYlwdpArz9xVbp0tF3b0VV2ACNPn'
+        );
+        script.onload = () => {
+          var GUEST_INFO = ['nick', 'mail', 'link'];
+          var guest_info = 'nick,mail,link'.split(',').filter((item) => {
+            return GUEST_INFO.indexOf(item) > -1
+          });
+          var recordIP = JSON.parse('true');
+          var highlight = JSON.parse('true');
+          var visitor = JSON.parse('false');
+
+          if (window.Valine) {
+            new Valine({
+              el: '.valine-comment',
+              appId: "e8feHL9uKMe2cBgp29tyFCdv-gzGzoHsz",
+              appKey: "Z289QNdRm4m1Im6mWjAWqW4P",
+              placeholder: "Just go go",
+              pageSize: '10',
+              avatar: 'mp',
+              lang: 'zh-cn',
+              recordIP: recordIP,
+              highlight: highlight,
+              visitor: visitor,
+              requiredFields: guest_info,
+              path: window.location.pathname
+            });
+          }
+        };
+        document.head.appendChild(script);
+      }
+    },
+    waline: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.waline-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        let walineInit;
+        const walineCdn = 'https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.mjs';
+        const walineIntegrity = 'sha384-9sbqJjrfGjbkI6/PI4nU/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH/KinBEAZII/5';
+
+        const module = await safeImport(walineCdn, walineIntegrity);
+        walineInit = module.init;
+
+        window.walineInstance = walineInit({
+          el: '.waline-comment',
+          serverURL: 'https://waline.fay.net.cn',
+          lang: 'zh-CN',
+          locale: {},
+          emoji: ["https://unpkg.com/@waline/emojis@1.2.0/weibo","https://unpkg.com/@waline/emojis@1.2.0/alus","https://unpkg.com/@waline/emojis@1.2.0/bilibili","https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tieba","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+          meta: ["nick","mail","link"],
+          requiredMeta: ["nick","mail"],
+          wordLimit: JSON.parse('0'),
+          comment: true,
+          pageSize: JSON.parse('10'),
+          dark: 'html[data-theme="dark"]',
+          pageview: JSON.parse('true'),
+        });
+      }
+    },
+    twikoo: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.16/dist/twikoo.all.min.js',
+          'sha384-lDHsr5aZmkMS0eKnsUu6e9RWP+dRmn7sgjRAKGOAoXfMyzbUK6Qi86zZK7R+KvRV'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: '',
+              el: '.tcomment',
+              region: '',
+            })
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+    gitalk: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.gitalk-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/gitalk@1.8.0/dist/gitalk.min.js',
+          'sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU/lcEH5O8eVbSDhbPwsiVUTp/aGX/z/5EuMA'
+        );
+
+        script.onload = () => {
+          if (false) {
+            const md5Script = loadScript(
+              'https://npm.webcache.cn/blueimp-md5@2.19.0/js/md5.min.js',
+              'sha384-JmVtRz6RWiXnA14QbIOJzPuU3MidULOpBP66deeLLyyoF4Tr/gZlbkHkL6vTthxH'
+            );
+            md5Script.onload = initGitalk;
+            document.head.appendChild(md5Script);
+          } else {
+            initGitalk();
+          }
+        }
+        document.head.appendChild(script);
+
+        function initGitalk() {
+          var gitalkId = location.pathname;
+          var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: null,
+            id: gitalkId, // Ensure uniqueness and length less than 50
+            distractionFreeMode: false // Facebook-like distraction free mode
+          })
+          gitalk.render('gitalk-comment');
+        }
+      }
+    },
+    giscus: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        // 删除可能已存在的 giscus 脚本和 iframe
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', '');
+        giscusScript.setAttribute('data-repo-id', '');
+        giscusScript.setAttribute('data-category', ''); 
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
+        giscusScript.setAttribute('data-lang', 'zh-CN');
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+        document.body.addEventListener('light-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
+        });
+        document.body.addEventListener('dark-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
+        });
+      }
+    }
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'valine';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    // 评论组件加载状态跟踪
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.8.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+
