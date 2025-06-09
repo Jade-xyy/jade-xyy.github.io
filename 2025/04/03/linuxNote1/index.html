@@ -46,7 +46,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jade-xyy.github.io/2025/04/03/linuxNote1/autofs.png">
 <meta property="article:published_time" content="2025-04-03T07:15:13.000Z">
-<meta property="article:modified_time" content="2025-06-09T02:25:01.618Z">
+<meta property="article:modified_time" content="2025-06-09T02:27:15.226Z">
 <meta property="article:author" content="本堂主">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
@@ -607,8 +607,8 @@
 <h5 id="…-…-…-cat-…-…-…-∞"><a href="#…-…-…-cat-…-…-…-∞" class="headerlink" title="… … … cat … … … ∞"></a><code>… … … cat … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 所在路径 /bin/cat；执行权限 all</span></span><br><span class="line"><span class="built_in">cat</span> -n 显示行号</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-nl-…-…-…-∞"><a href="#…-…-…-nl-…-…-…-∞" class="headerlink" title="… … … nl … … … ∞"></a><code>… … … nl … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">从第一行开始显示文件内容，并显示行号</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-tac-…-…-…-∞"><a href="#…-…-…-tac-…-…-…-∞" class="headerlink" title="… … … tac … … … ∞"></a><code>… … … tac … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 所在路径 /usr/bin/tac；执行权限 all</span></span><br><span class="line"><span class="built_in">tac</span> 反向显示文件内容（上下颠倒）不支持-n参数</span><br><span class="line">与<span class="built_in">cat</span>相反</span><br></pre></td></tr></table></figure>
-<h5 id="…-…-…-more-…-…-…-∞"><a href="#…-…-…-more-…-…-…-∞" class="headerlink" title="… … … more … … … ∞"></a><code>… … … more … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 所在路径 /bin/more；执行权限 all</span></span><br><span class="line">more 分页显示文件内容</span><br><span class="line">翻页：（空格）（f）</span><br><span class="line">翻行：（Enter）</span><br><span class="line">显示当前行号：（=）</span><br><span class="line">退出：（q）（Q）</span><br><span class="line">退出时清屏</span><br></pre></td></tr></table></figure>
-<h5 id="…-…-…-less-…-…-…-∞"><a href="#…-…-…-less-…-…-…-∞" class="headerlink" title="… … … less … … … ∞"></a><code>… … … less … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 所在路径 /usr/bin/less；执行权限 all</span></span><br><span class="line">less 分页显示文件内容</span><br><span class="line">翻页：（空格）（f）</span><br><span class="line">向上翻页：（pageup）</span><br><span class="line">向上下翻1行：（↑）（↓）</span><br><span class="line">翻行：（Enter）</span><br><span class="line">双向搜索：（/ 向下  ? 向上  n 跳转下一个匹配项  N 跳转上一个匹配项）</span><br><span class="line">跳文件首、末：（gg G）</span><br><span class="line">实时跟踪：（F）</span><br><span class="line">显示行号：（-N）</span><br><span class="line">退出：（q）（Q）</span><br><span class="line">退出时保留内容：（-X 选项）</span><br></pre></td></tr></table></figure>
+<h5 id="…-…-…-more-…-…-…-∞"><a href="#…-…-…-more-…-…-…-∞" class="headerlink" title="… … … more … … … ∞"></a><code>… … … more … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 所在路径 /bin/more；执行权限 all</span></span><br><span class="line">more 基础分页显示文件内容</span><br><span class="line">翻页：（空格）（f）</span><br><span class="line">翻行：（Enter）</span><br><span class="line">显示当前行号：（=）</span><br><span class="line">退出：（q）（Q）</span><br><span class="line">退出时清屏</span><br></pre></td></tr></table></figure>
+<h5 id="…-…-…-less-…-…-…-∞"><a href="#…-…-…-less-…-…-…-∞" class="headerlink" title="… … … less … … … ∞"></a><code>… … … less … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 所在路径 /usr/bin/less；执行权限 all</span></span><br><span class="line">less 增强分页显示文件内容</span><br><span class="line">less +50 直接显示第50行</span><br><span class="line">翻页：（空格）（f）</span><br><span class="line">向上翻页：（pageup）</span><br><span class="line">向上下翻1行：（↑）（↓）</span><br><span class="line">翻行：（Enter）</span><br><span class="line">双向搜索：（/ 向下  ? 向上  n 跳转下一个匹配项  N 跳转上一个匹配项）</span><br><span class="line">跳文件首、末：（gg G）</span><br><span class="line">实时跟踪：（F）</span><br><span class="line">显示行号：（-N）</span><br><span class="line">退出：（q）（Q）</span><br><span class="line">退出时保留内容：（-X 选项）</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-head-…-…-…-∞"><a href="#…-…-…-head-…-…-…-∞" class="headerlink" title="… … … head … … … ∞"></a><code>… … … head … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 所在路径 /usr/bin/head；执行权限 all</span></span><br><span class="line"><span class="built_in">head</span> 默认显示文件前10行</span><br><span class="line"><span class="built_in">head</span> -n 20 显示文件前20行</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-tail-…-…-…-∞"><a href="#…-…-…-tail-…-…-…-∞" class="headerlink" title="… … … tail … … … ∞"></a><code>… … … tail … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 所在路径 /usr/bin/tail；执行权限 alltail 默认显示后10行</span></span><br><span class="line"><span class="built_in">tail</span> -n 指定行数</span><br><span class="line"><span class="built_in">tail</span> -f 动态显示文件末尾内容</span><br></pre></td></tr></table></figure>
 <h4 id="链接命令"><a href="#链接命令" class="headerlink" title="链接命令"></a>链接命令</h4><h5 id="…-…-…-ln-…-…-…-∞"><a href="#…-…-…-ln-…-…-…-∞" class="headerlink" title="… … … ln … … … ∞"></a><code>… … … ln … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 英文原意 link；所在路径 /bin/ln；执行权限 all</span></span><br><span class="line"><span class="built_in">ln</span> -s [源文件] [目标文件] 创建软链接</span><br><span class="line"><span class="built_in">ln</span> -s /etc/issue /tmp/issue.soft 创建issue的软链接文件</span><br><span class="line"><span class="built_in">ln</span> /etc/issue /tmp/issue.hard 创建issue的硬链接文件</span><br><span class="line"><span class="comment"># 软链接 == 快捷方式；文件权限全部为777（rwxrwxrwx）；可跨分区</span></span><br><span class="line"><span class="comment"># 硬链接 == cp -p + 同步更新；i节点也相同；源文件丢失硬链接依然可以访问；硬链接不能跨分区；不可以针对目录使用</span></span><br><span class="line"><span class="comment"># 1个文件一定有1个i节点，但是1个i节点不一定只对应1个文件，比如硬链接</span></span><br></pre></td></tr></table></figure>
@@ -966,7 +966,7 @@
         
           
           
-            <img data-src="/covers/zzz_ya2.png" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
+            <img data-src="/covers/iso.jpg" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
           
         
         <a href="/2025/04/05/linuxNote2/"></a>
@@ -1280,7 +1280,7 @@
           description: "",
           stripContent: "Linux备忘系统简介及注意事项VMware安装虚机创建虚机最小628M内存挂起&amp;#x3D;&amp;#x3D;暂停（真实操作系统没有挂起） 真实机修改为硬盘启动 Boot-&amp;gt;hard device 密码复杂性原则：8位以上大小写字母、数字、符号；不能是英文单词；不能是和用户相关的内容 swap应该分内存的2倍，但超过2G没有意义 &amp;#x2F;root&amp;#x2F;install.log：存储安装在系统中的软件包机器版本信息&amp;#x2F;root&amp;#x2F;install.log.syslog：存储安",
           date: "Thu Apr 03 2025 15:15:13 GMT+0800",
-          updated: "Mon Jun 09 2025 10:25:01 GMT+0800",
+          updated: "Mon Jun 09 2025 10:27:15 GMT+0800",
           cover: "/images/zzz_cjjxrrdpts.webp",
         };
       </script>
