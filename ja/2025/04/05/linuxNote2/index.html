@@ -45,7 +45,7 @@
 <meta property="og:description" content="Shell编程基本功能 Shell是一个命令行解释器，为用户提供一个向Linux内核发送请求以便运行程序的界面系统级程序，用户可以用Shell来启动、挂起、停止甚至是编写一些程序还是一个功能强大的编程语言，易编写、易调试、灵活性较强，可直接调用Linux系统命令  Shell分类Bourne Shell：从1979起Unix就开始使用Bourne Shell，主文件名为shC Shell：C Sh">
 <meta property="og:locale" content="ja_JP">
 <meta property="article:published_time" content="2025-04-05T08:47:03.000Z">
-<meta property="article:modified_time" content="2025-06-03T08:21:49.514Z">
+<meta property="article:modified_time" content="2025-06-26T00:48:23.330Z">
 <meta property="article:author" content="本堂主">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
@@ -380,7 +380,7 @@
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-04-05T08:47:03.000Z" itemprop="datePublished">2025-04-05</time>
-    <time style="display: none;" id="post-update-time">2025-06-03</time>
+    <time style="display: none;" id="post-update-time">2025-06-26</time>
   </span>
 </div>
 
@@ -503,11 +503,103 @@
 <ul>
 <li>系统资源查看</li>
 </ul>
-<h5 id="…-…-…-vmstat-…-…-…-∞"><a href="#…-…-…-vmstat-…-…-…-∞" class="headerlink" title="… … … vmstat … … … ∞"></a><code>… … … vmstat … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 监控系统资源</span></span><br><span class="line">vmstat [刷新延时 刷新次数]</span><br><span class="line">vmstat 1 3  <span class="comment"># 监听3次系统资源，每隔2s</span></span><br></pre></td></tr></table></figure>
+<h5 id="…-…-…-vmstat-…-…-…-∞"><a href="#…-…-…-vmstat-…-…-…-∞" class="headerlink" title="… … … vmstat … … … ∞"></a><code>… … … vmstat … … … ∞</code></h5><p>Virtual Memory Statistics（虚拟内存统计）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 监控系统虚拟资源（虚拟内存、cpu、进程）</span></span><br><span class="line">vmstat [刷新延时 刷新次数]</span><br><span class="line">vmstat 1 3  <span class="comment"># 监听3次系统资源，每隔2s</span></span><br></pre></td></tr></table></figure>
+<p>字段说明：</p>
+<table>
+<thead>
+<tr>
+<th align="center">类别字段</th>
+<th align="center">子字段</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">proc<br>进程</td>
+<td align="center">r</td>
+<td align="left">运行队列中进程数量</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">b</td>
+<td align="left">等待IO的进程数量</td>
+</tr>
+<tr>
+<td align="center">memory<br>内存</td>
+<td align="center">swpd</td>
+<td align="left">使用虚拟内存大小</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">free</td>
+<td align="left">可用内存大小</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">buff</td>
+<td align="left">用作缓冲的内存大小</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">cache</td>
+<td align="left">用作缓存的内存大小</td>
+</tr>
+<tr>
+<td align="center">swap<br>交换空间内存</td>
+<td align="center">si</td>
+<td align="left">每秒从交换区写到内存的大小</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">so</td>
+<td align="left">每秒写入交换区的内存大小</td>
+</tr>
+<tr>
+<td align="center">io<br>现在linux版本块的大小为1024bytes</td>
+<td align="center">bi</td>
+<td align="left">每秒读取的块数</td>
+</tr>
+<tr>
+<td align="center">system<br>系统信息</td>
+<td align="center">in</td>
+<td align="left">每秒中断数，包括时钟中断</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">cs</td>
+<td align="left">每秒上下文切换数</td>
+</tr>
+<tr>
+<td align="center">cpu<br>以百分比表示</td>
+<td align="center">us</td>
+<td align="left">用户进程执行时间（user time）</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">sy</td>
+<td align="left">系统进程执行时间（system time）</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">id</td>
+<td align="left">空闲时间（包括IO等待时间），cpu的空闲时间以百分比表示</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">wa</td>
+<td align="left">等待IO时间</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">st</td>
+<td align="left">被虚拟机使用的CPU时间的百分比</td>
+</tr>
+</tbody></table>
+<p>一般id + us + sy &#x3D; 100</p>
 <h5 id="…-…-…-dmesg-…-…-…-∞"><a href="#…-…-…-dmesg-…-…-…-∞" class="headerlink" title="… … … dmesg … … … ∞"></a><code>… … … dmesg … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开机时内核检查</span></span><br><span class="line">dmesg</span><br><span class="line">dmesg | grep CPU</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看内核日志是否打raid卡堆栈信息</span></span><br><span class="line">dmesg -T |grep megasas_probe_one -C5</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-free-…-…-…-∞"><a href="#…-…-…-free-…-…-…-∞" class="headerlink" title="… … … free … … … ∞"></a><code>… … … free … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看内存使用状态、空闲情况，默认树形Mem物理内存swap交互区内存 内核缓存区内存</span></span><br><span class="line">free [-b|-k|-m|-g]</span><br><span class="line">-b：以字节为单位显示</span><br><span class="line">-k：以KB为单位显示（默认）</span><br><span class="line">-m：以MB为单位显示</span><br><span class="line">-g：以GB为单位显示</span><br><span class="line">[-s&lt;间隔秒数&gt; 持续观察内存使用状况]</span><br><span class="line">[-t 显示内存总和列]</span><br><span class="line">[-l 以列表形式]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 缓存和缓冲的区别</span></span><br><span class="line">缓存（cache）：用来加速数据从硬盘中读取</span><br><span class="line">缓冲（buffer）：用来加速数据写入硬盘</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看CPU信息</span></span><br><span class="line"><span class="built_in">cat</span> /proc/cpuinfo</span><br><span class="line"><span class="built_in">cat</span> /proc/cpuinfo | grep processor</span><br><span class="line"><span class="built_in">nproc</span></span><br><span class="line">lscpu</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-uptime-…-…-…-∞"><a href="#…-…-…-uptime-…-…-…-∞" class="headerlink" title="… … … uptime … … … ∞"></a><code>… … … uptime … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">uptime</span>  <span class="comment"># 显示系统的启动时间和平均负载（相当于top第一行），w也可以看到</span></span><br></pre></td></tr></table></figure>
-<h5 id="…-…-…-uname-…-…-…-∞"><a href="#…-…-…-uname-…-…-…-∞" class="headerlink" title="… … … uname … … … ∞"></a><code>… … … uname … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看系统与内核相关信息</span></span><br><span class="line"><span class="built_in">uname</span> [选项]</span><br><span class="line">-a：查看系统所有相关信息</span><br><span class="line">-r：查看内核版本</span><br><span class="line">-s：查看内核名称</span><br><span class="line"></span><br><span class="line">file /bin/ls  <span class="comment"># 判断当前系统的位数</span></span><br><span class="line">lsb_release -a  <span class="comment"># 查看当前Linux系统的发行版本</span></span><br></pre></td></tr></table></figure>
+<h5 id="…-…-…-uname-…-…-…-∞"><a href="#…-…-…-uname-…-…-…-∞" class="headerlink" title="… … … uname … … … ∞"></a><code>… … … uname … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看系统与内核相关信息</span></span><br><span class="line"><span class="built_in">uname</span> [选项]</span><br><span class="line">-a：查看系统所有相关信息</span><br><span class="line">-m：显示处理器类型</span><br><span class="line">-n：显示计算机网络节点名称</span><br><span class="line">-o：显示操作系统名称</span><br><span class="line">-p：显示处理器类型</span><br><span class="line">-r：查看内核版本</span><br><span class="line">-s：查看内核名称</span><br><span class="line">-v：显示系统内核版本及发行时间</span><br><span class="line"></span><br><span class="line">file /bin/ls  <span class="comment"># 判断当前系统的位数</span></span><br><span class="line">lsb_release -a  <span class="comment"># 查看当前Linux系统的发行版本</span></span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-lsof-…-…-…-∞"><a href="#…-…-…-lsof-…-…-…-∞" class="headerlink" title="… … … lsof … … … ∞"></a><code>… … … lsof … … … ∞</code></h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">列出进程调用或打开的文件的信息</span><br><span class="line">lsof [选项]</span><br><span class="line">-c 字符串：只列出以字符串开头的进程打开的文件</span><br><span class="line">-u 用户名：只列出某个用户的进程打开的文件</span><br><span class="line">-p pid：列出某个PID进程打开的文件</span><br><span class="line">lsof -c init</span><br><span class="line"></span><br><span class="line">## 系统定时任务</span><br><span class="line">crond服务管理与访问控制</span><br><span class="line">service crond restart</span><br><span class="line">chkconfig crond on</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-crontab-…-…-…-∞"><a href="#…-…-…-crontab-…-…-…-∞" class="headerlink" title="… … … crontab … … … ∞"></a><code>… … … crontab … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">crontab [选项]</span><br><span class="line">-e：编辑crontab定时任务</span><br><span class="line">-l：查询crontab任务</span><br><span class="line">-r：删除当前用户所有的crontab任务</span><br><span class="line">-u: 指定用户，不写默认是当前用户</span><br><span class="line"></span><br><span class="line">crontab -e界面（最小识别的范围是分钟）</span><br><span class="line">* * * * * 执行的任务（绝对路径）</span><br><span class="line">第1个*：一小时中的第几分钟 [0,59]</span><br><span class="line">第2个*：一天中的第几小时 [0,23]</span><br><span class="line">第3个*：一个月中的第几天 [1,31]</span><br><span class="line">第4个*：一年中的第几月 [1,12]</span><br><span class="line">第5个*：一周中的星期几 [0,7]（0、7都代表周日）</span><br><span class="line"></span><br><span class="line">特殊符号：</span><br><span class="line">*：任何时间</span><br><span class="line">,：不连续的时间</span><br><span class="line">-：连续的时间范围</span><br><span class="line">*/n：频率，每隔多久执行一次</span><br><span class="line">例：</span><br><span class="line">0 5 1,15 * * 命令  每月1号,15号的凌晨5点0分执行命令</span><br><span class="line">40 4 * * 1-5 命令  每周一到周五的凌晨4点40执行命令</span><br><span class="line">*/10 4 * * * 命令  每天凌晨4点，每隔10分钟执行一次命令</span><br><span class="line">10-20/2 * * * * /usr/bin/date &gt;&gt; /opt/time  每小时的10分-20分内每隔2分执行一次</span><br><span class="line"><span class="comment"># 注意</span></span><br><span class="line">定时任务调用的脚本内，%号要转义，否则不识别</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-lspci-…-…-…-∞"><a href="#…-…-…-lspci-…-…-…-∞" class="headerlink" title="… … … lspci … … … ∞"></a><code>… … … lspci … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">lspci |grep -i sas 查看raid卡型号</span><br><span class="line">查看raid卡固件版本和驱动版本</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;LSI&quot;</span> &amp;&amp; /opt/MegaRAID/storcli/storcli64 /c0 show |grep -E <span class="string">&#x27;FW Version|Driver Version&#x27;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;PMC&quot;</span> &amp;&amp; /usr/sbin/arcconf getconfig 1 ad |grep -wE <span class="string">&#x27;Firmware|Driver *:&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -665,7 +757,7 @@
       
         
         
-          <img data-src="/covers/iso.jpg" data-sizes="auto" alt="Linux备忘 - 上" class="lazyload">
+          <img data-src="/covers/zzz_qy1.png" data-sizes="auto" alt="Linux备忘 - 上" class="lazyload">
         
       
       <a href="/ja/2025/04/03/linuxNote1/"></a>
@@ -742,10 +834,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        60.1k
+        60.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        04:05
+        04:06
       </div>
     
     
@@ -964,7 +1056,7 @@
           description: "",
           stripContent: "Shell编程基本功能 Shell是一个命令行解释器，为用户提供一个向Linux内核发送请求以便运行程序的界面系统级程序，用户可以用Shell来启动、挂起、停止甚至是编写一些程序还是一个功能强大的编程语言，易编写、易调试、灵活性较强，可直接调用Linux系统命令  Shell分类Bourne Shell：从1979起Unix就开始使用Bourne Shell，主文件名为shC Shell：C Shell主要在BSD版的Unix系统中使用，其语法和C语言相类似而得名  区别：Shell的两种主要语",
           date: "Sat Apr 05 2025 16:47:03 GMT+0800",
-          updated: "Tue Jun 03 2025 16:21:49 GMT+0800",
+          updated: "Thu Jun 26 2025 08:48:23 GMT+0800",
           cover: "/images/zzz_cjjxrrdpts.webp",
         };
       </script>
