@@ -287,7 +287,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>投稿</div>
-    <div class="sidebar-state-number">17</div>
+    <div class="sidebar-state-number">19</div>
   </div>
   <div class="sidebar-state-category">
     <div>カテゴリー</div>
@@ -295,7 +295,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>タグ</div>
-    <div class="sidebar-state-number">10</div>
+    <div class="sidebar-state-number">11</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -362,11 +362,11 @@
             
               
               
-                <img data-src="/covers/zzz_mm4.png" data-sizes="auto" alt="notes" class="lazyload">
+                <img data-src="/covers/omen.jpg" data-sizes="auto" alt="notes" class="lazyload">
               
             
             <h2>notes</h2>
-            <h3>10 件の記事</h3>
+            <h3>11 件の記事</h3>
           </div>
         </div>
         
@@ -379,7 +379,7 @@
             
               
               
-                <img data-src="/covers/zzz_mm4.png" data-sizes="auto" alt="game" class="lazyload">
+                <img data-src="/covers/zzz_mm8.png" data-sizes="auto" alt="game" class="lazyload">
               
             
             <h2>game</h2>
@@ -396,6 +396,75 @@
       <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
+      <a class="post-link" href="/ja/2025/04/11/k8sNote2/" aria-label="K8s备忘 - 下"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/zzz_mm7.png" data-sizes="auto" alt="K8s备忘 - 下" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-11</span>
+        <span><span class="icon-pencil"></span>8.6k 文字</span>
+        <span><span class="icon-clock"></span>37 分</span>
+      </div>
+      <h2 class="post-title">K8s备忘 - 下</h2>
+      <article class="post-article">
+        
+          调度简介Scheduler是k8s的调度器，主要任务是定义的pod分配到集群的节点上
+调度原则
+公平：保证每个节点都能被分配资源
+资源高效利用：集群所有资源最大化被使用
+效率：调度的性能要好，能够尽快地对大批量的pod完成调度工作
+灵活：允许用户根据自己的需求控制调度的逻辑Scheduler是作为单独的程序运行的，启动之后会一直坚挺（持续连接）APIServer，获取PodSpec.NodeName为空的pod，对每个pod都会创建一个binding，表明该pod应该放到哪个节点上指定了PodSpec.NodeName后scheduler不需要参与进来，除此外都会参与-#### 调度过程
+
+调
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/ja/2025/04/09/k8sNote1/" aria-label="K8s备忘 - 上"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/gekko.jpg" data-sizes="auto" alt="K8s备忘 - 上" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-09</span>
+        <span><span class="icon-pencil"></span>12.3k 文字</span>
+        <span><span class="icon-clock"></span>48 分</span>
+      </div>
+      <h2 class="post-title">K8s备忘 - 上</h2>
+      <article class="post-article">
+        
+          K8s备忘k8s常用命令… … … kubectl … … … ∞#查看命名空间nsA下pod1的日志最近100行kubectl logs -f pod1 -n nsA --tail=100#查日志kubectl logs --tail=1000 $&amp;#123;podname&amp;#125; -n cloudpath &amp;gt; $&amp;#123;podname&amp;#125;.log#查看服务配置信息kubectl -n kubernetes-dashboard get service kubernetes-dashboard -o yaml#查看服务信息，所在node就是访问的ipkubectl -n 
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
       <a class="post-link" href="/ja/2025/04/09/ansibleNote/" aria-label="ansible备忘"></a>
     
     
@@ -403,7 +472,7 @@
       
         
         
-          <img data-src="/covers/zzz_cjjxrrdpts.png" data-sizes="auto" alt="ansible备忘" class="lazyload">
+          <img data-src="/covers/zzz_ya2.png" data-sizes="auto" alt="ansible备忘" class="lazyload">
         
       
     </div>
@@ -488,7 +557,7 @@
       
         
         
-          <img data-src="/covers/omen.jpg" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
+          <img data-src="/covers/zzz_cjjxrrdpts.png" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
         
       
     </div>
@@ -496,7 +565,7 @@
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-04-05</span>
         <span><span class="icon-pencil"></span>9.9k 文字</span>
-        <span><span class="icon-clock"></span>38 分</span>
+        <span><span class="icon-clock"></span>39 分</span>
       </div>
       <h2 class="post-title">Linux备忘 - 下</h2>
       <article class="post-article">
@@ -524,7 +593,7 @@ Shell分类Bourne Shell：从1979起Unix就开始使用Bourne Shell，主文件�
       
         
         
-          <img data-src="/covers/zzz_cjjxrrdpts.png" data-sizes="auto" alt="Linux备忘 - 上" class="lazyload">
+          <img data-src="/covers/zzz_ya2.png" data-sizes="auto" alt="Linux备忘 - 上" class="lazyload">
         
       
     </div>
@@ -654,7 +723,7 @@ test6- 无序列表- 无序列表+ test3+ test4* test5* test6
       
         
         
-          <img data-src="/covers/raze.jpg" data-sizes="auto" alt="Hello World" class="lazyload">
+          <img data-src="/covers/zzz_ya2.png" data-sizes="auto" alt="Hello World" class="lazyload">
         
       
     </div>
@@ -715,10 +784,10 @@ Run server$ hexo serve
     
       <div>
         <span class="icon-brush"></span>
-        61k
+        62.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        04:08
+        04:14
       </div>
     
     
@@ -754,7 +823,7 @@ Run server$ hexo serve
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>投稿</div>
-    <div class="sidebar-state-number">17</div>
+    <div class="sidebar-state-number">19</div>
   </div>
   <div class="sidebar-state-category">
     <div>カテゴリー</div>
@@ -762,7 +831,7 @@ Run server$ hexo serve
   </div>
   <div class="sidebar-state-tag">
     <div>タグ</div>
-    <div class="sidebar-state-number">10</div>
+    <div class="sidebar-state-number">11</div>
   </div>
 </div>
 <div class="sidebar-social">
