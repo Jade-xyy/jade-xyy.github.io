@@ -45,7 +45,7 @@
 <meta property="og:description" content="Shell编程基本功能 Shell是一个命令行解释器，为用户提供一个向Linux内核发送请求以便运行程序的界面系统级程序，用户可以用Shell来启动、挂起、停止甚至是编写一些程序还是一个功能强大的编程语言，易编写、易调试、灵活性较强，可直接调用Linux系统命令  Shell分类Bourne Shell：从1979起Unix就开始使用Bourne Shell，主文件名为shC Shell：C Sh">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-05T08:47:03.000Z">
-<meta property="article:modified_time" content="2025-08-11T08:01:32.006Z">
+<meta property="article:modified_time" content="2025-08-26T02:31:43.086Z">
 <meta property="article:author" content="本堂主">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
@@ -380,7 +380,7 @@
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-04-05T08:47:03.000Z" itemprop="datePublished">2025-04-05</time>
-    <time style="display: none;" id="post-update-time">2025-08-11</time>
+    <time style="display: none;" id="post-update-time">2025-08-26</time>
   </span>
 </div>
 
@@ -659,7 +659,7 @@
 
 
 
-<h5 id="…-…-…-dmidecode-…-…-…-∞"><a href="#…-…-…-dmidecode-…-…-…-∞" class="headerlink" title="… … … dmidecode … … … ∞"></a><code>… … … dmidecode … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看是虚机还是物理机</span></span><br><span class="line">dmidecode -t system</span><br><span class="line">systemd-detect-virt  结果none是物理机</span><br></pre></td></tr></table></figure>
+<h5 id="…-…-…-dmidecode-…-…-…-∞"><a href="#…-…-…-dmidecode-…-…-…-∞" class="headerlink" title="… … … dmidecode … … … ∞"></a><code>… … … dmidecode … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看是虚机还是物理机;查看物理机产商</span></span><br><span class="line">dmidecode -t system</span><br><span class="line">systemd-detect-virt  结果none是物理机</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-sar-…-…-…-∞"><a href="#…-…-…-sar-…-…-…-∞" class="headerlink" title="… … … sar … … … ∞"></a><code>… … … sar … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看时间段负载记录</span></span><br><span class="line">sar -q -s 15:00:00 -e 16:00:00</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-storcli64-…-…-…-∞"><a href="#…-…-…-storcli64-…-…-…-∞" class="headerlink" title="… … … storcli64 … … … ∞"></a><code>… … … storcli64 … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">存储节点存在过周六11点左右业务卡顿的问题，将raid卡的CC和PR功能关闭，问题解决。</span><br><span class="line">CC&amp;PR一般是在每周六的11点开始启动，会占用磁盘IO，特殊情况下CC会长时间无法完成</span><br><span class="line"> </span><br><span class="line">近期容器管理节点出现卡顿问题，经排查是CC和PR导致，现建议关闭已受影响的节点。</span><br><span class="line"> </span><br><span class="line">故障现象：</span><br><span class="line">1，机器卡顿</span><br><span class="line">2，磁盘使用率高</span><br><span class="line">3，CPU使用率高</span><br><span class="line">4，此故障常出现于周六11时左右</span><br><span class="line"> </span><br><span class="line">如无其他硬件及业务问题请关闭CC&amp;PR</span><br><span class="line">LSI raid卡（Broadcom博科旗下）关闭方法：</span><br><span class="line"><span class="comment"># 停止当前任务</span></span><br><span class="line">/opt/MegaRAID/storcli/storcli64 /c0 stop patrolread</span><br><span class="line"><span class="comment"># 彻底关闭pr</span></span><br><span class="line">/opt/MegaRAID/storcli/storcli64 /c0 <span class="built_in">set</span> patrolread=off</span><br><span class="line"></span><br><span class="line"> <span class="comment"># 停止当前任务</span></span><br><span class="line">/opt/MegaRAID/storcli/storcli64 /c0/vall stop cc</span><br><span class="line"><span class="comment"># 彻底关闭cc</span></span><br><span class="line">/opt/MegaRAID/storcli/storcli64 /c0 <span class="built_in">set</span> cc=off</span><br><span class="line"> </span><br><span class="line">Adaptec（Microchip微芯旗下）卡关闭方法：</span><br><span class="line"><span class="comment"># PM卡只有一个cc参数，两者同时关闭开启</span></span><br><span class="line">arcconf CONSISTENCYCHECK 1 off</span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-hostname-…-…-…-∞"><a href="#…-…-…-hostname-…-…-…-∞" class="headerlink" title="… … … hostname … … … ∞"></a><code>… … … hostname … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hostname -f 查看fqdn 主机名+域名 完全域名</span><br></pre></td></tr></table></figure>
@@ -757,7 +757,7 @@
       
         
         
-          <img data-src="/covers/zzz_mm4.png" data-sizes="auto" alt="Linux备忘 - 上" class="lazyload">
+          <img data-src="/covers/jett.jpg" data-sizes="auto" alt="Linux备忘 - 上" class="lazyload">
         
       
       <a href="/2025/04/03/linuxNote1/"></a>
@@ -1056,7 +1056,7 @@
           description: "",
           stripContent: "Shell编程基本功能 Shell是一个命令行解释器，为用户提供一个向Linux内核发送请求以便运行程序的界面系统级程序，用户可以用Shell来启动、挂起、停止甚至是编写一些程序还是一个功能强大的编程语言，易编写、易调试、灵活性较强，可直接调用Linux系统命令  Shell分类Bourne Shell：从1979起Unix就开始使用Bourne Shell，主文件名为shC Shell：C Shell主要在BSD版的Unix系统中使用，其语法和C语言相类似而得名  区别：Shell的两种主要语",
           date: "Sat Apr 05 2025 16:47:03 GMT+0800",
-          updated: "Mon Aug 11 2025 16:01:32 GMT+0800",
+          updated: "Tue Aug 26 2025 10:31:43 GMT+0800",
           cover: "/images/zzz_cjjxrrdpts.webp",
         };
       </script>
