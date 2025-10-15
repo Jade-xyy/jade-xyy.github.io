@@ -46,7 +46,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jade-xyy.github.io/ja/2025/04/03/linuxNote1/autofs.png">
 <meta property="article:published_time" content="2025-04-03T07:15:13.000Z">
-<meta property="article:modified_time" content="2025-06-20T09:34:24.122Z">
+<meta property="article:modified_time" content="2025-10-15T06:22:55.601Z">
 <meta property="article:author" content="本堂主">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
@@ -382,7 +382,7 @@
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-04-03T07:15:13.000Z" itemprop="datePublished">2025-04-03</time>
-    <time style="display: none;" id="post-update-time">2025-06-20</time>
+    <time style="display: none;" id="post-update-time">2025-10-15</time>
   </span>
 </div>
 
@@ -635,6 +635,9 @@
 <h4 id="压缩解压命令"><a href="#压缩解压命令" class="headerlink" title="压缩解压命令"></a>压缩解压命令</h4><p>压缩格式 .gz .zip(不需要装对应软件、自带) .rar</p>
 <h5 id="…-…-…-gzip-gunzip-…-…-…-∞"><a href="#…-…-…-gzip-gunzip-…-…-…-∞" class="headerlink" title="… … … gzip/gunzip … … … ∞"></a><code>… … … gzip/gunzip … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 英文原意 GNU zip/unzip；所在路径 /bin/gzip gunzip；执行权限 all</span></span><br><span class="line">gzip 压缩后缀.gz</span><br><span class="line">gunzip test.gz &lt;==&gt; gzip -d test.gz 解压缩.gz的压缩文件</span><br><span class="line"><span class="comment"># gzip只能压缩文件，不能压缩目录；压缩完不保留源文件</span></span><br></pre></td></tr></table></figure>
 <h5 id="…-…-…-tar-…-…-…-∞"><a href="#…-…-…-tar-…-…-…-∞" class="headerlink" title="… … … tar … … … ∞"></a><code>… … … tar … … … ∞</code></h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 所在路径 /bin/tar；执行权限 all</span></span><br><span class="line">tar [压缩后文件名] [目录]</span><br><span class="line">-c 打包</span><br><span class="line">-C 指定解包路径</span><br><span class="line">-x 解包</span><br><span class="line">-v 显示详细信息</span><br><span class="line">-f 指定文件名，此选项要在其他选项的最后边</span><br><span class="line">-z -j -J 压缩/解压缩，.gz .bz2 .xz格式</span><br><span class="line">-t 显示包中的文件清单</span><br><span class="line">-P 以绝对路径方式进行归档压缩</span><br><span class="line"></span><br><span class="line">tar -zcf test.tar.gz mulu 打包压缩</span><br><span class="line">tar -zxvf test.tar.gz 解压缩</span><br><span class="line">tar -cf 打包</span><br><span class="line">tar -xf  -C /tmp  解压到指定目录</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>压缩时无法指定目的文件名</p>
+</blockquote>
 <table>
 <thead>
 <tr>
@@ -972,7 +975,7 @@
         
           
           
-            <img data-src="/covers/zzz_mm8.png" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
+            <img data-src="/covers/gekko.jpg" data-sizes="auto" alt="Linux备忘 - 下" class="lazyload">
           
         
         <a href="/ja/2025/04/05/linuxNote2/"></a>
@@ -1286,7 +1289,7 @@
           description: "",
           stripContent: "Linux备忘系统简介及注意事项VMware安装虚机创建虚机最小628M内存挂起&amp;#x3D;&amp;#x3D;暂停（真实操作系统没有挂起） 真实机修改为硬盘启动 Boot-&amp;gt;hard device 密码复杂性原则：8位以上大小写字母、数字、符号；不能是英文单词；不能是和用户相关的内容 swap应该分内存的2倍，但超过2G没有意义 &amp;#x2F;root&amp;#x2F;install.log：存储安装在系统中的软件包机器版本信息&amp;#x2F;root&amp;#x2F;install.log.syslog：存储安",
           date: "Thu Apr 03 2025 15:15:13 GMT+0800",
-          updated: "Fri Jun 20 2025 17:34:24 GMT+0800",
+          updated: "Wed Oct 15 2025 14:22:55 GMT+0800",
           cover: "/images/zzz_cjjxrrdpts.webp",
         };
       </script>
