@@ -37,18 +37,18 @@
 
   
   
-    <meta name="description" content="问题描述etcd挂载目录硬盘损坏，&#x2F;var&#x2F;lib&#x2F;etcd目录丢失，导致master1上的etcd异常硬盘恢复后，重新创建逻辑卷，创建目录，重新挂载 解决处理挂载后恢复etcd # 1. 首先停止etcd服务，否则会一直生成data目录systemctl stop etcd# 2. 移除data目录，新建data目录cd &#x2F;var&#x2F;lib&#x2F;etcdmv data d">
+    <meta name="description" content="硬盘损坏导致单节点 ETCD 故障的恢复">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ETCD单点故障恢复">
 <meta property="og:url" content="https://jade-xyy.github.io/en/2025/04/14/etcdSNRecovery/index.html">
 <meta property="og:site_name" content="本堂主Blog">
-<meta property="og:description" content="问题描述etcd挂载目录硬盘损坏，&#x2F;var&#x2F;lib&#x2F;etcd目录丢失，导致master1上的etcd异常硬盘恢复后，重新创建逻辑卷，创建目录，重新挂载 解决处理挂载后恢复etcd # 1. 首先停止etcd服务，否则会一直生成data目录systemctl stop etcd# 2. 移除data目录，新建data目录cd &#x2F;var&#x2F;lib&#x2F;etcdmv data d">
+<meta property="og:description" content="硬盘损坏导致单节点 ETCD 故障的恢复">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jade-xyy.github.io/en/2025/04/14/etcdSNRecovery/etcd_lv.png">
 <meta property="og:image" content="https://jade-xyy.github.io/en/2025/04/14/etcdSNRecovery/etcd_config.png">
 <meta property="og:image" content="https://jade-xyy.github.io/images/zzz_cjjxrrdpts.webp">
 <meta property="article:published_time" content="2025-04-14T07:39:04.000Z">
-<meta property="article:modified_time" content="2025-04-18T07:58:33.161Z">
+<meta property="article:modified_time" content="2026-03-06T07:55:49.688Z">
 <meta property="article:author" content="本堂主">
 <meta property="article:tag" content="etcd">
 <meta property="article:tag" content="k8s">
@@ -385,7 +385,7 @@
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-04-14T07:39:04.000Z" itemprop="datePublished">2025-04-14</time>
-    <time style="display: none;" id="post-update-time">2025-04-18</time>
+    <time style="display: none;" id="post-update-time">2026-03-06</time>
   </span>
 </div>
 
@@ -445,7 +445,7 @@ kubectl run test --image=nginx:1.7.9 --labels="app=test" -n kube-system
       
         <div class="share-wrapper">
   
-    <a href="https://connect.qq.com/widget/shareqq/index.html?url=www.baidu.com&amp;title=ETCD%E5%8D%95%E7%82%B9%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D&amp;desc=ETCD%E5%8D%95%E7%82%B9%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D&amp;source=https%3A%2F%2Fjade-xyy.github.io" target="_blank" rel="noopener noreferrer" title="ETCD单点故障恢复">
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=www.baidu.com&amp;title=ETCD%E5%8D%95%E7%82%B9%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D&amp;desc=%E7%A1%AC%E7%9B%98%E6%8D%9F%E5%9D%8F%E5%AF%BC%E8%87%B4%E5%8D%95%E8%8A%82%E7%82%B9%20ETCD%20%E6%95%85%E9%9A%9C%E7%9A%84%E6%81%A2%E5%A4%8D&amp;source=https%3A%2F%2Fjade-xyy.github.io" target="_blank" rel="noopener noreferrer" title="ETCD单点故障恢复">
       <div class="share-icon icon icon-qq">
         
       </div>
@@ -506,7 +506,7 @@ kubectl run test --image=nginx:1.7.9 --labels="app=test" -n kube-system
         
           
           
-            <img data-src="/covers/zzz_qy1.png" data-sizes="auto" alt="ETCD备份恢复" class="lazyload">
+            <img data-src="/covers/zzz_qy3.png" data-sizes="auto" alt="ETCD备份恢复" class="lazyload">
           
         
         <a href="/en/2025/04/14/etcdBackupRestore/"></a>
@@ -524,14 +524,14 @@ kubectl run test --image=nginx:1.7.9 --labels="app=test" -n kube-system
       
         
         
-          <img data-src="/covers/zzz_mm7.png" data-sizes="auto" alt="正则表达式备忘" class="lazyload">
+          <img data-src="/covers/zzz_qy1.png" data-sizes="auto" alt="正则表达式" class="lazyload">
         
       
       <a href="/en/2025/04/11/regularExpressionNote/"></a>
       <div class="article-nav-caption">Older</div>
       <h3 class="article-nav-title">
         
-          正则表达式备忘
+          正则表达式
         
       </h3>
     </div>
@@ -820,10 +820,10 @@ kubectl run test --image=nginx:1.7.9 --labels="app=test" -n kube-system
           title: "ETCD单点故障恢复",
           url: "https://jade-xyy.github.io/2025/04/14/etcdSNRecovery/",
           excerpt: "",
-          description: "",
+          description: "硬盘损坏导致单节点 ETCD 故障的恢复",
           stripContent: "问题描述etcd挂载目录硬盘损坏，&amp;#x2F;var&amp;#x2F;lib&amp;#x2F;etcd目录丢失，导致master1上的etcd异常硬盘恢复后，重新创建逻辑卷，创建目录，重新挂载 解决处理挂载后恢复etcd # 1. 首先停止etcd服务，否则会一直生成data目录systemctl stop etcd# 2. 移除data目录，新建data目录cd /var/lib/etcdmv data data.bakmkdir data# 3. 修改etcd服务配置文件vim /etc/systemd",
           date: "Mon Apr 14 2025 15:39:04 GMT+0800",
-          updated: "Fri Apr 18 2025 15:58:33 GMT+0800",
+          updated: "Fri Mar 06 2026 15:55:49 GMT+0800",
           cover: "/images/zzz_cjjxrrdpts.webp",
         };
       </script>
