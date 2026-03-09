@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>本堂主</name>
+  </author>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  <icon>https://jade-xyy.github.io/icon.png</icon>
+  <id>https://jade-xyy.github.io/</id>
+  <link href="https://jade-xyy.github.io/" rel="alternate"/>
+  <link href="https://jade-xyy.github.io/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, 本堂主</rights>
+  <subtitle>— 是刺尖尖心软软的扑托神 —</subtitle>
+  <title>本堂主Blog</title>
+  <updated>2026-03-09T01:42:48.852Z</updated>
+  <entry>
+    <author>
+      <name>本堂主</name>
+    </author>
+    <category term="FAQ" scheme="https://jade-xyy.github.io/categories/FAQ/"/>
+    <category term="dns" scheme="https://jade-xyy.github.io/tags/dns/"/>
+    <id>https://jade-xyy.github.io/2025/08/14/faqDns/</id>
+    <link href="https://jade-xyy.github.io/2025/08/14/faqDns/"/>
+    <published>2025-08-14T02:46:01.000Z</published>
+    <summary>
+      <![CDATA[<p>服务域名拼接：<service-name>.<namespace>.svc.<cluster-domain><br><service-name>: Service 的资源名称（metadata.name）。<br><namespace>: Service]]>
+    </summary>
+    <title>DNS常见问题</title>
+    <updated>2026-03-09T01:42:48.852Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>本堂主</name>
+    </author>
+    <category term="study" scheme="https://jade-xyy.github.io/categories/study/"/>
+    <category term="notes" scheme="https://jade-xyy.github.io/categories/notes/"/>
+    <category term="language" scheme="https://jade-xyy.github.io/tags/language/"/>
+    <id>https://jade-xyy.github.io/2025/08/12/theJapOfTheDemonSlayer/</id>
+    <link href="https://jade-xyy.github.io/2025/08/12/theJapOfTheDemonSlayer/"/>
+    <published>2025-08-12T07:18:02.000Z</published>
+    <summary>溜溜梅！！！鬼灭之刃招式中日对应，有发音哦</summary>
+    <title>鬼灭日语篇</title>
+    <updated>2026-03-06T09:27:31.285Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>本堂主</name>
+    </author>
+    <category term="study" scheme="https://jade-xyy.github.io/categories/study/"/>
+    <category term="notes" scheme="https://jade-xyy.github.io/categories/notes/"/>
+    <category term="k8s" scheme="https://jade-xyy.github.io/tags/k8s/"/>
+    <id>https://jade-xyy.github.io/2025/08/08/k8sComplexProblems/</id>
+    <link href="https://jade-xyy.github.io/2025/08/08/k8sComplexProblems/"/>
+    <published>2025-08-08T07:38:59.000Z</published>
+    <summary>K8s 常见报错记录</summary>
+    <title>K8s问题集</title>
+    <updated>2026-03-06T09:27:31.370Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>本堂主</name>
+    </author>
+    <category term="study" scheme="https://jade-xyy.github.io/categories/study/"/>
+    <category term="notes" scheme="https://jade-xyy.github.io/categories/notes/"/>
+    <category term="language" scheme="https://jade-xyy.github.io/tags/language/"/>
+    <id>https://jade-xyy.github.io/2025/05/15/gojuon/</id>
+    <link href="https://jade-xyy.github.io/2025/05/15/gojuon/"/>
+    <published>2025-05-15T08:55:27.000Z</published>
+    <summary>日语五十音手写记录，方便记忆</summary>
+    <title>日语五十音</title>
+    <updated>2026-03-06T09:27:31.342Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>本堂主</name>
+    </author>
+    <category term="game" scheme="https://jade-xyy.github.io/categories/game/"/>
+    <category term="valorant" scheme="https://jade-xyy.github.io/tags/valorant/"/>
+    <id>https://jade-xyy.github.io/2025/05/14/valorantTerm/</id>
+    <link href="https://jade-xyy.github.io/2025/05/14/valorantTerm/"/>
+    <published>2025-05-14T08:58:07.000Z</published>
+    <summary>无畏契约（VALORANT）专业术语，游戏中多多交流哦</summary>
+    <title>VALORANT术语</title>
+    <updated>2026-03-06T09:27:31.295Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>本堂主</name>
+    </author>
+    <category term="game" scheme="https://jade-xyy.github.io/categories/game/"/>
+    <category term="valorant" scheme="https://jade-xyy.github.io/tags/valorant/"/>
+    <id>https://jade-xyy.github.io/2025/04/18/valorantRules/</id>
+    <link href="https://jade-xyy.github.io/2025/04/18/valorantRules/"/>
+    <published>2025-04-18T07:28:53.000Z</published>
+    <summary>无畏契约（VALORANT）分数、经济计算规则，来康康为啥你拿不到 MVP 叭</summary>
+    <title>VALORANT分数规则、经济规则</title>
+    <updated>2026-03-06T09:27:31.289Z</updated>
+  </entry>
+</feed>
