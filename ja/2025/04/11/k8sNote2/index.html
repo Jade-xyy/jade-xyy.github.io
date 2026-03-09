@@ -1,42 +1,25 @@
-
   <!DOCTYPE html>
-  <html lang="zh-CN"  
-    
+  <html lang="ja"  
       data-theme-mode="false"
-    
   >
   <head>
-  
   <meta charset="utf-8">
   
-
   
-
   
     <meta name="baidu-site-verification" content="codeva-eNDxNiE4HI" />
 
 
-  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.anchor_icon = 'D7';window.REIMU_CONFIG.code_block = {"expand":30};window.REIMU_CONFIG.base = 'https://jade-xyy.github.io';window.REIMU_CONFIG.i18n_languages = ["en","ja"];</script>
-  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)","en":"Copy successfully (*^▽^*)","ja":"コピー成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","en":"Copy failed (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.anchor_icon = 'D7';window.REIMU_CONFIG.code_block = {"expand":30};window.REIMU_CONFIG.base = 'https://jade-xyy.github.io';window.REIMU_CONFIG.i18n_languages = ["en","ja"];</script>
   <title>
-    K8s备忘 - 下 |
-    
-    本堂主Blog
+    K8s备忘 - 下 | 本堂主Blog
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
-  
-  
-    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-  
-  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     
 <link rel="stylesheet" href="/css/loader.css">
 
-  
-  
     <meta name="description" content="K8s 学习记录备忘 - 下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="K8s备忘 - 下">
@@ -58,75 +41,55 @@
 <meta property="article:tag" content="k8s">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jade-xyy.github.io/ja/2025/04/11/k8sNote2/k8s_apiserver.png">
-  
-  
     <link rel="alternate" href="/atom.xml" title="本堂主Blog" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/images/favicon-omen-dt.png">
-  
+    <link rel="shortcut icon" href="/images/favicon-omen.png">
   
 <link rel="stylesheet" href="/css/style.css">
 
-  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  
-    
-      
-<link rel="stylesheet" href="https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.css">
-
-    
-  
-  
-  
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
     
 <script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
 
-  
-  
     
-<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css">
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
 
-  
-  
-  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
   <body>
-    
-    
-  <div id='loader'>
+      <div id='loader'>
     <div class="loading-left-bg loading-bg"></div>
     <div class="loading-right-bg loading-bg"></div>
     <div class="spinner-box">
       <div class="loading-taichi rotate">
-        
           <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
             <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
             <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
            M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
           </svg>
-        
       </div>
-      <div class="loading-word">Wait a moment ...</div>
+      <div class="loading-word">少女祈祷中...</div>
     </div>
   </div>
   </div>
   <script>
     var time = null;
+    var loaderEl = document.getElementById('loader');
     var startLoading = () => {
       time = Date.now();
-      document.getElementById('loader').classList.remove("loading");
+      loaderEl.classList.remove("loading");
     }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
     var endLoading = () => {
       if (!time) {
-        document.body.style.overflow = 'auto';
-        document.getElementById('loader').classList.add("loading");
+        hideLoader();
       } else {
         if (Date.now() - time > 500) {
           time = null;
-          document.body.style.overflow = 'auto';
-          document.getElementById('loader').classList.add("loading");
+          hideLoader();
         } else {
           setTimeout(endLoading, 500 - (Date.now() - time));
           time = null;
@@ -134,75 +97,56 @@
       }
     }
     window.addEventListener('DOMContentLoaded', endLoading);
-    document.getElementById('loader').addEventListener('click', endLoading);
+    loaderEl.addEventListener('click', endLoading);
   </script>
-
-<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
-</div>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
 
 
     <div id="container">
       <div id="wrap">
         <div id="header-nav">
-  <nav id="main-nav">
-    
-      
-        <span class="main-nav-link-wrap">
-          <div class="main-nav-icon icon rotate">
-            &#xe62b;
-          </div>
-          <a class="main-nav-link" href="/ja/">ホーム</a>
-        </span>
-      
-        <span class="main-nav-link-wrap">
-          <div class="main-nav-icon icon rotate">
-            &#xe62b;
-          </div>
-          <a class="main-nav-link" href="/ja/archives">アーカイブ</a>
-        </span>
-      
-        <span class="main-nav-link-wrap">
-          <div class="main-nav-icon icon rotate">
-            &#xe62b;
-          </div>
-          <a class="main-nav-link" href="/ja/about">プロフィール</a>
-        </span>
-      
-        <span class="main-nav-link-wrap">
-          <div class="main-nav-icon icon rotate">
-            &#xe62b;
-          </div>
-          <a class="main-nav-link" href="/ja/friend">フレンド</a>
-        </span>
-      
-    
-    <a id="main-nav-toggle" class="nav-icon"></a>
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/ja/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">ホーム</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/ja/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">アーカイブ</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/ja/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">プロフィール</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/ja/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">フレンド</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
   </nav>
-  <nav id="sub-nav">
-    
-      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS フィード" target="_blank"></a>
-    
-    
-    
-      <a id="nav-search-btn" class="nav-icon popup-trigger" title="検索"></a>
-    
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS フィード" aria-label="RSS フィード" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="検索" aria-label="検索"></a>
   </nav>
-  
-    
-    <nav id="i18n-nav">
+    <nav id="i18n-nav" aria-label="Language selection">
       <div class="custom-dropdown">
-        <div class="select-selected" id="select-selected">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
           <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
           <span id="selected-lang">日本語</span>
         </div>
-        <ul class="select-items" id="select-items">
-          
-            <li data-value="zh-CN" >简体中文</li>
-          
-            <li data-value="en" >English</li>
-          
-            <li data-value="ja" class="selected">日本語</li>
-          
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages">
+            <li data-value="zh-CN" role="option" aria-selected="false">简体中文</li>
+            <li data-value="en" role="option" aria-selected="false">English</li>
+            <li data-value="ja" role="option" class="selected" aria-selected="true">日本語</li>
         </ul>
       </div>
       <script>
@@ -213,18 +157,16 @@
 
         selectSelected.addEventListener("click", () => {
           selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
         });
 
         selectOptions.forEach((item) => {
           item.addEventListener("click", () => {
             const langMap = {};
-            
               langMap['zh-CN'] = '/2025/04/11/k8sNote2/';
-            
               langMap['en'] = '/en/2025/04/11/k8sNote2/';
-            
               langMap['ja'] = '/ja/2025/04/11/k8sNote2/';
-            
             selectedLang.textContent = item.textContent;
             selectItems.classList.remove("show");
             selectOptions.forEach((option) => {
@@ -238,70 +180,39 @@
         document.addEventListener("click", (event) => {
           if (!event.target.closest(".custom-dropdown")) {
             selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
           }
         });
       </script>
     </nav>
-  
 </div>
-<header id="header">
-  
-    
-      
+<header id="header" aria-label="Site header">
         <picture>
-          
-            
-              <source media="(max-width: 479px)" srcset="/images/zzz_cjjxrrdpts-600w.webp">
-            
-              <source media="(max-width: 799px)" srcset="/images/zzz_cjjxrrdpts-800w.webp">
-            
-              <source media="(min-width: 800px)" srcset="/images/zzz_cjjxrrdpts.webp">
-            
+                <source media="(max-width: 479px)" srcset="/images/zzz_cjjxrrdpts-600w.webp">
+                <source media="(max-width: 799px)" srcset="/images/zzz_cjjxrrdpts-800w.webp">
+                <source media="(min-width: 800px)" srcset="/images/zzz_cjjxrrdpts.webp">
             <img  fetchpriority="high" src="/images/zzz_cjjxrrdpts.webp" alt="K8s备忘 - 下">
-          
         </picture>
-        
           <img alt="K8s备忘 - 下" style="visibility: hidden;">
-        
-      
-    
-  
   <div id="header-outer">
     <div id="header-title">
-      
-        
-        
-          <a href="/" id="logo">
+          <span id="logo">
             <h1 data-aos="slide-up">K8s备忘 - 下</h1>
-          </a>
-        
-      
-      
-        
+          </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
-          
         </h2>
-      
     </div>
   </div>
 </header>
 
-        <div id="content"  class="sidebar-right" >
-          <aside id="sidebar">
-  
-  
-  
-  <div class="sidebar-wrapper wrap-sticky">
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
     <div class="sidebar-wrap" data-aos="fade-up">
-      
-        
-          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
-  <h3 class="toc-title">見出し</h3>
-  <div class="sidebar-toc-wrapper toc-div-class" >
-      
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6"><span class="toc-text">调度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E5%8E%9F%E5%88%99"><span class="toc-text">调度原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E8%BF%87%E7%A8%8B"><span class="toc-text">调度过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-text">自定义调度器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E4%BA%B2%E5%92%8C%E6%80%A7"><span class="toc-text">调度亲和性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%88pod%E5%92%8Cnode%E9%97%B4%EF%BC%89"><span class="toc-text">节点亲和性（pod和node间）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Pod%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%88pod%E5%92%8Cpod%E9%97%B4%EF%BC%89"><span class="toc-text">Pod亲和性（pod和pod间）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%B2%E5%92%8C%E6%80%A7-%E5%8F%8D%E4%BA%B2%E5%92%8C%E6%80%A7%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5%E6%AF%94%E8%BE%83%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">亲和性&#x2F;反亲和性调度策略比较如下：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Taint%E5%92%8CToleration"><span class="toc-text">Taint和Toleration</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B1%A1%E7%82%B9%EF%BC%88Taint%EF%BC%89"><span class="toc-text">污点（Taint）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%B9%E5%BF%8D%EF%BC%88Tolerations%EF%BC%89"><span class="toc-text">容忍（Tolerations）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E8%B0%83%E5%BA%A6%E8%8A%82%E7%82%B9"><span class="toc-text">指定调度节点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8"><span class="toc-text">安全</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%BA%E5%88%B6%E8%AF%B4%E6%98%8E"><span class="toc-text">机制说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A4%E8%AF%81%EF%BC%88Authentication%EF%BC%89"><span class="toc-text">认证（Authentication）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTPS%E8%AF%81%E4%B9%A6%E8%AE%A4%E8%AF%81"><span class="toc-text">HTTPS证书认证</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E8%AE%A4%E8%AF%81%E7%9A%84%E8%8A%82%E7%82%B9"><span class="toc-text">需要认证的节点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#kubeconfig"><span class="toc-text">kubeconfig</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ServiceAccount"><span class="toc-text">ServiceAccount</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Secret%E5%92%8CSA%E5%85%B3%E7%B3%BB"><span class="toc-text">Secret和SA关系</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%89%B4%E6%9D%83%EF%BC%88Authorization%EF%BC%89"><span class="toc-text">鉴权（Authorization）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#API-Server%E7%9B%AE%E5%89%8D%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E5%87%A0%E7%A7%8D%E6%8E%88%E6%9D%83%E7%AD%96%E7%95%A5"><span class="toc-text">API Server目前支持一下几种授权策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RBAC%E6%8E%88%E6%9D%83%E6%A8%A1%E5%BC%8F"><span class="toc-text">RBAC授权模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-text">实践</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%85%A5%E6%8E%A7%E5%88%B6%EF%BC%88Admission-Control%EF%BC%89"><span class="toc-text">准入控制（Admission Control）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Helm"><span class="toc-text">Helm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#chart"><span class="toc-text">chart</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#release"><span class="toc-text">release</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6"><span class="toc-text">组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Helm%E9%83%A8%E7%BD%B2"><span class="toc-text">Helm部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Helm%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E6%9D%BF"><span class="toc-text">Helm自定义模板</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Debug"><span class="toc-text">Debug</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2dashboard"><span class="toc-text">使用Helm部署dashboard</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2metrics-server"><span class="toc-text">使用Helm部署metrics-server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2prometheus"><span class="toc-text">使用Helm部署prometheus</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="toc-text">组件说明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-text">部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Horizontal-Pod-Autoscaling"><span class="toc-text">Horizontal Pod Autoscaling</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6-Pod"><span class="toc-text">资源限制 - Pod</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6-%E5%90%8D%E7%A7%B0%E7%A9%BA%E9%97%B4"><span class="toc-text">资源限制 - 名称空间</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BF%E9%97%AEprometheus"><span class="toc-text">访问prometheus</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BF%E9%97%AEgrafana"><span class="toc-text">访问grafana</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2EFK%E5%B9%B3%E5%8F%B0"><span class="toc-text">使用Helm部署EFK平台</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%81%E4%B9%A6"><span class="toc-text">证书</span></a></li></ol>
-      
-  </div>
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">見出し</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6"><span class="toc-text">调度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E5%8E%9F%E5%88%99"><span class="toc-text">调度原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E8%BF%87%E7%A8%8B"><span class="toc-text">调度过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-text">自定义调度器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E4%BA%B2%E5%92%8C%E6%80%A7"><span class="toc-text">调度亲和性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%88pod%E5%92%8Cnode%E9%97%B4%EF%BC%89"><span class="toc-text">节点亲和性（pod和node间）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Pod%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%88pod%E5%92%8Cpod%E9%97%B4%EF%BC%89"><span class="toc-text">Pod亲和性（pod和pod间）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%B2%E5%92%8C%E6%80%A7-%E5%8F%8D%E4%BA%B2%E5%92%8C%E6%80%A7%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5%E6%AF%94%E8%BE%83%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">亲和性&#x2F;反亲和性调度策略比较如下：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Taint%E5%92%8CToleration"><span class="toc-text">Taint和Toleration</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B1%A1%E7%82%B9%EF%BC%88Taint%EF%BC%89"><span class="toc-text">污点（Taint）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%B9%E5%BF%8D%EF%BC%88Tolerations%EF%BC%89"><span class="toc-text">容忍（Tolerations）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E8%B0%83%E5%BA%A6%E8%8A%82%E7%82%B9"><span class="toc-text">指定调度节点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8"><span class="toc-text">安全</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%BA%E5%88%B6%E8%AF%B4%E6%98%8E"><span class="toc-text">机制说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A4%E8%AF%81%EF%BC%88Authentication%EF%BC%89"><span class="toc-text">认证（Authentication）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTPS%E8%AF%81%E4%B9%A6%E8%AE%A4%E8%AF%81"><span class="toc-text">HTTPS证书认证</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E8%AE%A4%E8%AF%81%E7%9A%84%E8%8A%82%E7%82%B9"><span class="toc-text">需要认证的节点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#kubeconfig"><span class="toc-text">kubeconfig</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ServiceAccount"><span class="toc-text">ServiceAccount</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Secret%E5%92%8CSA%E5%85%B3%E7%B3%BB"><span class="toc-text">Secret和SA关系</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%89%B4%E6%9D%83%EF%BC%88Authorization%EF%BC%89"><span class="toc-text">鉴权（Authorization）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#API-Server%E7%9B%AE%E5%89%8D%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E5%87%A0%E7%A7%8D%E6%8E%88%E6%9D%83%E7%AD%96%E7%95%A5"><span class="toc-text">API Server目前支持一下几种授权策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RBAC%E6%8E%88%E6%9D%83%E6%A8%A1%E5%BC%8F"><span class="toc-text">RBAC授权模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-text">实践</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%85%A5%E6%8E%A7%E5%88%B6%EF%BC%88Admission-Control%EF%BC%89"><span class="toc-text">准入控制（Admission Control）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Helm"><span class="toc-text">Helm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#chart"><span class="toc-text">chart</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#release"><span class="toc-text">release</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6"><span class="toc-text">组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Helm%E9%83%A8%E7%BD%B2"><span class="toc-text">Helm部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Helm%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E6%9D%BF"><span class="toc-text">Helm自定义模板</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Debug"><span class="toc-text">Debug</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2dashboard"><span class="toc-text">使用Helm部署dashboard</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2metrics-server"><span class="toc-text">使用Helm部署metrics-server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2prometheus"><span class="toc-text">使用Helm部署prometheus</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="toc-text">组件说明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-text">部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Horizontal-Pod-Autoscaling"><span class="toc-text">Horizontal Pod Autoscaling</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6-Pod"><span class="toc-text">资源限制 - Pod</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6-%E5%90%8D%E7%A7%B0%E7%A9%BA%E9%97%B4"><span class="toc-text">资源限制 - 名称空间</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BF%E9%97%AEprometheus"><span class="toc-text">访问prometheus</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BF%E9%97%AEgrafana"><span class="toc-text">访问grafana</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2EFK%E5%B9%B3%E5%8F%B0"><span class="toc-text">使用Helm部署EFK平台</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%81%E4%B9%A6"><span class="toc-text">证书</span></a></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -323,89 +234,68 @@
     <div class="sidebar-state-number">11</div>
   </div>
 </div>
-<div class="sidebar-social">
-  
+<div class="sidebar-social" >
 </div>
 <div class="sidebar-menu">
-  
-    
       <div class="sidebar-menu-link-wrap">
         <a class="sidebar-menu-link-dummy" href="/ja/" aria-label="ホーム"></a>
-        <div class="sidebar-menu-icon icon rotate">
-          &#xe62b;
-        </div>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
         <div class="sidebar-menu-link">ホーム</div>
       </div>
-    
       <div class="sidebar-menu-link-wrap">
         <a class="sidebar-menu-link-dummy" href="/ja/archives" aria-label="アーカイブ"></a>
-        <div class="sidebar-menu-icon icon rotate">
-          &#xe62b;
-        </div>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
         <div class="sidebar-menu-link">アーカイブ</div>
       </div>
-    
       <div class="sidebar-menu-link-wrap">
         <a class="sidebar-menu-link-dummy" href="/ja/about" aria-label="プロフィール"></a>
-        <div class="sidebar-menu-icon icon rotate">
-          &#xe62b;
-        </div>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
         <div class="sidebar-menu-link">プロフィール</div>
       </div>
-    
       <div class="sidebar-menu-link-wrap">
         <a class="sidebar-menu-link-dummy" href="/ja/friend" aria-label="フレンド"></a>
-        <div class="sidebar-menu-icon icon rotate">
-          &#xe62b;
-        </div>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
         <div class="sidebar-menu-link">フレンド</div>
       </div>
-    
-  
 </div>
 </div>
-        
-      
-      
-        
           <div class="sidebar-btn-wrapper" style="position:static">
             <div class="sidebar-toc-btn current"></div>
             <div class="sidebar-common-btn"></div>
           </div>
-        
-      
     </div>
   </div>
-
   <div class="sidebar-widget">
-  
   </div>
-  
+  </div>
 </aside>
 
-          <section id="main"><article id="post-k8sNote2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-k8sNote2" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
-  <span class="article-date-link" data-aos="zoom-in">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2025-04-11T06:57:07.000Z" itemprop="datePublished">2025-04-11</time>
     <time style="display: none;" id="post-update-time">2026-03-06</time>
   </span>
+    <span class="article-date-link icon-calendar-plus" data-aos="zoom-in">
+      <time datetime="2026-03-06T09:27:31.384Z" itemprop="dateModified">2026-03-06</time>
+    </span>
 </div>
 
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/ja/categories/notes/" data-aos="zoom-in">notes</a><a class="article-category-link" href="/ja/categories/study/" data-aos="zoom-in">study</a>
-  </div>
-
-
     </div>
+    
     <div class="hr-line"></div>
     
-
     <div class="e-content article-entry" itemprop="articleBody">
-      
-      
         <h2 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h2><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>Scheduler是k8s的调度器，主要任务是定义的pod分配到集群的节点上</p>
 <h4 id="调度原则"><a href="#调度原则" class="headerlink" title="调度原则"></a>调度原则</h4><ul>
 <li>公平：保证每个节点都能被分配资源</li>
@@ -611,7 +501,7 @@ kubelet使用TLS Bootstraping认证时，APIServer可以使用Bootstrap Tokens�
 <ol start="5">
 <li>to Subjects<br>RoleBinding和ClusterRoleBinding可以将Role绑定到Subjects；<br>Subjects可以是groups、users或者service accounts</li>
 </ol>
-<p>Subjects中Users使用字符串表示，它可以是一个普通的名字字符串，如”alice”；<br>也可以是email格式的邮箱地址，如”<a href="mailto:&#106;&#97;&#x64;&#101;&#64;&#x71;&#x71;&#46;&#99;&#x6f;&#x6d;">&#106;&#97;&#x64;&#101;&#64;&#x71;&#x71;&#46;&#99;&#x6f;&#x6d;</a>“<br>甚至是一组字符串形式的数字ID<br>但是Users的前缀system:是系统保留的，集群管理员应该确保普通用户不会使用这个前缀格式</p>
+<p>Subjects中Users使用字符串表示，它可以是一个普通的名字字符串，如”alice”；<br>也可以是email格式的邮箱地址，如”<a href="mailto:&#x6a;&#97;&#100;&#x65;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#109;">&#x6a;&#97;&#100;&#x65;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#109;</a>“<br>甚至是一组字符串形式的数字ID<br>但是Users的前缀system:是系统保留的，集群管理员应该确保普通用户不会使用这个前缀格式</p>
 <p>Groups书写格式与Users相同，都为一个字符串，并且没有特定的格式要求；同样system:前缀为系统保留</p>
 <h5 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h5><p><img src="k8s_auth_rbac_exam.png"><br>创建一个用户只能管理dev空间</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建用户</span></span><br><span class="line">useradd devuser</span><br><span class="line">passwd devuser</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建devuser的证书请求</span></span><br><span class="line"><span class="built_in">cd</span> /user/local/install-k8s</span><br><span class="line"><span class="built_in">mkdir</span> -p cert/devuser</span><br><span class="line"><span class="built_in">cd</span> cert/devuser &amp;&amp; vim devuser-csr.json</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;CN&quot;</span>: <span class="string">&quot;devuser&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hosts&quot;</span>: [], <span class="comment"># 不写代表所有</span></span><br><span class="line">    <span class="string">&quot;key&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;algo&quot;</span>: <span class="string">&quot;rsa&quot;</span>,</span><br><span class="line">        <span class="string">&quot;size&quot;</span>: 2048</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;names&quot;</span>: [&#123;</span><br><span class="line">        <span class="string">&quot;C&quot;</span>: <span class="string">&quot;CN&quot;</span>,</span><br><span class="line">        <span class="string">&quot;ST&quot;</span>: <span class="string">&quot;BeiJing&quot;</span>,</span><br><span class="line">        <span class="string">&quot;L&quot;</span>: <span class="string">&quot;BeiJing&quot;</span>,</span><br><span class="line">        <span class="string">&quot;O&quot;</span>: <span class="string">&quot;k8s&quot;</span>,</span><br><span class="line">        <span class="string">&quot;OU&quot;</span>: <span class="string">&quot;System&quot;</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载证书生成工具</span></span><br><span class="line">wget https://pkg.cfssl.org/R1.2/cfssl_linux-amd64</span><br><span class="line"><span class="built_in">mv</span> cfssl_linux-amd64 /usr/local/bin/cfssl</span><br><span class="line"></span><br><span class="line">wget https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64</span><br><span class="line"><span class="built_in">mv</span> cfssljson_linux-amd64 /usr/local/bin/cfssljson</span><br><span class="line"></span><br><span class="line">wget https://pkg.cfssl.org/R1.2/cfssl-certinfo_linux-amd64</span><br><span class="line"><span class="built_in">mv</span> cfssl-certinfo_linux-amd64 /usr/local/bin/cfssl-certinfo</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/local/bin/</span><br><span class="line"><span class="built_in">chmod</span> a+x *</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /etc/kubernetes/pki/ <span class="comment"># 存放的都是密钥信息</span></span><br><span class="line">cfssl gencert -ca=ca.crt -ca-key=ca.key -profile=kubernetes /usr/local/install-k8s/cert/devuser/devuser-csr.json | cfssljson -bare devuser</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置集群参数</span></span><br><span class="line"><span class="built_in">cd</span> /usr/local/install-k8s/cert/devuser</span><br><span class="line"><span class="built_in">export</span> KUBE_APISERVER=<span class="string">&quot;https://192.168.66.10:6443&quot;</span></span><br><span class="line">kubectl config set-cluster kubernetes \</span><br><span class="line">--certificate-authority=/etc/kubernetes/pki/ca.crt \</span><br><span class="line">--embed-certs=<span class="literal">true</span> \</span><br><span class="line">--server-<span class="variable">$&#123;KUBE APISERVER&#125;</span> \</span><br><span class="line">--kubeconfig=devuser.kubeconfig</span><br><span class="line"><span class="built_in">cat</span> devuser.kubeconfig</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置客户端认证参数</span></span><br><span class="line">kubectl config set-credentials devuser \</span><br><span class="line">--client-certificate=/etc/kubernetes/pki/devuser.pem \ <span class="comment"># 指定证书</span></span><br><span class="line">--client-key=/etc/kubernetes/pki/devuser -key.pem \ <span class="comment"># 指定私钥</span></span><br><span class="line">--embed-certs=<span class="literal">true</span> \ <span class="comment"># 开启证书认证</span></span><br><span class="line">--kubeconfig=devuser.kubeconfig <span class="comment"># 写入kubeconfig文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置上下文参数（绑定至某一个空间）</span></span><br><span class="line">kubectl create namespace dev</span><br><span class="line">kubectl config <span class="built_in">set</span> -context kubernetes \</span><br><span class="line">--cluster=kubernetes \ <span class="comment"># 默认集群名称</span></span><br><span class="line">--user=devuser \</span><br><span class="line">--namespace=dev \</span><br><span class="line">--kubeconfig=devuser.kubeconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># devuser可以在dev中拥有admin权限</span></span><br><span class="line">kubectl create rolebinding devuser-admin-binding --clusterrole=admin --user=devuser --namespace=dev</span><br><span class="line"></span><br><span class="line"><span class="built_in">cp</span> -f ./devuser.kubeconfig /home/.kube/config</span><br><span class="line"><span class="built_in">chown</span> devuser:devuser /home/.kube/config</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置默认上下文（切换）</span></span><br><span class="line">kubectl config use-context kubernetes --kubeconfig=config</span><br><span class="line"></span><br><span class="line">kubectl run nginx --image=hub.jade.com/library/myapp:v2</span><br><span class="line">kubectl get pod会展示刚刚创建的nginx</span><br><span class="line">默认nv是dev，查看default无权限</span><br></pre></td></tr></table></figure>
@@ -693,33 +583,24 @@ kubelet使用TLS Bootstraping认证时，APIServer可以使用Bootstrap Tokens�
 <li>HA集群其余master节点证书更新<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">masterNode=<span class="string">&quot;192.168.66.20 192.168.66.21&quot;</span></span><br><span class="line"><span class="comment">#for host in $masterNode&#125;; do#scp /etc/kubernetes/pki/(ca.crt,ca.key,sa.key, sa.pub,front-proxy-ca.crt,front-proxy-ca, key)&quot;$(USER&#125;&quot;@$host:/etc/kubernetes/pki/</span></span><br><span class="line"><span class="comment"># scp /etc/kubernetes/pki/etcd/(ca.crt,ca.key) &quot;root&quot;@$host:/etc/kubernetes/pki/etcd</span></span><br><span class="line"><span class="comment"># scp /etc/kubernetes/admin.conf &quot;root&quot;@$host:/etc/kubernetes/</span></span><br><span class="line"><span class="comment">#done</span></span><br><span class="line"><span class="keyword">for</span> host <span class="keyword">in</span> $(CONTROL_PLANE_IPS&#125;; <span class="keyword">do</span></span><br><span class="line">    scp /etc/kubernetes/pki/&#123;ca.crt,ca.key,sa.key,sa.pub,front-proxy-ca.crt,front-proxy-ca.key&#125; <span class="string">&quot;<span class="variable">$&#123;USER&#125;</span>&quot;</span>@<span class="variable">$host</span>:/root/pki/</span><br><span class="line">    scp /etc/kubernetes/pki/etcd/&#123;ca.crt,ca.key&#125; <span class="string">&quot;root&quot;</span>@<span class="variable">$host</span>:/root/etcd</span><br><span class="line">    scp /etc/kubernetes/admin.conf <span class="string">&quot;root&quot;</span>@shost:/root/kubernetes/</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 
-      
     </div>
     <footer class="article-footer">
-      
         <blockquote class="article-copyright">
-    <p><strong><span class="icon-user icon"></span>著者: </strong>本堂主 @ 本堂主Blog</p>
+    <p><strong><span class="icon-user icon"></span>著者: </strong>本堂主</p>
     <p><strong><span class="icon-link icon"></span>パーマリンク: </strong><a href="https://jade-xyy.github.io/ja/2025/04/11/k8sNote2/">https://jade-xyy.github.io/ja/2025/04/11/k8sNote2/</a></p>
     <p><strong><span class="icon-pencil icon"></span>タイトル: </strong>「K8s备忘 - 下」</p>
     
     
-    <p><strong><span class="icon-copyright icon"></span>ライセンス: </strong>本ブログのすべての文書は、特に指定されていない限り、<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> ライセンスに従っています。引用の際は出典を明記してください！</p>
+    <p><strong><span class="icon-copyright icon"></span>ライセンス: </strong>本ブログのすべての文書は、特に指定されていない限り、<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> ライセンスに従っています。引用の際は出典を明記してください！</p>
     <span class="icon-creative-commons article-copyright-bg"></span>
   </blockquote>
-      
-      
-      
         <div class="share-wrapper">
-  
     <a href="https://connect.qq.com/widget/shareqq/index.html?url=www.baidu.com&amp;title=K8s%E5%A4%87%E5%BF%98%20-%20%E4%B8%8B&amp;desc=K8s%20%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98%20-%20%E4%B8%8B&amp;source=https%3A%2F%2Fjade-xyy.github.io" target="_blank" rel="noopener noreferrer" title="K8s备忘 - 下">
       <div class="share-icon icon icon-qq">
-        
       </div>
     </a>
-  
     <a href="javascript:;"  title="K8s备忘 - 下">
       <div class="share-icon icon icon-weixin">
-        
           <div id="share-weixin">
             <div class="share-weixin-dom">
               <div class="share-weixin-content">
@@ -737,145 +618,61 @@ kubelet使用TLS Bootstraping认证时，APIServer可以使用Bootstrap Tokens�
             </div>
             <div class="share-weixin-canvas"></div>
           </div>
-        
       </div>
     </a>
-  
 </div>
-      
-      
-      
-        <a data-aos="zoom-in" href="/ja/2025/04/11/k8sNote2/#comments" class="article-comment-link">
-          <span class="post-comments-count waline-comment-count" data-path="/ja/2025/04/11/k8sNote2/" itemprop="commentCount"></span>
-          コメント
-        </a>
-      
-      
-      
-      
-        <span data-aos="zoom-in" class="article-visitor-link">
-          <span class="waline-pageview-count" data-path="/ja/2025/04/11/k8sNote2/">0</span>
-          <em class="post-meta-item-text">閲覧数</em>
-        </span>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/ja/tags/k8s/" rel="tag">k8s</a></li></ul>
+        <a class="article-category-link" href="/ja/categories/notes/" title="notes" data-aos="zoom-in">notes</a><a class="article-category-link" href="/ja/categories/study/" title="study" data-aos="zoom-in">study</a>
 
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/ja/tags/k8s/" rel="tag" title="k8s">k8s</a></li></ul>
 
     </footer>
   </div>
-  
-  <nav id="article-nav" data-aos="fade-up">
-    
-      
-      <div class="article-nav-link-wrap article-nav-link-left">
-        
-          
-          
-            <img data-src="/covers/zzz_mm5.png" data-sizes="auto" alt="FAQ - Windows" class="lazyload">
-          
-        
-        <a href="/ja/2025/04/11/faqWindows/"></a>
-        <div class="article-nav-caption">次の記事</div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/covers/zzz_qy1.png" data-sizes="auto" alt="FAQ - Windows" class="lazyload">
+        <a href="/ja/2025/04/11/faqWindows/" aria-label="前の記事: FAQ - Windows" title="前の記事: FAQ - Windows"></a>
+        <div class="article-nav-caption">前の記事</div>
         <h3 class="article-nav-title">
-          
             FAQ - Windows
-          
         </h3>
       </div>
-    
-    
-    
-    <div class="article-nav-link-wrap article-nav-link-right">
-      
-        
-        
-          <img data-src="/covers/fade.jpg" data-sizes="auto" alt="K8s备忘 - 上" class="lazyload">
-        
-      
-      <a href="/ja/2025/04/09/k8sNote1/"></a>
-      <div class="article-nav-caption">前の記事</div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/covers/zzz_cjjxrrdpts.png" data-sizes="auto" alt="K8s备忘 - 上" class="lazyload">
+      <a href="/ja/2025/04/09/k8sNote1/" aria-label="次の記事: K8s备忘 - 上"  title="次の記事: K8s备忘 - 上"></a>
+      <div class="article-nav-caption">次の記事</div>
       <h3 class="article-nav-title">
-        
           K8s备忘 - 上
-        
       </h3>
     </div>
-    
   </nav>
-
 
 </article>
 
 
-
-
-
-
-
-
-
-  <section id="comments" data-aos="fade-up">
-    <div class="comment-header">
-      
-      
-      <h2 class="comment-title">说些什么吧！</h2>
-      <div class="comment-selector">
-        <div class="comment-selector-wrap">
-            
-            <div class="selector-item" data-selector="waline">
-              <span>waline</span>
-            </div>
-            
-        </div>
-      </div>
-    </div>
-    <div class="comment-content">
-      
-        <div class="comment waline-comment" data-aos="fade-up"
-          id="waline-comment">
-        </div>
-      
-    </div>
-  </section>
-
-
 </section>
         </div>
-        <footer id="footer">
+        <footer id="footer" aria-label="Site footer">
   <div style="width: 100%; overflow: hidden">
     <div class="footer-line"></div>
   </div>
   <div id="footer-info">
-    
     <div>
       <span class="icon-copyright"></span>
-      
-      
-      
         2025-2026
-      
-      <span class="footer-info-sep rotate"></span>
+        <span class="footer-info-sep rotate"></span>
       本堂主
     </div>
-    
       <div>
-        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
-        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
       </div>
-    
-    
       <div>
         <span class="icon-brush"></span>
-        62.4k
+        63.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        04:14
+        04:38
       </div>
-    
-    
-    
-    
       <div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv">総閲覧数&nbsp;<span id="busuanzi_value_site_pv"></span></span>
@@ -883,29 +680,20 @@ kubelet使用TLS Bootstraping认证时，APIServer可以使用Bootstrap Tokens�
         <span class="icon-user"></span>
         <span id="busuanzi_container_site_uv">総閲覧者数&nbsp;<span id="busuanzi_value_site_uv"></span></span>
       </div>
-    
   </div>
 </footer>
 
-        
           <div class="sidebar-top">
             <div class="sidebar-top-taichi rotate"></div>
             <div class="arrow-up"></div>
           </div>
-        
         <div id="mask" class="hide"></div>
       </div>
-      <nav id="mobile-nav">
+      <nav id="mobile-nav" aria-label="Mobile navigation">
   <div class="sidebar-wrap">
-    
-      
-        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
-  <h3 class="toc-title">見出し</h3>
-  <div class="sidebar-toc-wrapper toc-div-class" >
-      
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6"><span class="toc-text">调度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E5%8E%9F%E5%88%99"><span class="toc-text">调度原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E8%BF%87%E7%A8%8B"><span class="toc-text">调度过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-text">自定义调度器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E4%BA%B2%E5%92%8C%E6%80%A7"><span class="toc-text">调度亲和性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%88pod%E5%92%8Cnode%E9%97%B4%EF%BC%89"><span class="toc-text">节点亲和性（pod和node间）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Pod%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%88pod%E5%92%8Cpod%E9%97%B4%EF%BC%89"><span class="toc-text">Pod亲和性（pod和pod间）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%B2%E5%92%8C%E6%80%A7-%E5%8F%8D%E4%BA%B2%E5%92%8C%E6%80%A7%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5%E6%AF%94%E8%BE%83%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">亲和性&#x2F;反亲和性调度策略比较如下：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Taint%E5%92%8CToleration"><span class="toc-text">Taint和Toleration</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B1%A1%E7%82%B9%EF%BC%88Taint%EF%BC%89"><span class="toc-text">污点（Taint）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%B9%E5%BF%8D%EF%BC%88Tolerations%EF%BC%89"><span class="toc-text">容忍（Tolerations）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E8%B0%83%E5%BA%A6%E8%8A%82%E7%82%B9"><span class="toc-text">指定调度节点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8"><span class="toc-text">安全</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%BA%E5%88%B6%E8%AF%B4%E6%98%8E"><span class="toc-text">机制说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A4%E8%AF%81%EF%BC%88Authentication%EF%BC%89"><span class="toc-text">认证（Authentication）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTPS%E8%AF%81%E4%B9%A6%E8%AE%A4%E8%AF%81"><span class="toc-text">HTTPS证书认证</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E8%AE%A4%E8%AF%81%E7%9A%84%E8%8A%82%E7%82%B9"><span class="toc-text">需要认证的节点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#kubeconfig"><span class="toc-text">kubeconfig</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ServiceAccount"><span class="toc-text">ServiceAccount</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Secret%E5%92%8CSA%E5%85%B3%E7%B3%BB"><span class="toc-text">Secret和SA关系</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%89%B4%E6%9D%83%EF%BC%88Authorization%EF%BC%89"><span class="toc-text">鉴权（Authorization）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#API-Server%E7%9B%AE%E5%89%8D%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E5%87%A0%E7%A7%8D%E6%8E%88%E6%9D%83%E7%AD%96%E7%95%A5"><span class="toc-text">API Server目前支持一下几种授权策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RBAC%E6%8E%88%E6%9D%83%E6%A8%A1%E5%BC%8F"><span class="toc-text">RBAC授权模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-text">实践</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%85%A5%E6%8E%A7%E5%88%B6%EF%BC%88Admission-Control%EF%BC%89"><span class="toc-text">准入控制（Admission Control）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Helm"><span class="toc-text">Helm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#chart"><span class="toc-text">chart</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#release"><span class="toc-text">release</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6"><span class="toc-text">组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Helm%E9%83%A8%E7%BD%B2"><span class="toc-text">Helm部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Helm%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E6%9D%BF"><span class="toc-text">Helm自定义模板</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Debug"><span class="toc-text">Debug</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2dashboard"><span class="toc-text">使用Helm部署dashboard</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2metrics-server"><span class="toc-text">使用Helm部署metrics-server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2prometheus"><span class="toc-text">使用Helm部署prometheus</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="toc-text">组件说明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-text">部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Horizontal-Pod-Autoscaling"><span class="toc-text">Horizontal Pod Autoscaling</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6-Pod"><span class="toc-text">资源限制 - Pod</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6-%E5%90%8D%E7%A7%B0%E7%A9%BA%E9%97%B4"><span class="toc-text">资源限制 - 名称空间</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BF%E9%97%AEprometheus"><span class="toc-text">访问prometheus</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BF%E9%97%AEgrafana"><span class="toc-text">访问grafana</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2EFK%E5%B9%B3%E5%8F%B0"><span class="toc-text">使用Helm部署EFK平台</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%81%E4%B9%A6"><span class="toc-text">证书</span></a></li></ol>
-      
-  </div>
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">見出し</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6"><span class="toc-text">调度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E5%8E%9F%E5%88%99"><span class="toc-text">调度原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E8%BF%87%E7%A8%8B"><span class="toc-text">调度过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-text">自定义调度器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E4%BA%B2%E5%92%8C%E6%80%A7"><span class="toc-text">调度亲和性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%88pod%E5%92%8Cnode%E9%97%B4%EF%BC%89"><span class="toc-text">节点亲和性（pod和node间）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Pod%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%88pod%E5%92%8Cpod%E9%97%B4%EF%BC%89"><span class="toc-text">Pod亲和性（pod和pod间）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%B2%E5%92%8C%E6%80%A7-%E5%8F%8D%E4%BA%B2%E5%92%8C%E6%80%A7%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5%E6%AF%94%E8%BE%83%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">亲和性&#x2F;反亲和性调度策略比较如下：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Taint%E5%92%8CToleration"><span class="toc-text">Taint和Toleration</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B1%A1%E7%82%B9%EF%BC%88Taint%EF%BC%89"><span class="toc-text">污点（Taint）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%B9%E5%BF%8D%EF%BC%88Tolerations%EF%BC%89"><span class="toc-text">容忍（Tolerations）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E8%B0%83%E5%BA%A6%E8%8A%82%E7%82%B9"><span class="toc-text">指定调度节点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8"><span class="toc-text">安全</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%BA%E5%88%B6%E8%AF%B4%E6%98%8E"><span class="toc-text">机制说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A4%E8%AF%81%EF%BC%88Authentication%EF%BC%89"><span class="toc-text">认证（Authentication）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTPS%E8%AF%81%E4%B9%A6%E8%AE%A4%E8%AF%81"><span class="toc-text">HTTPS证书认证</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E8%AE%A4%E8%AF%81%E7%9A%84%E8%8A%82%E7%82%B9"><span class="toc-text">需要认证的节点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#kubeconfig"><span class="toc-text">kubeconfig</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ServiceAccount"><span class="toc-text">ServiceAccount</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Secret%E5%92%8CSA%E5%85%B3%E7%B3%BB"><span class="toc-text">Secret和SA关系</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%89%B4%E6%9D%83%EF%BC%88Authorization%EF%BC%89"><span class="toc-text">鉴权（Authorization）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#API-Server%E7%9B%AE%E5%89%8D%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E5%87%A0%E7%A7%8D%E6%8E%88%E6%9D%83%E7%AD%96%E7%95%A5"><span class="toc-text">API Server目前支持一下几种授权策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RBAC%E6%8E%88%E6%9D%83%E6%A8%A1%E5%BC%8F"><span class="toc-text">RBAC授权模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-text">实践</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%85%A5%E6%8E%A7%E5%88%B6%EF%BC%88Admission-Control%EF%BC%89"><span class="toc-text">准入控制（Admission Control）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Helm"><span class="toc-text">Helm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#chart"><span class="toc-text">chart</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#release"><span class="toc-text">release</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6"><span class="toc-text">组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Helm%E9%83%A8%E7%BD%B2"><span class="toc-text">Helm部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Helm%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E6%9D%BF"><span class="toc-text">Helm自定义模板</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Debug"><span class="toc-text">Debug</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2dashboard"><span class="toc-text">使用Helm部署dashboard</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2metrics-server"><span class="toc-text">使用Helm部署metrics-server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2prometheus"><span class="toc-text">使用Helm部署prometheus</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="toc-text">组件说明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-text">部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Horizontal-Pod-Autoscaling"><span class="toc-text">Horizontal Pod Autoscaling</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6-Pod"><span class="toc-text">资源限制 - Pod</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6-%E5%90%8D%E7%A7%B0%E7%A9%BA%E9%97%B4"><span class="toc-text">资源限制 - 名称空间</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BF%E9%97%AEprometheus"><span class="toc-text">访问prometheus</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BF%E9%97%AEgrafana"><span class="toc-text">访问grafana</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Helm%E9%83%A8%E7%BD%B2EFK%E5%B9%B3%E5%8F%B0"><span class="toc-text">使用Helm部署EFK平台</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%81%E4%B9%A6"><span class="toc-text">证书</span></a></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -927,67 +715,52 @@ kubelet使用TLS Bootstraping认证时，APIServer可以使用Bootstrap Tokens�
     <div class="sidebar-state-number">11</div>
   </div>
 </div>
-<div class="sidebar-social">
-  
+<div class="sidebar-social" >
 </div>
 <div class="sidebar-menu">
-  
-    
       <div class="sidebar-menu-link-wrap">
         <a class="sidebar-menu-link-dummy" href="/ja/" aria-label="ホーム"></a>
-        <div class="sidebar-menu-icon icon rotate">
-          &#xe62b;
-        </div>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
         <div class="sidebar-menu-link">ホーム</div>
       </div>
-    
       <div class="sidebar-menu-link-wrap">
         <a class="sidebar-menu-link-dummy" href="/ja/archives" aria-label="アーカイブ"></a>
-        <div class="sidebar-menu-icon icon rotate">
-          &#xe62b;
-        </div>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
         <div class="sidebar-menu-link">アーカイブ</div>
       </div>
-    
       <div class="sidebar-menu-link-wrap">
         <a class="sidebar-menu-link-dummy" href="/ja/about" aria-label="プロフィール"></a>
-        <div class="sidebar-menu-icon icon rotate">
-          &#xe62b;
-        </div>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
         <div class="sidebar-menu-link">プロフィール</div>
       </div>
-    
       <div class="sidebar-menu-link-wrap">
         <a class="sidebar-menu-link-dummy" href="/ja/friend" aria-label="フレンド"></a>
-        <div class="sidebar-menu-icon icon rotate">
-          &#xe62b;
-        </div>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
         <div class="sidebar-menu-link">フレンド</div>
       </div>
-    
-  
 </div>
 </div>
-      
-    
   </div>
-  
-    
       <div class="sidebar-btn-wrapper">
         <div class="sidebar-toc-btn current"></div>
         <div class="sidebar-common-btn"></div>
       </div>
-    
-  
 </nav>
 
     </div>
-    
       <div class="site-search">
         <div class="reimu-popup popup">
           <div class="reimu-search">
             <div class="reimu-search-input-icon"></div>
-            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div id="reimu-search-input"></div>
             <div class="popup-btn-close"></div>
           </div>
           <div class="reimu-results">
@@ -999,9 +772,6 @@ kubelet使用TLS Bootstraping认证时，APIServer可以使用Bootstrap Tokens�
         </div>
       </div>
     
-    
-    
-    
 <script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
 
 
@@ -1010,9 +780,7 @@ kubelet使用TLS Bootstraping认证时，APIServer可以使用Bootstrap Tokens�
 
 
 
-
 <script src="/js/script.js"></script>
-
 
 
   
@@ -1035,9 +803,7 @@ kubelet使用TLS Bootstraping认证时，APIServer可以使用Bootstrap Tokens�
   </script>
 
 
-
 <script src="/js/pjax_script.js" data-pjax></script>
-
 
 
   
@@ -1045,26 +811,22 @@ kubelet使用TLS Bootstraping认证时，APIServer可以使用Bootstrap Tokens�
 
 
 
-
-
-
-  
-<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
-
   <script>
-    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
   </script>
-
-
-
-
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
 
 
 
 
 
   
-<script src="https://npm.webcache.cn/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha384-aD7FsuQkS1ohgFKY41fJfeA+Wd&#x2F;QRNnrOd9Bs58K3FzKdJJv8yPnYU8Tnp5z1agS" crossorigin="anonymous"></script>
+<script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>
 
   <script data-pjax>
     window.quicklink?.listen({
@@ -1074,10 +836,8 @@ kubelet使用TLS Bootstraping认证时，APIServer可以使用Bootstrap Tokens�
     });
   </script>
 
-
 <div id="lazy-script">
   <div>
-    
       
       
       <script data-pjax>
@@ -1093,361 +853,40 @@ kubelet使用TLS Bootstraping认证时，APIServer可以使用Bootstrap Tokens�
           cover: "/images/zzz_cjjxrrdpts.webp",
         };
       </script>
-       
-    
-    
-      
         
 <script src="/js/insert_highlight.js" data-pjax></script>
 
-        
-          
-<script src="https://npm.webcache.cn/html-to-image@1.11.11/dist/html-to-image.js" integrity="sha384-UbfRVKN3&#x2F;elS1r7JcK2FhmPP+KlJ4CvYwbyYD7tH+uTkbT9bNJr9eJeQ0FoFbAgz" crossorigin="anonymous" defer data-pjax></script>
-
-          
-<script src="https://npm.webcache.cn/qrcode@1.4.4/build/qrcode.min.js" integrity="sha384-0RsG1yo&#x2F;crf&#x2F;1Qc14sho26SXXOTngNCjgJw7fuvXBt9W&#x2F;OChF&#x2F;Ijx+aUuBDqQwEk" crossorigin="anonymous" defer data-pjax></script>
-
-        
       
-    
-    
+<script src="/js/tabs.js" data-pjax defer></script>
+
+        
+<script src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js" integrity="sha384-OEQ+fJp&#x2F;Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous" defer data-pjax></script>
+
+        
+<script src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js" integrity="sha384-VT1EeewTCEXgndcPMQ0PzV+uVFYjxFIjmAA7s5gcMX9t4Dt5TD+OVQIn7NJWIXn7" crossorigin="anonymous" defer data-pjax></script>
+
       <script type="module" data-pjax>
-        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
-        
-        const pswp = () => {
-          if (_$$('.article-entry a.article-gallery-item').length > 0) {
-            new PhotoSwipeLightbox({
-              gallery: '.article-entry',
-              children: 'a.article-gallery-item',
-              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
-            }).init();
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
           }
-          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
-            new PhotoSwipeLightbox({
-              gallery: '.article-gallery',
-              children: 'a.article-gallery-item',
-              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
-            }).init();
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
           }
-          window.lightboxStatus = 'done';
-          window.removeEventListener('lightbox:ready', pswp);
-        }
-        if(window.lightboxStatus === 'ready') {
-          pswp()
-        } else {
-          window.addEventListener('lightbox:ready', pswp);
-        }
+          pswp();
+        })();
       </script>
-      
         
 
 
-
-
-
-
-
-
-<script data-pjax>
-  var loadScript = (src, integrity) => {
-    const script = document.createElement('script');
-    script.src = src;
-    if (integrity) script.integrity = integrity;
-    script.crossOrigin = 'anonymous';
-    return script;
-  };
-
-  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus'];
-  var commentConfig = {
-    valine: {
-      enable: false,
-      load: () => {
-        const container = document.querySelector('.valine-comment');
-        if (!container) return;
-        container.style.display = 'block';
-
-        const script = loadScript(
-          'https://npm.webcache.cn/valine@1.5.1/dist/Valine.min.js',
-          'sha384-3ma91AExDeMAZ1rjTjaP8V2A2obQE+s5ltKRwYlwdpArz9xVbp0tF3b0VV2ACNPn'
-        );
-        script.onload = () => {
-          var GUEST_INFO = ['nick', 'mail', 'link'];
-          var guest_info = 'nick,mail,link'.split(',').filter((item) => {
-            return GUEST_INFO.indexOf(item) > -1
-          });
-          var recordIP = JSON.parse('true');
-          var highlight = JSON.parse('true');
-          var visitor = JSON.parse('false');
-
-          if (window.Valine) {
-            new Valine({
-              el: '.valine-comment',
-              appId: "e8feHL9uKMe2cBgp29tyFCdv-gzGzoHsz",
-              appKey: "Z289QNdRm4m1Im6mWjAWqW4P",
-              placeholder: "Just go go",
-              pageSize: '10',
-              avatar: 'mp',
-              lang: 'zh-cn',
-              recordIP: recordIP,
-              highlight: highlight,
-              visitor: visitor,
-              requiredFields: guest_info,
-              path: window.location.pathname
-            });
-          }
-        };
-        document.head.appendChild(script);
-      }
-    },
-    waline: {
-      enable: true,
-      load: async () => {
-        const container = document.querySelector('.waline-comment');
-        if (!container) return;
-        container.style.display = 'block';
-
-        let walineInit;
-        const walineCdn = 'https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.mjs';
-        const walineIntegrity = 'sha384-9sbqJjrfGjbkI6/PI4nU/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH/KinBEAZII/5';
-
-        const module = await safeImport(walineCdn, walineIntegrity);
-        walineInit = module.init;
-
-        window.walineInstance = walineInit({
-          el: '.waline-comment',
-          serverURL: 'https://waline.fay.net.cn',
-          lang: 'zh-CN',
-          locale: {},
-          emoji: ["https://unpkg.com/@waline/emojis@1.2.0/weibo","https://unpkg.com/@waline/emojis@1.2.0/alus","https://unpkg.com/@waline/emojis@1.2.0/bilibili","https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tieba","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
-          meta: ["nick","mail","link"],
-          requiredMeta: ["nick","mail"],
-          wordLimit: JSON.parse('0'),
-          comment: true,
-          pageSize: JSON.parse('10'),
-          dark: 'html[data-theme="dark"]',
-          pageview: JSON.parse('true'),
-        });
-      }
-    },
-    twikoo: {
-      enable: false,
-      load: () => {
-        const container = document.querySelector('.twikoo-comment');
-        if (!container) return;
-        container.style.display = 'block';
-
-        const script = loadScript(
-          'https://npm.webcache.cn/twikoo@1.6.16/dist/twikoo.all.min.js',
-          'sha384-lDHsr5aZmkMS0eKnsUu6e9RWP+dRmn7sgjRAKGOAoXfMyzbUK6Qi86zZK7R+KvRV'
-        );
-
-        script.onload = () => {
-          if (window.twikoo) {
-            twikoo.init({
-              envId: '',
-              el: '.tcomment',
-              region: '',
-            })
-          }
-        } 
-        document.head.appendChild(script);
-      }
-    },
-    gitalk: {
-      enable: false,
-      load: () => {
-        const container = document.querySelector('.gitalk-comment');
-        if (!container) return;
-        container.style.display = 'block';
-
-        const script = loadScript(
-          'https://npm.webcache.cn/gitalk@1.8.0/dist/gitalk.min.js',
-          'sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU/lcEH5O8eVbSDhbPwsiVUTp/aGX/z/5EuMA'
-        );
-
-        script.onload = () => {
-          if (false) {
-            const md5Script = loadScript(
-              'https://npm.webcache.cn/blueimp-md5@2.19.0/js/md5.min.js',
-              'sha384-JmVtRz6RWiXnA14QbIOJzPuU3MidULOpBP66deeLLyyoF4Tr/gZlbkHkL6vTthxH'
-            );
-            md5Script.onload = initGitalk;
-            document.head.appendChild(md5Script);
-          } else {
-            initGitalk();
-          }
-        }
-        document.head.appendChild(script);
-
-        function initGitalk() {
-          var gitalkId = location.pathname;
-          var gitalk = new Gitalk({
-            clientID: '',
-            clientSecret: '',
-            repo: '',
-            owner: '',
-            admin: null,
-            id: gitalkId, // Ensure uniqueness and length less than 50
-            distractionFreeMode: false // Facebook-like distraction free mode
-          })
-          gitalk.render('gitalk-comment');
-        }
-      }
-    },
-    giscus: {
-      enable: false,
-      load: () => {
-        const container = document.querySelector('.giscus-comment');
-        if (!container) return;
-        container.style.display = 'block';
-
-        // 删除可能已存在的 giscus 脚本和 iframe
-        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
-        if (existingScript) existingScript.remove();
-        const existingFrame = document.querySelector('iframe.giscus-frame');
-        if (existingFrame) existingFrame.remove();
-
-        const giscusScript = document.createElement('script');
-        const domMode = document.documentElement.getAttribute("data-theme");
-        giscusScript.src = 'https://giscus.app/client.js';
-        giscusScript.setAttribute('data-repo', '');
-        giscusScript.setAttribute('data-repo-id', '');
-        giscusScript.setAttribute('data-category', ''); 
-        giscusScript.setAttribute('data-category-id', '');
-        giscusScript.setAttribute('data-mapping', '0');
-        giscusScript.setAttribute('data-strict', '0');
-        giscusScript.setAttribute('data-reactions-enabled', '1');
-        giscusScript.setAttribute('data-emit-metadata', '0');
-        giscusScript.setAttribute('data-input-position', 'bottom');
-        giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
-        giscusScript.setAttribute('data-lang', 'zh-CN');
-        giscusScript.setAttribute('crossorigin', 'anonymous');
-        giscusScript.async = true;
-        container.appendChild(giscusScript);
-        document.body.addEventListener('light-theme-set', () => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
-        });
-        document.body.addEventListener('dark-theme-set', () => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
-        });
-      }
-    }
-  }
-  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
-
-  var defaultComment = '';
-  if (commentConfig.enable) {
-    // 1. 首先检查localStorage中是否有保存的评论类型
-    var savedCommentType = localStorage.getItem('commentType');
-    
-    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
-    if (savedCommentType) {
-      if (commentConfig[savedCommentType]?.enable) {
-        defaultComment = savedCommentType;
-      }
-    }
-    
-    // 3. 如果localStorage无效，检查配置的默认评论系统
-    if (!defaultComment) {
-      var configDefault = 'valine';
-      if (commentConfig[configDefault]?.enable) {
-        defaultComment = configDefault;
-      }
-    }
-    
-    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
-    if (!defaultComment) {
-      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
-    }
-  }
-  function loadComments() {
-    if (!commentConfig.enable) return;
-    // 评论组件加载状态跟踪
-    const loadedComments = {
-      valine: false,
-      waline: false,
-      twikoo: false,
-      gitalk: false,
-      giscus: false
-    };
-
-    // 隐藏所有评论容器
-    const hideAllComments = () => {
-      const commentContainers = document.querySelectorAll('.comment');
-      commentContainers.forEach(container => {
-        container.style.display = 'none';
-      });
-    };
-
-    // 按需加载评论系统
-    const loadCommentSystem = (type) => {
-      if (loadedComments[type]) {
-        // 如果已加载，只需显示对应容器
-        document.querySelector(`.${type}-comment`).style.display = 'block';
-        return;
-      }
-
-      // 根据类型加载对应的脚本
-      commentConfig[type]?.load();
-      loadedComments[type] = true;
-    };
-
-    // 评论组件选择器
-    const changeActiveCommentItems = (item) => {
-      const commentItems = document.querySelectorAll('.selector-item');
-      for (let i = 0; i < commentItems.length; i++) {
-        commentItems[i].classList.remove('active');
-      }
-      item.classList.add('active');
-
-      // 获取要加载的评论系统类型
-      const commentType = item.getAttribute('data-selector');
-
-      // 隐藏所有评论系统
-      hideAllComments();
-
-      // 加载选中的评论系统
-      loadCommentSystem(commentType);
-    };
-
-    const commentInit = () => {
-      // 评论组件选择器点击事件
-      const commentItems = document.querySelectorAll('.selector-item');
-      for (let item of commentItems) {
-        item.addEventListener('click', () => {
-          // 保存选择器状态
-          const commentType = item.getAttribute('data-selector');
-          window.localStorage.setItem('commentType', commentType);
-          // 切换选中状态
-          changeActiveCommentItems(item);
-        });
-      }
-
-      // 检查是否需要加载默认评论系统
-      if (defaultComment) {
-        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
-        if (!defaultSelectorItem) return;
-        defaultSelectorItem.style.display = 'block';
-        defaultSelectorItem.classList.add('active');
-        loadCommentSystem(defaultComment);
-      }
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', commentInit);
-    } else {
-      commentInit();
-    }
-  };
-  loadComments();
-</script>
-
-      
-    
   </div>
 </div>
 
@@ -1461,16 +900,13 @@ kubelet使用TLS Bootstraping认证时，APIServer可以使用Bootstrap Tokens�
   \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
                                                   
 `,'color: #ff5252;')
-    console.log('%c Theme.Reimu v' + '1.8.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.2' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
   </script>
   
 
 
-
   
 <script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
-
-
 
 
 <script>
@@ -1486,12 +922,5 @@ kubelet使用TLS Bootstraping认证时，APIServer可以使用Bootstrap Tokens�
 
 
 
-
-
-
-
-
-    
   </body>
   </html>
-
