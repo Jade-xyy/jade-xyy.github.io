@@ -11,21 +11,20 @@
   <rights>All rights reserved 2026, 本堂主</rights>
   <subtitle>— 是刺尖尖心软软的扑托神 —</subtitle>
   <title>本堂主Blog</title>
-  <updated>2026-03-09T01:42:48.852Z</updated>
+  <updated>2026-03-16T07:11:40.333Z</updated>
   <entry>
     <author>
       <name>本堂主</name>
     </author>
-    <category term="FAQ" scheme="https://jade-xyy.github.io/categories/FAQ/"/>
+    <category term="study" scheme="https://jade-xyy.github.io/categories/study/"/>
+    <category term="notes" scheme="https://jade-xyy.github.io/categories/notes/"/>
     <category term="dns" scheme="https://jade-xyy.github.io/tags/dns/"/>
-    <id>https://jade-xyy.github.io/2025/08/14/faqDns/</id>
-    <link href="https://jade-xyy.github.io/2025/08/14/faqDns/"/>
-    <published>2025-08-14T02:46:01.000Z</published>
-    <summary>
-      <![CDATA[<p>服务域名拼接：<service-name>.<namespace>.svc.<cluster-domain><br><service-name>: Service 的资源名称（metadata.name）。<br><namespace>: Service]]>
-    </summary>
-    <title>DNS常见问题</title>
-    <updated>2026-03-09T01:42:48.852Z</updated>
+    <id>https://jade-xyy.github.io/2026/03/12/dnsNote/</id>
+    <link href="https://jade-xyy.github.io/2026/03/12/dnsNote/"/>
+    <published>2026-03-12T02:46:01.000Z</published>
+    <summary>DNS学习记录</summary>
+    <title>DNS备忘</title>
+    <updated>2026-03-16T07:11:40.333Z</updated>
   </entry>
   <entry>
     <author>

@@ -43,6 +43,7 @@
 <link rel="stylesheet" href="/css/style.css">
 
   <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+      <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css" integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz+YI" crossorigin="anonymous">
       
 <link rel="stylesheet" href="https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.css" integrity="sha384-vltfZtesCdl6NYVcFVcjEaIi5RpNvZe9t7fXvq8twVtcoy+Ub9QgnxUYJmwOhYCK" crossorigin="anonymous">
 
@@ -211,7 +212,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%A4%84%E7%90%86"><span class="toc-text">解决处理</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-text"> 问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%A4%84%E7%90%86"><span class="toc-text"> 解决处理</span></a></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -295,10 +296,14 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>etcd挂载目录硬盘损坏，&#x2F;var&#x2F;lib&#x2F;etcd目录丢失，导致master1上的etcd异常<br>硬盘恢复后，重新创建逻辑卷，创建目录，重新挂载<br><img src="etcd_lv.png"></p>
-<h2 id="解决处理"><a href="#解决处理" class="headerlink" title="解决处理"></a>解决处理</h2><p>挂载后恢复etcd</p>
+        <h2 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 问题描述</h2>
+<p>etcd挂载目录硬盘损坏，/var/lib/etcd目录丢失，导致master1上的etcd异常<br>
+硬盘恢复后，重新创建逻辑卷，创建目录，重新挂载<br>
+<img src="etcd_lv.png" alt></p>
+<h2 id="解决处理"><a class="markdownIt-Anchor" href="#解决处理"></a> 解决处理</h2>
+<p>挂载后恢复etcd</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 首先停止etcd服务，否则会一直生成data目录</span></span><br><span class="line">systemctl stop etcd</span><br><span class="line"><span class="comment"># 2. 移除data目录，新建data目录</span></span><br><span class="line"><span class="built_in">cd</span> /var/lib/etcd</span><br><span class="line"><span class="built_in">mv</span> data data.bak</span><br><span class="line"><span class="built_in">mkdir</span> data</span><br><span class="line"><span class="comment"># 3. 修改etcd服务配置文件</span></span><br><span class="line">vim /etc/systemd/system/etcd.service</span><br><span class="line">--initial-cluster-state=existing \</span><br><span class="line"><span class="comment"># 4. 重启etcd</span></span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart etcd</span><br><span class="line"><span class="comment"># 5. 检查etcd集群状态</span></span><br><span class="line">ETCDCTL_API=3 etcdctl endpoint status -w table --endpoints ip屏蔽.ip屏蔽.ip屏蔽.1:2379,ip屏蔽.ip屏蔽.ip屏蔽.2:2379,ip屏蔽.ip屏蔽.ip屏蔽.3:2379 --cert=<span class="string">&quot;/var/lib/etcd/certs/etcd.pem&quot;</span>  --key=<span class="string">&quot;/var/lib/etcd/certs/etcd-key.pem&quot;</span> --cacert=<span class="string">&quot;/var/lib/etcd/certs/ca.pem&quot;</span></span><br></pre></td></tr></table></figure>
-<p><img src="etcd_config.png"></p>
+<p><img src="etcd_config.png" alt></p>
 <hr>
 <blockquote>
 <p>etcdctl文件见【ETCD备份恢复文章】↓</p>
@@ -367,7 +372,7 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/covers/zzz_mm9.png" data-sizes="auto" alt="ETCD备份恢复" class="lazyload">
+            <img data-src="/covers/sage1.jpg" data-sizes="auto" alt="ETCD备份恢复" class="lazyload">
         <a href="/2025/04/14/etcdBackupRestore/" aria-label="前一篇: ETCD备份恢复" title="前一篇: ETCD备份恢复"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
@@ -375,7 +380,7 @@
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/covers/viper.jpg" data-sizes="auto" alt="正则表达式" class="lazyload">
+          <img data-src="/covers/zzz_ya2.png" data-sizes="auto" alt="正则表达式" class="lazyload">
       <a href="/2025/04/11/regularExpressionNote/" aria-label="后一篇: 正则表达式"  title="后一篇: 正则表达式"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
@@ -424,10 +429,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        63.7k
+        65.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        04:38
+        04:46
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -449,7 +454,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%A4%84%E7%90%86"><span class="toc-text">解决处理</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-text"> 问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%A4%84%E7%90%86"><span class="toc-text"> 解决处理</span></a></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -603,7 +608,7 @@
           url: "https://jade-xyy.github.io/2025/04/14/etcdSNRecovery/",
           excerpt: "硬盘损坏导致单节点 ETCD 故障的恢复",
           description: "",
-          stripContent: "问题描述etcd挂载目录硬盘损坏，&amp;#x2F;var&amp;#x2F;lib&amp;#x2F;etcd目录丢失，导致master1上的etcd异常硬盘恢复后，重新创建逻辑卷，创建目录，重新挂载 解决处理挂载后恢复etcd # 1. 首先停止etcd服务，否则会一直生成data目录systemctl stop etcd# 2. 移除data目录，新建data目录cd /var/lib/etcdmv data data.bakmkdir data# 3. 修改etcd服务配置文件vim /etc/systemd",
+          stripContent: " 问题描述 etcd挂载目录硬盘损坏，/var/lib/etcd目录丢失，导致master1上的etcd异常 硬盘恢复后，重新创建逻辑卷，创建目录，重新挂载   解决处理 挂载后恢复etcd # 1. 首先停止etcd服务，否则会一直生成data目录systemctl stop etcd# 2. 移除data目录，新建data目录cd /var/lib/etcdmv data data.bakmkdir data# 3. 修改etcd服务配置文件vim /etc/systemd/system/e",
           date: "Mon Apr 14 2025 15:39:04 GMT+0800",
           updated: "Fri Mar 06 2026 17:27:31 GMT+0800",
           cover: "/images/zzz_cjjxrrdpts.webp",
@@ -824,7 +829,13 @@
   }
 </script>
 
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.js" integrity="sha384-MWNUH0WmtsYGhn2cbH6ELRCbf9LG3QDqCC+gqPB3IBNO35xjZK3Ejb6oONRpDbPg" crossorigin="anonymous" defer data-pjax></script>
 
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer onload="renderMathInElement(_$(&#39;article&#39;), {delimiters: [{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true},{left: &#39;$&#39;, right: &#39;$&#39;, display: false}]});" data-pjax></script>
+
+  
 
 
   </body>

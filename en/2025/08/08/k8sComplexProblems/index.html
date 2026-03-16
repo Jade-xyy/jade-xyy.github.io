@@ -38,6 +38,7 @@
 <link rel="stylesheet" href="/css/style.css">
 
   <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+      <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css" integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz+YI" crossorigin="anonymous">
       
 <link rel="stylesheet" href="https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.css" integrity="sha384-vltfZtesCdl6NYVcFVcjEaIi5RpNvZe9t7fXvq8twVtcoy+Ub9QgnxUYJmwOhYCK" crossorigin="anonymous">
 
@@ -206,7 +207,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81pod%E7%8A%B6%E6%80%81%E6%8A%A5%E9%94%99%E6%8F%8F%E8%BF%B0"><span class="toc-text">常见pod状态报错描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%8A%A5%E9%94%99%E8%A7%A3%E6%9E%90"><span class="toc-text">日志报错解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E9%94%99%E8%AF%AF"><span class="toc-text">架构错误</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81pod%E7%8A%B6%E6%80%81%E6%8A%A5%E9%94%99%E6%8F%8F%E8%BF%B0"><span class="toc-text"> 常见pod状态报错描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%8A%A5%E9%94%99%E8%A7%A3%E6%9E%90"><span class="toc-text"> 日志报错解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E9%94%99%E8%AF%AF"><span class="toc-text"> 架构错误</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -290,111 +291,119 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="K8s问题集"><a href="#K8s问题集" class="headerlink" title="K8s问题集"></a>K8s问题集</h1><h2 id="常见pod状态报错描述"><a href="#常见pod状态报错描述" class="headerlink" title="常见pod状态报错描述"></a>常见pod状态报错描述</h2><table>
+        <h1 id="k8s问题集"><a class="markdownIt-Anchor" href="#k8s问题集"></a> K8s问题集</h1>
+<h2 id="常见pod状态报错描述"><a class="markdownIt-Anchor" href="#常见pod状态报错描述"></a> 常见pod状态报错描述</h2>
+<table>
 <thead>
 <tr>
-<th align="left">状态</th>
-<th align="left">描述</th>
+<th style="text-align:left">状态</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">CrashLoopBackOff</td>
-<td align="left">容器启动后异常退出，kubelet正在将它重启</td>
+<tbody>
+<tr>
+<td style="text-align:left">CrashLoopBackOff</td>
+<td style="text-align:left">容器启动后异常退出，kubelet正在将它重启</td>
 </tr>
 <tr>
-<td align="left">InvalidImageName</td>
-<td align="left">无法解析镜像名称</td>
+<td style="text-align:left">InvalidImageName</td>
+<td style="text-align:left">无法解析镜像名称</td>
 </tr>
 <tr>
-<td align="left">Pending</td>
-<td align="left">资源不足，集群内node不满足该pod请求的cpu、memory、gpu等，或有标签不匹配、节点亲和性、pod亲和性等问题</td>
+<td style="text-align:left">Pending</td>
+<td style="text-align:left">资源不足，集群内node不满足该pod请求的cpu、memory、gpu等，或有标签不匹配、节点亲和性、pod亲和性等问题</td>
 </tr>
 <tr>
-<td align="left">OOMKilled</td>
-<td align="left">pod使用内存超限制，增加内存limit或优化pod的内存使用</td>
+<td style="text-align:left">OOMKilled</td>
+<td style="text-align:left">pod使用内存超限制，增加内存limit或优化pod的内存使用</td>
 </tr>
 <tr>
-<td align="left">Unknown</td>
-<td align="left">api-server和kubelet无法通信，检查组件、网络是否正常</td>
+<td style="text-align:left">Unknown</td>
+<td style="text-align:left">api-server和kubelet无法通信，检查组件、网络是否正常</td>
 </tr>
 <tr>
-<td align="left">Failed</td>
-<td align="left">pod启动失败</td>
+<td style="text-align:left">Failed</td>
+<td style="text-align:left">pod启动失败</td>
 </tr>
 <tr>
-<td align="left">Evicted</td>
-<td align="left">pod被驱逐出node</td>
+<td style="text-align:left">Evicted</td>
+<td style="text-align:left">pod被驱逐出node</td>
 </tr>
 <tr>
-<td align="left"></td>
-<td align="left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left">ImageInspectError</td>
-<td align="left">无法校验镜像</td>
+<td style="text-align:left">ImageInspectError</td>
+<td style="text-align:left">无法校验镜像</td>
 </tr>
 <tr>
-<td align="left">ErrImageNeverPull</td>
-<td align="left">策略禁止拉取镜像</td>
+<td style="text-align:left">ErrImageNeverPull</td>
+<td style="text-align:left">策略禁止拉取镜像</td>
 </tr>
 <tr>
-<td align="left">ImagePullBackOff</td>
-<td align="left">正在重试拉取</td>
+<td style="text-align:left">ImagePullBackOff</td>
+<td style="text-align:left">正在重试拉取</td>
 </tr>
 <tr>
-<td align="left">RegistryUnavailable</td>
-<td align="left">连接不到镜像中心</td>
+<td style="text-align:left">RegistryUnavailable</td>
+<td style="text-align:left">连接不到镜像中心</td>
 </tr>
 <tr>
-<td align="left">ErrImagePull</td>
-<td align="left">通用的拉取镜像出错</td>
+<td style="text-align:left">ErrImagePull</td>
+<td style="text-align:left">通用的拉取镜像出错</td>
 </tr>
 <tr>
-<td align="left">CreateContainerConfigError</td>
-<td align="left">不能创建kubelet使用的容器配置</td>
+<td style="text-align:left">CreateContainerConfigError</td>
+<td style="text-align:left">不能创建kubelet使用的容器配置</td>
 </tr>
 <tr>
-<td align="left">CreateContainerError</td>
-<td align="left">创建容器失败</td>
+<td style="text-align:left">CreateContainerError</td>
+<td style="text-align:left">创建容器失败</td>
 </tr>
 <tr>
-<td align="left">m.internalLifecycle.PreStartContainer</td>
-<td align="left">执行hook报错</td>
+<td style="text-align:left">m.internalLifecycle.PreStartContainer</td>
+<td style="text-align:left">执行hook报错</td>
 </tr>
 <tr>
-<td align="left">RunContainerError</td>
-<td align="left">启动容器失败</td>
+<td style="text-align:left">RunContainerError</td>
+<td style="text-align:left">启动容器失败</td>
 </tr>
 <tr>
-<td align="left">PostStartHookError</td>
-<td align="left">执行hook报错</td>
+<td style="text-align:left">PostStartHookError</td>
+<td style="text-align:left">执行hook报错</td>
 </tr>
 <tr>
-<td align="left">ContainersNotInitialized</td>
-<td align="left">容器没有初始化完毕</td>
+<td style="text-align:left">ContainersNotInitialized</td>
+<td style="text-align:left">容器没有初始化完毕</td>
 </tr>
 <tr>
-<td align="left">ContainersNotRead</td>
-<td align="left">容器没有准备完毕</td>
+<td style="text-align:left">ContainersNotRead</td>
+<td style="text-align:left">容器没有准备完毕</td>
 </tr>
 <tr>
-<td align="left">ContainerCreating</td>
-<td align="left">容器创建中</td>
+<td style="text-align:left">ContainerCreating</td>
+<td style="text-align:left">容器创建中</td>
 </tr>
 <tr>
-<td align="left">PodInitializing</td>
-<td align="left">pod初始化中</td>
+<td style="text-align:left">PodInitializing</td>
+<td style="text-align:left">pod初始化中</td>
 </tr>
 <tr>
-<td align="left">DockerDaemonNotReady</td>
-<td align="left">docker还没有完全启动</td>
+<td style="text-align:left">DockerDaemonNotReady</td>
+<td style="text-align:left">docker还没有完全启动</td>
 </tr>
 <tr>
-<td align="left">NetworkPluginNotReady</td>
-<td align="left">网络插件还没有完全启动</td>
+<td style="text-align:left">NetworkPluginNotReady</td>
+<td style="text-align:left">网络插件还没有完全启动</td>
 </tr>
-</tbody></table>
-<h2 id="日志报错解析"><a href="#日志报错解析" class="headerlink" title="日志报错解析"></a>日志报错解析</h2><h4 id="架构错误"><a href="#架构错误" class="headerlink" title="架构错误"></a>架构错误</h4><p>pod报错<br>exec &#x2F;docker-entrypoint.sh: exec format error<br>镜像架构与节点架构不符，arch检查节点架构是x86还是arm</p>
+</tbody>
+</table>
+<h2 id="日志报错解析"><a class="markdownIt-Anchor" href="#日志报错解析"></a> 日志报错解析</h2>
+<h4 id="架构错误"><a class="markdownIt-Anchor" href="#架构错误"></a> 架构错误</h4>
+<p>pod报错<br>
+exec /docker-entrypoint.sh: exec format error<br>
+镜像架构与节点架构不符，arch检查节点架构是x86还是arm</p>
 
     </div>
     <footer class="article-footer">
@@ -450,7 +459,7 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/covers/zzz_qy2.jpg" data-sizes="auto" alt="鬼灭日语篇" class="lazyload">
+            <img data-src="/covers/zzz_ya1.png" data-sizes="auto" alt="鬼灭日语篇" class="lazyload">
         <a href="/en/2025/08/12/theJapOfTheDemonSlayer/" aria-label="Prev: 鬼灭日语篇" title="Prev: 鬼灭日语篇"></a>
         <div class="article-nav-caption">Prev</div>
         <h3 class="article-nav-title">
@@ -458,7 +467,7 @@
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/covers/gekko.jpg" data-sizes="auto" alt="日语五十音" class="lazyload">
+          <img data-src="/covers/zzz_mm2.png" data-sizes="auto" alt="日语五十音" class="lazyload">
       <a href="/en/2025/05/15/gojuon/" aria-label="Next: 日语五十音"  title="Next: 日语五十音"></a>
       <div class="article-nav-caption">Next</div>
       <h3 class="article-nav-title">
@@ -507,10 +516,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        63.7k
+        65.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        04:38
+        04:46
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -532,7 +541,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81pod%E7%8A%B6%E6%80%81%E6%8A%A5%E9%94%99%E6%8F%8F%E8%BF%B0"><span class="toc-text">常见pod状态报错描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%8A%A5%E9%94%99%E8%A7%A3%E6%9E%90"><span class="toc-text">日志报错解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E9%94%99%E8%AF%AF"><span class="toc-text">架构错误</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81pod%E7%8A%B6%E6%80%81%E6%8A%A5%E9%94%99%E6%8F%8F%E8%BF%B0"><span class="toc-text"> 常见pod状态报错描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%8A%A5%E9%94%99%E8%A7%A3%E6%9E%90"><span class="toc-text"> 日志报错解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E9%94%99%E8%AF%AF"><span class="toc-text"> 架构错误</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -686,7 +695,7 @@
           url: "https://jade-xyy.github.io/2025/08/08/k8sComplexProblems/",
           excerpt: "K8s 常见报错记录",
           description: "",
-          stripContent: "K8s问题集常见pod状态报错描述   状态 描述    CrashLoopBackOff 容器启动后异常退出，kubelet正在将它重启   InvalidImageName 无法解析镜像名称   Pending 资源不足，集群内node不满足该pod请求的cpu、memory、gpu等，或有标签不匹配、节点亲和性、pod亲和性等问题   OOMKilled pod使用内存超限制，增加内存limit或优化pod的内存使用   Unknown api-server和kubelet无法通信，检查组",
+          stripContent: " K8s问题集  常见pod状态报错描述    状态 描述     CrashLoopBackOff 容器启动后异常退出，kubelet正在将它重启   InvalidImageName 无法解析镜像名称   Pending 资源不足，集群内node不满足该pod请求的cpu、memory、gpu等，或有标签不匹配、节点亲和性、pod亲和性等问题   OOMKilled pod使用内存超限制，增加内存limit或优化pod的内存使用   Unknown api-server和kubelet无法通",
           date: "Fri Aug 08 2025 15:38:59 GMT+0800",
           updated: "Fri Mar 06 2026 17:27:31 GMT+0800",
           cover: "/images/zzz_cjjxrrdpts.webp",
@@ -907,7 +916,13 @@
   }
 </script>
 
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.js" integrity="sha384-MWNUH0WmtsYGhn2cbH6ELRCbf9LG3QDqCC+gqPB3IBNO35xjZK3Ejb6oONRpDbPg" crossorigin="anonymous" defer data-pjax></script>
 
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer onload="renderMathInElement(_$(&#39;article&#39;), {delimiters: [{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true},{left: &#39;$&#39;, right: &#39;$&#39;, display: false}]});" data-pjax></script>
+
+  
 
 
   </body>

@@ -38,6 +38,7 @@
 <link rel="stylesheet" href="/css/style.css">
 
   <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+      <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css" integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz+YI" crossorigin="anonymous">
       
 <link rel="stylesheet" href="https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.css" integrity="sha384-vltfZtesCdl6NYVcFVcjEaIi5RpNvZe9t7fXvq8twVtcoy+Ub9QgnxUYJmwOhYCK" crossorigin="anonymous">
 
@@ -201,7 +202,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%95%B0%E8%A7%84%E5%88%99"><span class="toc-text">分数规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%E5%8F%8A%E7%AE%97%E6%B3%95"><span class="toc-text">名词解释及算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E6%B5%8E%E8%A7%84%E5%88%99"><span class="toc-text">经济规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Eco-economy-%E5%8D%B3%E7%BB%8F%E6%B5%8E%E5%B1%80%EF%BC%9A"><span class="toc-text">Eco(economy)即经济局：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%BA%E8%B5%B7%E5%B1%80"><span class="toc-text">强起局</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8A%E7%94%B2%E5%92%8C%E5%85%A8%E7%94%B2%E7%9A%84%E6%80%A7%E4%BB%B7%E6%AF%94"><span class="toc-text">半甲和全甲的性价比</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%95%B0%E8%A7%84%E5%88%99"><span class="toc-text"> 分数规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%E5%8F%8A%E7%AE%97%E6%B3%95"><span class="toc-text"> 名词解释及算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E6%B5%8E%E8%A7%84%E5%88%99"><span class="toc-text"> 经济规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ecoeconomy%E5%8D%B3%E7%BB%8F%E6%B5%8E%E5%B1%80"><span class="toc-text"> Eco(economy)即经济局：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%BA%E8%B5%B7%E5%B1%80"><span class="toc-text"> 强起局</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8A%E7%94%B2%E5%92%8C%E5%85%A8%E7%94%B2%E7%9A%84%E6%80%A7%E4%BB%B7%E6%AF%94"><span class="toc-text"> 半甲和全甲的性价比</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -285,18 +286,24 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h2 id="分数规则"><a href="#分数规则" class="headerlink" title="分数规则"></a>分数规则</h2><h4 id="名词解释及算法"><a href="#名词解释及算法" class="headerlink" title="名词解释及算法"></a>名词解释及算法</h4><blockquote>
-<p>KDA：<br>K kill 杀人<br>D death 死亡<br>A assist 助攻</p>
+        <h2 id="分数规则"><a class="markdownIt-Anchor" href="#分数规则"></a> 分数规则</h2>
+<h4 id="名词解释及算法"><a class="markdownIt-Anchor" href="#名词解释及算法"></a> 名词解释及算法</h4>
+<blockquote>
+<p>KDA：<br>
+K kill 杀人<br>
+D death 死亡<br>
+A assist 助攻</p>
 </blockquote>
 <blockquote>
 <p>‌人数互换（Trade）‌：体现玩家在交换过程中的效率，即用自己或队友的牺牲换取对手的减员‌</p>
 </blockquote>
 <ul>
-<li><strong>KDA</strong> &#x3D; ( K + A ) &#x2F; D</li>
-<li><strong>KAST</strong> &#x3D; ( 击杀 + 助攻 + 存活 + 人数互换 ) &#x2F; 总回合数 * 100%</li>
-<li><strong>ACS（平均战斗评分）</strong> &#x3D; [（ 每回合伤害 ×1 ） + （ 击杀数 × 位次系数 ） + （ 连杀数 ×50 ） + （ 非伤害助攻 ×25 ）] ÷ 回合总数<ul>
+<li><strong>KDA</strong> = ( K + A ) / D</li>
+<li><strong>KAST</strong> = ( 击杀 + 助攻 + 存活 + 人数互换 ) / 总回合数 * 100%</li>
+<li><strong>ACS（平均战斗评分）</strong> = [（ 每回合伤害 ×1 ） + （ 击杀数 × 位次系数 ） + （ 连杀数 ×50 ） + （ 非伤害助攻 ×25 ）] ÷ 回合总数
+<ul>
 <li>每造成1点伤害得1分</li>
-<li>根据剩余敌人的数量，击杀得分不同，敌方人数越多时的首个击杀加分越多，随着敌方人数减少逐步递减（150&#x2F;130&#x2F;110&#x2F;90&#x2F;70）</li>
+<li>根据剩余敌人的数量，击杀得分不同，敌方人数越多时的首个击杀加分越多，随着敌方人数减少逐步递减（150/130/110/90/70）</li>
 <li>连续击败额外加分，小局每多击杀1人多+50分</li>
 <li>(伤害输出高、在关键时机击杀敌人，对Rating提升有帮助)</li>
 <li>辅助队友的非伤害性助攻，包括奶妈治疗、闪光、混烟或者易伤等，会获得25分的加分，这些细节表现也会反映在Rating中</li>
@@ -307,17 +314,33 @@
 <p><strong>Rating（技术得分）</strong>  受KDA、平均战斗评分、其他因素等影响（玩家使用道具的效果、角色的治疗量以及每个回合所提供的回合贡献等因素也会影响Rating）</p>
 </blockquote>
 <hr>
-<h2 id="经济规则"><a href="#经济规则" class="headerlink" title="经济规则"></a>经济规则</h2><p><strong>击杀</strong> ：个人+ K x 200<br><strong>下包</strong> ：全员+ 300 （拆包只加点数）<br><strong>回合胜利</strong> ：全员+ 3000<br><strong>回合失败</strong> ：全员+ 1900<br><strong>回合连败2</strong> ：全员+ 2400 （连败多给500激励）<br><strong>回合连败3</strong> ：全员+ 2900 （连败多给500激励，封顶2次也就是1000）</p>
+<h2 id="经济规则"><a class="markdownIt-Anchor" href="#经济规则"></a> 经济规则</h2>
+<p><strong>击杀</strong> ：个人+ K x 200<br>
+<strong>下包</strong> ：全员+ 300 （拆包只加点数）<br>
+<strong>回合胜利</strong> ：全员+ 3000<br>
+<strong>回合失败</strong> ：全员+ 1900<br>
+<strong>回合连败2</strong> ：全员+ 2400 （连败多给500激励）<br>
+<strong>回合连败3</strong> ：全员+ 2900 （连败多给500激励，封顶2次也就是1000）</p>
 <blockquote>
-<p>保枪惩罚机制包含以下两种，【 经济 &#x3D; K x 200 + 900 】，比死了少1000</p>
+<p>保枪惩罚机制包含以下两种，【 经济 = K x 200 + 900 】，比死了少1000</p>
 </blockquote>
 <ul>
 <li><code>进攻</code> + <code>不下包</code> + <code>保枪</code></li>
-<li><code>防守</code> + <code>包炸</code> + <code>保枪</code><br>如果死了，【 经济 &#x3D; K x 200 + 保底1900 】<br><em>一般只在有2900及以上大枪才保枪，抵消惩罚经济</em></li>
+<li><code>防守</code> + <code>包炸</code> + <code>保枪</code><br>
+如果死了，【 经济 = K x 200 + 保底1900 】<br>
+<em>一般只在有2900及以上大枪才保枪，抵消惩罚经济</em></li>
 </ul>
-<h4 id="Eco-economy-即经济局："><a href="#Eco-economy-即经济局：" class="headerlink" title="Eco(economy)即经济局："></a>Eco(economy)即经济局：</h4><p>不买装备或者只起少量装备来攒钱，保证自己下一回合可以和对方打长枪局的做法<br>例如之前提到的，手枪局失利方在第二回合不买装备，来保证自己第三回合能使用全甲长枪</p>
-<h4 id="强起局"><a href="#强起局" class="headerlink" title="强起局"></a>强起局</h4><p>指在经济劣势的情况下，强行购买装备，以劣势装备和对方优势装备对拼的对局</p>
-<h4 id="半甲和全甲的性价比"><a href="#半甲和全甲的性价比" class="headerlink" title="半甲和全甲的性价比"></a>半甲和全甲的性价比</h4><p>幻象：全甲15m开外能抗一枪头，半甲直接无；15m内半甲和全甲都是四枪身子，15m外全甲能多抗一枪<br>暴徒：全甲与半甲没有区别<br>间谍：全甲与半甲没有区别<br>神射：全甲30m外能抗一枪头，其他没有区别<br>除了在面对幻象和神射的中远距离时，半甲与全甲的区别不大</p>
+<h4 id="ecoeconomy即经济局"><a class="markdownIt-Anchor" href="#ecoeconomy即经济局"></a> Eco(economy)即经济局：</h4>
+<p>不买装备或者只起少量装备来攒钱，保证自己下一回合可以和对方打长枪局的做法<br>
+例如之前提到的，手枪局失利方在第二回合不买装备，来保证自己第三回合能使用全甲长枪</p>
+<h4 id="强起局"><a class="markdownIt-Anchor" href="#强起局"></a> 强起局</h4>
+<p>指在经济劣势的情况下，强行购买装备，以劣势装备和对方优势装备对拼的对局</p>
+<h4 id="半甲和全甲的性价比"><a class="markdownIt-Anchor" href="#半甲和全甲的性价比"></a> 半甲和全甲的性价比</h4>
+<p>幻象：全甲15m开外能抗一枪头，半甲直接无；15m内半甲和全甲都是四枪身子，15m外全甲能多抗一枪<br>
+暴徒：全甲与半甲没有区别<br>
+间谍：全甲与半甲没有区别<br>
+神射：全甲30m外能抗一枪头，其他没有区别<br>
+除了在面对幻象和神射的中远距离时，半甲与全甲的区别不大</p>
 
     </div>
     <footer class="article-footer">
@@ -381,7 +404,7 @@
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/covers/clove.jpg" data-sizes="auto" alt="ETCD备份恢复" class="lazyload">
+          <img data-src="/covers/zzz_mm3.png" data-sizes="auto" alt="ETCD备份恢复" class="lazyload">
       <a href="/2025/04/14/etcdBackupRestore/" aria-label="后一篇: ETCD备份恢复"  title="后一篇: ETCD备份恢复"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
@@ -430,10 +453,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        63.7k
+        65.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        04:38
+        04:46
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -455,7 +478,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%95%B0%E8%A7%84%E5%88%99"><span class="toc-text">分数规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%E5%8F%8A%E7%AE%97%E6%B3%95"><span class="toc-text">名词解释及算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E6%B5%8E%E8%A7%84%E5%88%99"><span class="toc-text">经济规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Eco-economy-%E5%8D%B3%E7%BB%8F%E6%B5%8E%E5%B1%80%EF%BC%9A"><span class="toc-text">Eco(economy)即经济局：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%BA%E8%B5%B7%E5%B1%80"><span class="toc-text">强起局</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8A%E7%94%B2%E5%92%8C%E5%85%A8%E7%94%B2%E7%9A%84%E6%80%A7%E4%BB%B7%E6%AF%94"><span class="toc-text">半甲和全甲的性价比</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%95%B0%E8%A7%84%E5%88%99"><span class="toc-text"> 分数规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%E5%8F%8A%E7%AE%97%E6%B3%95"><span class="toc-text"> 名词解释及算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E6%B5%8E%E8%A7%84%E5%88%99"><span class="toc-text"> 经济规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ecoeconomy%E5%8D%B3%E7%BB%8F%E6%B5%8E%E5%B1%80"><span class="toc-text"> Eco(economy)即经济局：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%BA%E8%B5%B7%E5%B1%80"><span class="toc-text"> 强起局</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8A%E7%94%B2%E5%92%8C%E5%85%A8%E7%94%B2%E7%9A%84%E6%80%A7%E4%BB%B7%E6%AF%94"><span class="toc-text"> 半甲和全甲的性价比</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -609,7 +632,7 @@
           url: "https://jade-xyy.github.io/2025/04/18/valorantRules/",
           excerpt: "无畏契约（VALORANT）分数、经济计算规则，来康康为啥你拿不到 MVP 叭",
           description: "",
-          stripContent: "分数规则名词解释及算法 KDA：K kill 杀人D death 死亡A assist 助攻   ‌人数互换（Trade）‌：体现玩家在交换过程中的效率，即用自己或队友的牺牲换取对手的减员‌   KDA &amp;#x3D; ( K + A ) &amp;#x2F; D KAST &amp;#x3D; ( 击杀 + 助攻 + 存活 + 人数互换 ) &amp;#x2F; 总回合数 * 100% ACS（平均战斗评分） &amp;#x3D; [（ 每回合伤害 ×1 ） + （ 击杀数 × 位次系数 ） + （ 连杀数 ×50 ） + （",
+          stripContent: " 分数规则  名词解释及算法  KDA： K kill 杀人 D death 死亡 A assist 助攻   ‌人数互换（Trade）‌：体现玩家在交换过程中的效率，即用自己或队友的牺牲换取对手的减员‌   KDA = ( K + A ) / D KAST = ( 击杀 + 助攻 + 存活 + 人数互换 ) / 总回合数 * 100% ACS（平均战斗评分） = [（ 每回合伤害 ×1 ） + （ 击杀数 × 位次系数 ） + （ 连杀数 ×50 ） + （ 非伤害助攻 ×25 ）] ÷ 回合",
           date: "Fri Apr 18 2025 15:28:53 GMT+0800",
           updated: "Fri Mar 06 2026 17:27:31 GMT+0800",
           cover: "https://jade-xyy.github.io/covers/team.jpg",
@@ -830,7 +853,13 @@
   }
 </script>
 
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.js" integrity="sha384-MWNUH0WmtsYGhn2cbH6ELRCbf9LG3QDqCC+gqPB3IBNO35xjZK3Ejb6oONRpDbPg" crossorigin="anonymous" defer data-pjax></script>
 
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer onload="renderMathInElement(_$(&#39;article&#39;), {delimiters: [{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true},{left: &#39;$&#39;, right: &#39;$&#39;, display: false}]});" data-pjax></script>
+
+  
 
 
   </body>

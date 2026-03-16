@@ -1438,6 +1438,30 @@ button {
   max-width: 100%;
   margin: 0 auto;
 }
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.katex-display::-webkit-scrollbar {
+  display: none;
+}
+.katex {
+  width: calc(100% - 2px);
+}
+.katex-html {
+  padding: 4px;
+}
+.katex-html .base {
+  margin: 0 auto;
+}
+.katex-html:has(span.tag) {
+  display: flex !important;
+}
+.katex-display>.katex>.katex-html>.tag {
+  position: relative !important;
+  float: right;
+  margin-left: 0.25rem;
+}
 .post-link {
   position: absolute;
   top: 0;
@@ -2772,9 +2796,9 @@ pre .emphasis {
   margin-right: 4px;
 }
 :root {
-  --color-info-bg: #ecf5fe;
-  --color-info-text: #06c;
-  --color-info-shadow: #f5faff;
+  --color-info-bg: #d4ede4;
+  --color-info-text: #77ac91;
+  --color-info-shadow: #a9dac8;
   --color-warning-bg: #fff5e0;
   --color-warning-text: #ad6405;
   --color-warning-shadow: #fffcf5;
